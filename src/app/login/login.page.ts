@@ -38,13 +38,14 @@ export class LoginPage implements OnDestroy {
                 private router: Router) {
     }
 
-    onSubmit(invalid: boolean) {
-        if (invalid)
-            return;
+    onSubmit() {
         this.loginService.login(this.credentials).then(
-            () => this.router.navigateByUrl('/networks')
+            () => this.router.navigateByUrl('/home')
         ).catch(
-            () => this.toastHelper.showErrorMessage('Verifique o e-mail e senha e tente novamente')
+            (e) => {
+                console.warn(e);
+                this.toastHelper.showErrorMessage('Verifique o login e senha e tente novamente')
+            }
         );
     }
 

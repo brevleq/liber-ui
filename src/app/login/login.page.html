@@ -17,7 +17,7 @@
   ~ along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
   -->
 
-<ion-content scroll-y="false" class="background">
+<ion-content class="background">
     <ion-toolbar class="toolbar">
         <ion-text color="light"><h1 class="text-register ion-text-center">Login</h1></ion-text>
         <ion-buttons class="back-button" slot="start">
@@ -34,25 +34,20 @@
         </ion-avatar>
         <div class="start-div">
             <ion-list class="list-start">
-                <form #loginForm="ngForm" (submit)="onSubmit(loginForm.invalid)" class="ion-margin-bottom" ngForm>
+                <form #loginForm="ngForm" (submit)="onSubmit()" class="ion-margin-bottom" ngForm>
                     <ion-item class="ion-margin-bottom">
                         <ion-label>
                             <ion-icon color="primary" name="mail-outline"></ion-icon>
                         </ion-label>
                         <ion-input #loginInput="ngModel" [(ngModel)]="credentials.username" email name="login"
-                                   placeholder="Seu e-mail"
-                                   required type="email">
+                                   placeholder="Seu login"
+                                   required type="text">
                         </ion-input>
                     </ion-item>
                     <ion-grid *ngIf="loginForm.submitted && loginInput.errors">
                         <ion-row *ngIf="loginInput.errors.required">
                             <ion-col>
-                                Informe seu email
-                            </ion-col>
-                        </ion-row>
-                        <ion-row *ngIf="loginInput.errors.email">
-                            <ion-col>
-                                E-mail inválido
+                                Informe seu login
                             </ion-col>
                         </ion-row>
                     </ion-grid>

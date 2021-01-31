@@ -21,7 +21,6 @@ import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {SERVER_API_URL} from "../../constants/app.constants";
-import {Platform} from "@ionic/angular";
 import {concatAll, map} from "rxjs/operators";
 
 export class AuthInterceptor implements HttpInterceptor {
@@ -52,6 +51,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
     private getToken(): Observable<string> {
         return new Observable<string>(observer => {
+            console.warn('localStorage -> ', this.localStorage);
+            console.warn('sessionStorage -> ', this.sessionStorage);
             const token = this.localStorage.retrieve('authenticationToken') || this.sessionStorage.retrieve('authenticationToken');
             observer.next(token);
             observer.complete();

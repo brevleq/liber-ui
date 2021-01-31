@@ -24,7 +24,7 @@ import {HasAnyAuthorityDirective} from './auth/has-any-authority.directive';
 import {AuthInterceptor} from './blocks/interceptor/auth.interceptor';
 import {AuthExpiredInterceptor} from './blocks/interceptor/auth-expired.interceptor';
 import {ErrorHandlerInterceptor} from './blocks/interceptor/errorhandler.interceptor';
-import {IonicModule, Platform} from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 import {SharedLibsModule} from './shared-libs.module';
 import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 import {EventManager} from './services/event.manager.service';
@@ -58,7 +58,6 @@ import {LoadingInterceptor} from "./blocks/interceptor/loading.interceptor";
             useClass: AuthInterceptor,
             multi: true,
             deps: [
-                Platform,
                 LocalStorageService,
                 SessionStorageService
             ]

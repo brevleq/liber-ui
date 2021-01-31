@@ -17,20 +17,25 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {UserRouteAccessService} from "./shared/auth/user-route-access-service";
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
-    path: '',
+    path: 'home',
     canActivate: [UserRouteAccessService],
     data: {
-      authorities: ['ROLE_ADMIN','ROLE_DENTIST','ROLE_PSYCHOLOGIST','ROLE_PSYCHIATRIST','ROLE_SECRETARY','ROLE_SOCIAL_ASSISTANT'],
+      authorities: ['ROLE_ADMIN', 'ROLE_DENTIST', 'ROLE_PSYCHOLOGIST', 'ROLE_PSYCHIATRIST', 'ROLE_SECRETARY', 'ROLE_SOCIAL_ASSISTANT'],
       pageTitle: ''
     },
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
