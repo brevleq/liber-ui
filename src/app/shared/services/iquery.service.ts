@@ -17,29 +17,12 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {RouteReuseStrategy} from '@angular/router';
+import {HttpResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
-import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
+export interface IQueryService<T> {
 
-import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing.module';
-import {SharedModule} from "./shared/shared.module";
+    find(id: any): Observable<HttpResponse<T>>;
 
-@NgModule({
-    declarations: [AppComponent],
-    entryComponents: [],
-    imports: [
-        BrowserModule,
-        IonicModule.forRoot(),
-        AppRoutingModule,
-        SharedModule
-    ],
-    providers: [
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
-    ],
-    bootstrap: [AppComponent]
-})
-export class AppModule {
+    query(req?: any): Observable<HttpResponse<T[]>>;
 }

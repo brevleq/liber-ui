@@ -18,28 +18,25 @@
  */
 
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {RouteReuseStrategy} from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 
-import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing.module';
-import {SharedModule} from "./shared/shared.module";
+import {LoginPageRoutingModule} from './login-routing.module';
+
+import {LoginPage} from './login.page';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
-    declarations: [AppComponent],
-    entryComponents: [],
     imports: [
-        BrowserModule,
-        IonicModule.forRoot(),
-        AppRoutingModule,
-        SharedModule
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        RouterModule,
+        LoginPageRoutingModule
     ],
-    providers: [
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
-    ],
-    bootstrap: [AppComponent]
+    declarations: [LoginPage]
 })
-export class AppModule {
+export class LoginPageModule {
 }

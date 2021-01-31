@@ -17,20 +17,7 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {environment} from "../../../environments/environment";
 
-import { FolderPage } from './folder.page';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: FolderPage
-  }
-];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class FolderPageRoutingModule {}
+export const SERVER_API_URL = environment.serverUrl;
+export const ITEMS_PER_PAGE = 20;

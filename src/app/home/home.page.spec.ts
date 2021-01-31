@@ -17,29 +17,27 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {RouteReuseStrategy} from '@angular/router';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule } from '@ionic/angular';
+import { RouterModule } from '@angular/router';
+import {HomePage} from "./home.page";
 
-import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
+describe('HomePage', () => {
+  let component: HomePage;
+  let fixture: ComponentFixture<HomePage>;
 
-import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing.module';
-import {SharedModule} from "./shared/shared.module";
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ HomePage ],
+      imports: [IonicModule.forRoot(), RouterModule.forRoot([])]
+    }).compileComponents();
 
-@NgModule({
-    declarations: [AppComponent],
-    entryComponents: [],
-    imports: [
-        BrowserModule,
-        IonicModule.forRoot(),
-        AppRoutingModule,
-        SharedModule
-    ],
-    providers: [
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
-    ],
-    bootstrap: [AppComponent]
-})
-export class AppModule {
-}
+    fixture = TestBed.createComponent(HomePage);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  }));
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

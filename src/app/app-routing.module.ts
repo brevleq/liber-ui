@@ -19,17 +19,22 @@
 
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {UserRouteAccessService} from "./shared/auth/user-route-access-service";
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'folder/Inbox',
-    pathMatch: 'full'
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  }
+    path: '',
+    canActivate: [UserRouteAccessService],
+    data: {
+      authorities: ['ROLE_ADMIN','ROLE_DENTIST','ROLE_PSYCHOLOGIST','ROLE_PSYCHIATRIST','ROLE_SECRETARY','ROLE_SOCIAL_ASSISTANT'],
+      pageTitle: ''
+    },
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  },
 ];
 
 @NgModule({

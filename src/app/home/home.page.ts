@@ -17,29 +17,21 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {RouteReuseStrategy} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
-
-import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing.module';
-import {SharedModule} from "./shared/shared.module";
-
-@NgModule({
-    declarations: [AppComponent],
-    entryComponents: [],
-    imports: [
-        BrowserModule,
-        IonicModule.forRoot(),
-        AppRoutingModule,
-        SharedModule
-    ],
-    providers: [
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
-    ],
-    bootstrap: [AppComponent]
+@Component({
+  selector: 'home-page',
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
 })
-export class AppModule {
+export class HomePage implements OnInit {
+  public folder: string;
+
+  constructor(private activatedRoute: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.folder = this.activatedRoute.snapshot.paramMap.get('id');
+  }
+
 }

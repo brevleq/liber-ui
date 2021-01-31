@@ -17,21 +17,27 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule } from '@ionic/angular';
 
-@Component({
-  selector: 'app-folder',
-  templateUrl: './folder.page.html',
-  styleUrls: ['./folder.page.scss'],
-})
-export class FolderPage implements OnInit {
-  public folder: string;
+import { LoginPage } from './login.page';
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+describe('LoginPage', () => {
+  let component: LoginPage;
+  let fixture: ComponentFixture<LoginPage>;
 
-  ngOnInit() {
-    this.folder = this.activatedRoute.snapshot.paramMap.get('id');
-  }
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ LoginPage ],
+      imports: [IonicModule.forRoot()]
+    }).compileComponents();
 
-}
+    fixture = TestBed.createComponent(LoginPage);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  }));
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

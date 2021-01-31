@@ -17,29 +17,29 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {RouteReuseStrategy} from '@angular/router';
-
-import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
-
-import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing.module';
-import {SharedModule} from "./shared/shared.module";
+import {LOCALE_ID, NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {CommonModule, registerLocaleData} from '@angular/common';
+import {NgxWebstorageModule} from "ngx-webstorage";
+import locale from '@angular/common/locales/pt';
 
 @NgModule({
-    declarations: [AppComponent],
-    entryComponents: [],
     imports: [
-        BrowserModule,
-        IonicModule.forRoot(),
-        AppRoutingModule,
-        SharedModule
+        NgxWebstorageModule.forRoot({prefix: 'liber', separator: '-'}),
     ],
-    providers: [
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
-    ],
-    bootstrap: [AppComponent]
+    providers: [{
+        provide: LOCALE_ID,
+        useValue: 'pt'
+    }],
+    exports: [
+        FormsModule,
+        HttpClientModule,
+        CommonModule,
+    ]
 })
-export class AppModule {
+export class SharedLibsModule {
+    constructor() {
+        registerLocaleData(locale);
+    }
 }

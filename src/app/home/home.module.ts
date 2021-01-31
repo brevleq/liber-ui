@@ -17,29 +17,21 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {RouteReuseStrategy} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
-
-import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing.module';
-import {SharedModule} from "./shared/shared.module";
+import { IonicModule } from '@ionic/angular';
+import {HomeRoutingModule} from "./home-routing.module";
+import {HomePage} from "./home.page";
 
 @NgModule({
-    declarations: [AppComponent],
-    entryComponents: [],
-    imports: [
-        BrowserModule,
-        IonicModule.forRoot(),
-        AppRoutingModule,
-        SharedModule
-    ],
-    providers: [
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
-    ],
-    bootstrap: [AppComponent]
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    HomeRoutingModule
+  ],
+  declarations: [HomePage]
 })
-export class AppModule {
-}
+export class HomeModule {}

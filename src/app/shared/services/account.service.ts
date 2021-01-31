@@ -17,27 +17,20 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
-import { FolderPage } from './folder.page';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpResponse} from '@angular/common/http';
+import {SERVER_API_URL} from '../constants/app.constants';
+import {Observable} from 'rxjs';
+import {ChangePassword} from "../model/change-password.model";
 
-describe('FolderPage', () => {
-  let component: FolderPage;
-  let fixture: ComponentFixture<FolderPage>;
+@Injectable({
+    providedIn: 'root'
+})
+export class AccountService {
+    constructor(private http: HttpClient) {
+    }
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FolderPage ],
-      imports: [IonicModule.forRoot(), RouterModule.forRoot([])]
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(FolderPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    changePass(changePass: ChangePassword): Observable<HttpResponse<any>> {
+        return this.http.post(SERVER_API_URL + '/api/account/change-password', changePass, {observe: 'response'});
+    }
+}

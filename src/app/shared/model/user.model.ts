@@ -17,29 +17,23 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {RouteReuseStrategy} from '@angular/router';
+export class User {
 
-import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
-
-import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing.module';
-import {SharedModule} from "./shared/shared.module";
-
-@NgModule({
-    declarations: [AppComponent],
-    entryComponents: [],
-    imports: [
-        BrowserModule,
-        IonicModule.forRoot(),
-        AppRoutingModule,
-        SharedModule
-    ],
-    providers: [
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
-    ],
-    bootstrap: [AppComponent]
-})
-export class AppModule {
+    constructor(
+        public id?: any,
+        public login?: string,
+        public firstName?: string,
+        public lastName?: string,
+        public email?: string,
+        public activated?: Boolean,
+        public langKey?: string,
+        public authorities?: any[],
+        public createdBy?: string,
+        public createdDate?: Date,
+        public lastModifiedBy?: string,
+        public lastModifiedDate?: Date,
+        public password?: string,
+        public imageFile?: string
+    ) {
+    }
 }
