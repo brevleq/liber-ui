@@ -133,4 +133,24 @@ export class UsersPage extends InfiniteScrollPage<User> {
             () => this.toast.showErrorMessage("Não foi possível resetar a senha do usuário!")
         );
     }
+
+    deactivate(item: User) {
+        this.userService.deactivate(item.id).subscribe(
+            () => {
+                item.activated = false;
+                this.toast.showSuccessMessage("Usuário desativado!");
+            },
+            () => this.toast.showErrorMessage("Não foi possível desativar o usuário")
+        );
+    }
+
+    activate(item: User) {
+        this.userService.activate(item.id).subscribe(
+            () => {
+                item.activated = true;
+                this.toast.showSuccessMessage("Usuário ativado!");
+            },
+            () => this.toast.showErrorMessage("Não foi possível ativar o usuário")
+        );
+    }
 }

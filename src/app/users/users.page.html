@@ -49,6 +49,12 @@
                 <ion-button (click)="tryResetPassword(item)" *ngIf="user.id!==item.id" fill="clear">
                     <ion-icon color="secondary" name="key"></ion-icon>
                 </ion-button>
+                <ion-button (click)="deactivate(item)" *ngIf="user.id!==item.id && item.activated" fill="clear">
+                    <ion-icon color="secondary" name="checkmark-circle-outline"></ion-icon>
+                </ion-button>
+                <ion-button (click)="activate(item)" *ngIf="user.id!==item.id && !item.activated" fill="clear">
+                    <ion-icon name="ban-outline"></ion-icon>
+                </ion-button>
             </ion-col>
         </ion-item>
     </ion-list>

@@ -25,4 +25,14 @@ export class UserService extends CrudService<User> {
     resetPassword(id: number): Observable<HttpResponse<void>> {
         return this.http.put<void>(SERVER_API_URL + `${this.resourceUrl}/reset-password/${id}`, {}, {observe: 'response'});
     }
+
+    activate(id: number): Observable<HttpResponse<void>> {
+        return this.http.put<void>(SERVER_API_URL + `${this.resourceUrl}/activate/${id}`, {}, {observe: 'response'});
+    }
+
+    deactivate(id: number): Observable<HttpResponse<void>> {
+        return this.http.put<void>(SERVER_API_URL + `${this.resourceUrl}/deactivate/${id}`, {}, {observe: 'response'});
+    }
+
+
 }
