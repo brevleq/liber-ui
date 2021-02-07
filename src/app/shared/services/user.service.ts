@@ -21,4 +21,8 @@ export class UserService extends CrudService<User> {
     findById(id: number): Observable<HttpResponse<User>> {
         return this.http.get<User>(SERVER_API_URL + `${this.resourceUrl}/by-id/${id}`, {observe: 'response'});
     }
+
+    resetPassword(id: number): Observable<HttpResponse<void>> {
+        return this.http.put<void>(SERVER_API_URL + `${this.resourceUrl}/reset-password/${id}`, {}, {observe: 'response'});
+    }
 }

@@ -113,4 +113,24 @@ export class UsersPage extends InfiniteScrollPage<User> {
             this.items.splice(index, 1);
         }
     }
+
+    tryResetPassword(item: User) {
+        this.alertController.create({
+            header: 'Resetar senha',
+            message: 'Você tem certeza que deseja resetar a senha deste usuário?',
+            buttons: [
+                {role: 'confirm', text: 'Sim', handler: () => this.resetPasswordConfirmed(item.id)},
+                {role: 'cancel', text: 'Não'}
+            ]
+        }).then(alert => {
+            alert.present();
+        });
+    }
+
+    private resetPasswordConfirmed(id: number) {
+        this.userService.resetPassword(id).subscribe(
+            () => this.toast.showSuccessMessage("A senha desse usuário agora é: liberliber"),
+            () => this.toast.showErrorMessage("Não foi possível resetar a senha do usuário!")
+        );
+    }
 }
