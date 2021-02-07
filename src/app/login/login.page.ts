@@ -40,7 +40,7 @@ export class LoginPage implements OnDestroy {
 
     onSubmit() {
         this.loginService.login(this.credentials).then(
-            () => this.router.navigateByUrl('/home')
+            () => this.router.navigateByUrl('/')
         ).catch(
             (e) => {
                 console.warn(e);

@@ -18,30 +18,29 @@
  */
 
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {HomePage} from "./home.page";
-import {UserRouteAccessService} from "../shared/auth/user-route-access-service";
-
-
-const routes: Routes = [
-  {
-    path: '',
-    component: HomePage,
-    children: [
-      {
-        path: 'users',
-        canActivate: [UserRouteAccessService],
-        data: {
-          authorities: ['ROLE_ADMIN'],
-        },
-        loadChildren: () => import('../users/users.module').then(m => m.UsersModule)
-      }
-    ]
-  },
-];
+import {IonicModule} from '@ionic/angular';
+import {RouterModule} from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {UsersPage} from './users.page';
+import {UsersRoutingModule} from './users-routing.module';
+import {UserEditionModal} from './edition/user-edition.modal';
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    declarations: [
+        UsersPage,
+        UserEditionModal
+    ],
+    entryComponents: [UserEditionModal],
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterModule,
+        SharedModule,
+        IonicModule,
+        UsersRoutingModule
+    ]
 })
-export class HomeRoutingModule {}
+export class UsersModule {
+}

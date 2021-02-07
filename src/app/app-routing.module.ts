@@ -24,15 +24,6 @@ import {UserRouteAccessService} from "./shared/auth/user-route-access-service";
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
-  },
-  {
-    path: 'home',
     canActivate: [UserRouteAccessService],
     data: {
       authorities: ['ROLE_ADMIN', 'ROLE_DENTIST', 'ROLE_PSYCHOLOGIST', 'ROLE_PSYCHIATRIST', 'ROLE_SECRETARY', 'ROLE_SOCIAL_ASSISTANT'],
@@ -40,6 +31,14 @@ const routes: Routes = [
     },
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+  },
+  // {
+  //   path: 'home',
+
+  // },
 ];
 
 @NgModule({

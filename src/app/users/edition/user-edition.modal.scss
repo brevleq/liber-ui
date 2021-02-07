@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
  *
  * This file is part of Liber UI.
@@ -17,31 +17,45 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {HomePage} from "./home.page";
-import {UserRouteAccessService} from "../shared/auth/user-route-access-service";
+.tracking-icon {
+  margin: 20px auto;
+  font-size: 73px;
+}
 
+.date-description {
+  height: 32px;
 
-const routes: Routes = [
-  {
-    path: '',
-    component: HomePage,
-    children: [
-      {
-        path: 'users',
-        canActivate: [UserRouteAccessService],
-        data: {
-          authorities: ['ROLE_ADMIN'],
-        },
-        loadChildren: () => import('../users/users.module').then(m => m.UsersModule)
-      }
-    ]
-  },
-];
+  span {
+    font-size: 15px;
+    color: var(--ion-color-medium);
+  }
+}
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class HomeRoutingModule {}
+ion-button {
+  --border-radius: 4px;
+  font-size: 25px;
+  height: 45px;
+  text-transform: unset;
+  font-family: 'Nunito';
+  font-weight: bold;
+  margin-top: 35px;
+}
+
+.footer-description {
+  text-align: center;
+
+  small {
+    width: 100%;
+    font-size: 10px;
+    color: var(--ion-color-medium);
+  }
+}
+
+.col-with-icon {
+  position: relative;
+
+  ion-img {
+    top: 24px;
+  }
+}
+

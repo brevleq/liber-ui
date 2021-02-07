@@ -1,0 +1,171 @@
+<!--
+  ~ Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
+  ~
+  ~ This file is part of Liber UI.
+  ~
+  ~ Liber UI is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or any later
+  ~ version.
+  ~
+  ~ Liber UI is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
+  -->
+
+<ion-header>
+    <ion-toolbar>
+        <h1>Criar ou editar usuário</h1>
+        <ion-button (click)="close()" fill="clear" slot="end">
+            <ion-icon class="modal-close-button" name="close"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form #userForm="ngForm" (validSubmit)="submit()" [form]="userForm"
+          formValidation name="userForm" novalidate role="form">
+        <ion-list class="modal-body">
+            <ion-item>
+                <ion-label position="floating">Nome completo</ion-label>
+                <ion-input #nameInput="ngModel" [(ngModel)]="name" autocomplete="off" id="nameField" maxlength="100"
+                           name="nameField"
+                           pattern="^([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./']+)( ([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./' ]+))+$"
+                           required>
+                </ion-input>
+            </ion-item>
+            <div *ngIf="userForm.submitted && nameInput.invalid"
+                 class="field-invalid-message">
+                <small>
+                    <ion-icon class="alert-info" name="alert"></ion-icon>
+                </small>
+                <small *ngIf="nameInput.errors.required">
+                    Informe o nome completo
+                </small>
+                <small *ngIf="nameInput.errors.maxlength">
+                    No máximo 100 caracteres
+                </small>
+                <small *ngIf="nameInput.errors.pattern">
+                    Informe o nome completo
+                </small>
+            </div>
+            <ion-item>
+                <ion-label position="floating">E-mail</ion-label>
+                <ion-input #emailInput="ngModel" [(ngModel)]="user.email" autocomplete="off"
+                           email id="email" name="email" required type="email"></ion-input>
+            </ion-item>
+            <div *ngIf="userForm.submitted && emailInput.invalid"
+                 class="field-invalid-message">
+                <ion-icon class="alert-info" name="alert"></ion-icon>
+                <small *ngIf="emailInput.errors.required">
+                    Informe o e-mail
+                </small>
+                <small *ngIf="emailInput.errors.email">
+                    E-mail inválido
+                </small>
+            </div>
+            <ion-row>
+                <ion-col size="12">
+                    Permissões
+                </ion-col>
+            </ion-row>
+
+            <ion-item>
+                <ion-toggle [(ngModel)]="isAdmin" name="adminToggle" slot="start"></ion-toggle>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label color="dark">Administrador</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <small>Acesso à todas as funções vitais do sistema, cadastro de usuários e configurações
+                                gerais.</small>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+            <ion-item>
+                <ion-toggle [(ngModel)]="isDentist" name="dentistToggle" slot="start"></ion-toggle>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label color="dark">Dentista</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <small>Acesso às funcionalidades disponíveis aos dentistas, como relatórios.</small>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+            <ion-item>
+                <ion-toggle [(ngModel)]="isPsychologist" name="psychologistToggle" slot="start"></ion-toggle>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label color="dark">Psicólogo</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <small>Acesso às funcionalidades disponíveis aos psicólogos, como relatórios.</small>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+            <ion-item>
+                <ion-toggle [(ngModel)]="isPsychiatrist" name="psychiatristToggle" slot="start"></ion-toggle>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label color="dark">Psiquiatra</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <small>Acesso às funcionalidades disponíveis aos psiquiatras, como relatórios.</small>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+            <ion-item>
+                <ion-toggle [(ngModel)]="isSocialAssistant" name="socialAssistantToggle" slot="start"></ion-toggle>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label color="dark">Assistente Social</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <small>Acesso às funcionalidades disponíveis aos assistentes sociais, como
+                                relatórios.</small>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+            <ion-item>
+                <ion-toggle [(ngModel)]="isSecretary" name="secretaryToggle" slot="start"></ion-toggle>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label color="dark">Secretária</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <small>Acesso às funcionalidades disponíveis às secretárias, como agendamentos.</small>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+            <ion-button color="primary" expand="block" type="submit">Salvar usuário</ion-button>
+        </ion-list>
+    </form>
+</ion-content>

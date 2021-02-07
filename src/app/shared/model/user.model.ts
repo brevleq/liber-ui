@@ -35,5 +35,6 @@ export class User {
         public password?: string,
         public imageFile?: string
     ) {
+        this.authorities = authorities ? authorities : [];
     }
 }

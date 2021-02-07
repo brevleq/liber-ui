@@ -22,25 +22,14 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
-
-          <ion-menu-toggle *ngFor="let p of appPages; let i = index" auto-hide="false">
-            <ion-item (click)="selectedIndex = i" [class.selected]="selectedIndex == i" [routerLink]="[p.url]"
+          <ion-list-header>Liber</ion-list-header>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item [class.selected]="true" routerLink="users"
                       detail="false" lines="none" routerDirection="root">
-              <ion-icon [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'" slot="start"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+              <ion-icon name="people" slot="start"></ion-icon>
+              <ion-label>Usuários</ion-label>
             </ion-item>
           </ion-menu-toggle>
-        </ion-list>
-
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon ios="bookmark-outline" md="bookmark-sharp" slot="start"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
         </ion-list>
       </ion-content>
     </ion-menu>

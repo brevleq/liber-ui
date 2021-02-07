@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
  *
  * This file is part of Liber UI.
@@ -17,31 +17,23 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {HomePage} from "./home.page";
-import {UserRouteAccessService} from "../shared/auth/user-route-access-service";
+ion-list {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 
+  ion-grid {
+    padding: 5vh 5vw;
 
-const routes: Routes = [
-  {
-    path: '',
-    component: HomePage,
-    children: [
-      {
-        path: 'users',
-        canActivate: [UserRouteAccessService],
-        data: {
-          authorities: ['ROLE_ADMIN'],
-        },
-        loadChildren: () => import('../users/users.module').then(m => m.UsersModule)
+    ion-row {
+      text-align: center;
+
+      ion-icon, ion-text {
+        width: 100%;
       }
-    ]
-  },
-];
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class HomeRoutingModule {}
+      ion-icon {
+        font-size: 10vw;
+      }
+    }
+  }
+}

@@ -31,6 +31,7 @@ import {EventManager} from './services/event.manager.service';
 import {CurrencyPipe} from '@angular/common';
 import {LoadingService} from './services/loading.service';
 import {LoadingInterceptor} from "./blocks/interceptor/loading.interceptor";
+import {FormValidationDirective} from "./directives/form-validation.directive";
 
 @NgModule({
     imports: [
@@ -39,10 +40,12 @@ import {LoadingInterceptor} from "./blocks/interceptor/loading.interceptor";
         IonicModule
     ],
     declarations: [
-        HasAnyAuthorityDirective
+        HasAnyAuthorityDirective,
+        FormValidationDirective
     ],
     exports: [
         HasAnyAuthorityDirective,
+        FormValidationDirective,
         SharedLibsModule
     ],
     providers: [

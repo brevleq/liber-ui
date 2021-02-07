@@ -19,29 +19,19 @@
 
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HomePage} from "./home.page";
-import {UserRouteAccessService} from "../shared/auth/user-route-access-service";
-
+import {UsersPage} from './users.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomePage,
-    children: [
-      {
-        path: 'users',
-        canActivate: [UserRouteAccessService],
-        data: {
-          authorities: ['ROLE_ADMIN'],
-        },
-        loadChildren: () => import('../users/users.module').then(m => m.UsersModule)
-      }
-    ]
-  },
+    {
+        path: '',
+        component: UsersPage
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [
+        RouterModule.forChild(routes)
+    ]
 })
-export class HomeRoutingModule {}
+export class UsersRoutingModule {
+}
