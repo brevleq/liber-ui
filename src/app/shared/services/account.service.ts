@@ -40,6 +40,6 @@ export class AccountService {
     }
 
     changePass(changePass: ChangePassword): Observable<HttpResponse<any>> {
-        return this.http.post(SERVER_API_URL + '/api/account/change-password', changePass, {observe: 'response'});
+        return this.http.post(SERVER_API_URL + 'api/account/change-password', changePass, {observe: 'response'});
     }
 }

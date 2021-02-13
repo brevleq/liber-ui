@@ -17,42 +17,35 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {Component, OnInit} from '@angular/core';
-import {User} from "../shared/model/user.model";
+import {Component} from '@angular/core';
 import {ToastHelper} from "../shared/helpers/toast.helper";
 import {AccountService} from "../shared/services/account.service";
+import {ChangePassword} from "../shared/model/change-password.model";
 
 @Component({
-    selector: 'account-page',
-    templateUrl: 'account.page.html',
-    styleUrls: ['account.page.scss']
+    selector: 'password-page',
+    templateUrl: 'password.page.html',
+    styleUrls: ['password.page.scss']
 })
-export class AccountPage implements OnInit {
+export class PassswordPage {
 
-    name: string;
-    private user: User;
+    model: ChangePassword = new ChangePassword();
+    newPasswordRepetition: string;
+    passwordDifferentError = false;
 
     constructor(private accountService: AccountService,
                 private toast: ToastHelper) {
-        this.user = new User();
     }
 
-    ngOnInit(): void {
-        this.accountService.get().subscribe(response => this.load(response.body));
-    }
-
-    save() {
-        const spaceIndex = this.name.indexOf(' ');
-        this.user.firstName = this.name.substring(0, spaceIndex);
-        this.user.lastName = this.name.substring(spaceIndex + 1);
-        this.accountService.save(this.user).subscribe(
-            () => this.toast.showSuccessMessage(),
-            () => this.toast.showErrorMessage()
+    submit() {
+        if (this.model.newPassword !== this.newPasswordRepetition) {
+            this.passwordDifferentError = true;
+            return;
+        }
+        this.passwordDifferentError = false;
+        this.accountService.changePass(this.model).subscribe(
+            () => this.toast.showSuccessMessage("Senha trocada com sucesso!"),
+            () => this.toast.showErrorMessage("Ocorreu um erro ao trocar sua senha!")
         );
-    }
-
-    private load(body: User) {
-        this.user = body
-        this.name = this.user.firstName + ' ' + this.user.lastName;
     }
 }
