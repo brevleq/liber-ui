@@ -18,8 +18,8 @@
  */
 
 import {Injectable} from '@angular/core';
-import {AccountService} from './account.service';
 import {Observable, Subject} from 'rxjs';
+import {AccountService} from "../services/account.service";
 
 @Injectable({
     providedIn: 'root'

@@ -22,12 +22,21 @@ import {HttpClient, HttpResponse} from '@angular/common/http';
 import {SERVER_API_URL} from '../constants/app.constants';
 import {Observable} from 'rxjs';
 import {ChangePassword} from "../model/change-password.model";
+import {User} from "../model/user.model";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AccountService {
     constructor(private http: HttpClient) {
+    }
+
+    get(): Observable<HttpResponse<User>> {
+        return this.http.get<User>(SERVER_API_URL + 'api/account', {observe: 'response'});
+    }
+
+    save(account: User): Observable<HttpResponse<any>> {
+        return this.http.post(SERVER_API_URL + 'api/account', account, {observe: 'response'});
     }
 
     changePass(changePass: ChangePassword): Observable<HttpResponse<any>> {

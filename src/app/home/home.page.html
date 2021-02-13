@@ -24,10 +24,24 @@
         <ion-list id="inbox-list">
           <ion-list-header>Liber</ion-list-header>
           <ion-menu-toggle auto-hide="false">
-            <ion-item [class.selected]="true" routerLink="users"
+            <ion-item [class.selected]="true" routerLink="/users"
                       detail="false" lines="none" routerDirection="root">
               <ion-icon name="people" slot="start"></ion-icon>
               <ion-label>Usuários</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item [class.selected]="true" detail="false"
+                      lines="none" routerDirection="root" routerLink="/account">
+              <ion-icon name="person" slot="start"></ion-icon>
+              <ion-label>Minha Conta</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item [class.selected]="true" detail="false"
+                      lines="none" routerDirection="root" routerLink="/password">
+              <ion-icon name="key" slot="start"></ion-icon>
+              <ion-label>Trocar Senha</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>

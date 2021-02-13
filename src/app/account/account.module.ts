@@ -18,35 +18,26 @@
  */
 
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {HomePage} from "./home.page";
-import {UserRouteAccessService} from "../shared/auth/user-route-access-service";
-
-
-const routes: Routes = [
-  {
-    path: '',
-    component: HomePage,
-    children: [
-      {
-        path: 'users',
-        canActivate: [UserRouteAccessService],
-        data: {
-          authorities: ['ROLE_ADMIN'],
-        },
-        loadChildren: () => import('../users/users.module').then(m => m.UsersModule)
-      }, {
-        path: 'account',
-        canActivate: [UserRouteAccessService],
-        loadChildren: () => import('../account/account.module').then(m => m.AccountModule)
-      },
-
-    ]
-  },
-];
+import {IonicModule} from '@ionic/angular';
+import {RouterModule} from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {SharedModule} from "../shared/shared.module";
+import {AccountPage} from "./account.page";
+import {AccountRoutingModule} from "./account-routing.module";
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    declarations: [
+        AccountPage
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterModule,
+        SharedModule,
+        IonicModule,
+        AccountRoutingModule
+    ]
 })
-export class HomeRoutingModule {}
+export class AccountModule {
+}
