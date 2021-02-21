@@ -18,6 +18,7 @@
  */
 
 import {Component} from '@angular/core';
+import {LoginService} from "../shared/services/login.service";
 
 @Component({
     selector: 'home-page',
@@ -26,4 +27,10 @@ import {Component} from '@angular/core';
 })
 export class HomePage {
 
+    constructor(private loginService: LoginService) {
+    }
+
+    logout(): void {
+        this.loginService.logout();
+    }
 }

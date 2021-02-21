@@ -22,29 +22,34 @@ import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {UserRouteAccessService} from "./shared/auth/user-route-access-service";
 
 const routes: Routes = [
-  {
-    path: '',
-    canActivate: [UserRouteAccessService],
-    data: {
-      authorities: ['ROLE_ADMIN', 'ROLE_DENTIST', 'ROLE_PSYCHOLOGIST', 'ROLE_PSYCHIATRIST', 'ROLE_SECRETARY', 'ROLE_SOCIAL_ASSISTANT'],
-      pageTitle: ''
+    {
+        path: '',
+        canActivate: [UserRouteAccessService],
+        data: {
+            authorities: ['ROLE_ADMIN', 'ROLE_DENTIST', 'ROLE_PSYCHOLOGIST', 'ROLE_PSYCHIATRIST', 'ROLE_SECRETARY', 'ROLE_SOCIAL_ASSISTANT'],
+            pageTitle: ''
+        },
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
     },
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
-  },
-  // {
-  //   path: 'home',
+    {
+        path: 'login',
+        loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+    },
+    {
+        path: 'change-default-password',
+        loadChildren: () => import('./password/password.module').then(m => m.PasswordModule)
+    }
+    // {
+    //   path: 'home',
 
-  // },
+    // },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
-  exports: [RouterModule]
+    imports: [
+        RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})
+    ],
+    exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

@@ -21,6 +21,7 @@ import {Injectable} from '@angular/core';
 import {Principal} from '../auth/principal.service';
 import {AuthServerProvider} from '../auth/auth-jwt.service';
 import {EventManager} from "./event.manager.service";
+import {Router} from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
@@ -28,6 +29,7 @@ import {EventManager} from "./event.manager.service";
 export class LoginService {
     constructor(private principal: Principal,
                 private authServerProvider: AuthServerProvider,
+                private router: Router,
                 private eventManager: EventManager) {
     }
 
@@ -59,5 +61,6 @@ export class LoginService {
     logout() {
         this.authServerProvider.logout().subscribe();
         this.principal.authenticate(null);
+        this.router.navigateByUrl('/login');
     }
 }

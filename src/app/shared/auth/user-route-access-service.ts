@@ -46,6 +46,11 @@ export class UserRouteAccessService implements CanActivate {
                 }
 
                 if (account) {
+                    if (account.shouldChangePassword) {
+                        this.router.navigateByUrl('change-default-password')
+                        return false;
+                    }
+
                     return principal.hasAnyAuthority(authorities).then(response => {
                         if (response) {
                             return true;

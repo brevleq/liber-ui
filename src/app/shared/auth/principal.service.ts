@@ -20,6 +20,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {AccountService} from "../services/account.service";
+import {User} from "../model/user.model";
 
 @Injectable({
     providedIn: 'root'
@@ -70,7 +71,7 @@ export class Principal {
         );
     }
 
-    identity(force?: boolean): Promise<any> {
+    identity(force?: boolean): Promise<User> {
         if (force === true) {
             this.userIdentity = undefined;
         }

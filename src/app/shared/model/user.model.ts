@@ -33,7 +33,8 @@ export class User {
         public lastModifiedBy?: string,
         public lastModifiedDate?: Date,
         public password?: string,
-        public imageFile?: string
+        public imageFile?: string,
+        public shouldChangePassword?: boolean
     ) {
         this.authorities = authorities ? authorities : [];
     }

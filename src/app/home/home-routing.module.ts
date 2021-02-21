@@ -37,9 +37,17 @@ const routes: Routes = [
         loadChildren: () => import('../users/users.module').then(m => m.UsersModule)
       }, {
         path: 'account',
+        canActivate: [UserRouteAccessService],
+        data: {
+          authorities: ['ROLE_ADMIN', 'ROLE_DENTIST', 'ROLE_PSYCHOLOGIST', 'ROLE_PSYCHIATRIST', 'ROLE_SECRETARY', 'ROLE_SOCIAL_ASSISTANT'],
+        },
         loadChildren: () => import('../account/account.module').then(m => m.AccountModule)
       }, {
         path: 'password',
+        canActivate: [UserRouteAccessService],
+        data: {
+          authorities: ['ROLE_ADMIN', 'ROLE_DENTIST', 'ROLE_PSYCHOLOGIST', 'ROLE_PSYCHIATRIST', 'ROLE_SECRETARY', 'ROLE_SOCIAL_ASSISTANT'],
+        },
         loadChildren: () => import('../password/password.module').then(m => m.PasswordModule)
       },
     ]
