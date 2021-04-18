@@ -24,6 +24,13 @@
         <ion-list id="inbox-list">
           <ion-list-header>Liber</ion-list-header>
           <ion-menu-toggle auto-hide="false">
+            <ion-item [class.selected]="true" detail="false"
+                      lines="none" routerDirection="root" routerLink="/patients">
+              <ion-icon name="fitness" slot="start"></ion-icon>
+              <ion-label>Pacientes</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
             <ion-item [class.selected]="true" routerLink="/users"
                       detail="false" lines="none" routerDirection="root">
               <ion-icon name="people" slot="start"></ion-icon>
