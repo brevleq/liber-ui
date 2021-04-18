@@ -1,7 +1,16 @@
 {
   "common": {
     "empty-list": "Nothing was found...",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "validation": {
+      "required": "This field is required",
+      "maxlength": "Maximum {{value}} characters",
+      "minlength": "Minimum {{value}} characters"
+    },
+    "button": {
+      "save": "Save",
+      "new": "New"
+    }
   },
   "home": {
     "menus": {
@@ -13,10 +22,7 @@
     }
   },
   "users": {
-    "title": "Users",
-    "button": {
-      "new": "New User"
-    }
+    "title": "Users"
   },
   "users-modal": {
     "title": {
@@ -26,13 +32,10 @@
     "form": {
       "full-name": {
         "label": "Full name",
-        "required": "Enter the full name",
-        "maxlength": "Maximum 100 characters",
         "pattern": "Enter the full name"
       },
       "email": {
         "label": "E-mail",
-        "required": "Enter the e-mail",
         "invalid": "Invalid e-mail"
       },
       "roles": {
@@ -61,9 +64,6 @@
           "title": "Secretary",
           "description": "Access to functions available to social secretaries, such as scheduling."
         }
-      },
-      "button": {
-        "save": "Save user"
       }
     }
   },
@@ -72,49 +72,32 @@
     "form": {
       "full-name": {
         "label": "Full name",
-        "required": "Enter the full name",
-        "maxlength": "Maximum 100 characters",
         "pattern": "Enter the full name"
       },
       "email": {
         "label": "E-mail",
-        "required": "Enter the e-mail",
         "invalid": "Invalid e-mail"
       }
-    },
-    "button": {
-      "save": "Save"
     }
   },
   "change-password": {
     "title": "Change Password",
     "form": {
       "current-password": {
-        "label": "Current password",
-        "required": "Enter current password"
+        "label": "Current password"
       },
       "new-password": {
-        "label": "New password",
-        "required": "Enter new password",
-        "minlength": "Minimum 6 characters"
+        "label": "New password"
       },
       "new-password-repetition": {
-        "label": "Repeat new password",
-        "required": "Repeat new password",
-        "minlength": "Minimum 6 characters"
+        "label": "Repeat new password"
       }
     },
     "errors": {
       "password-not-match": "New password and repeated new password does not match!"
-    },
-    "button": {
-      "save": "Save"
     }
   },
   "patients": {
-    "title": "Patients",
-    "button": {
-      "new": "New Patient"
-    }
+    "title": "Patients"
   }
 }

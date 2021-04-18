@@ -41,10 +41,10 @@
                     <ion-icon class="alert-info" name="alert"></ion-icon>
                 </small>
                 <small *ngIf="nameInput.errors.required">
-                    {{'account.form.full-name.required' | translate}}
+                    {{'common.validation.required' | translate}}
                 </small>
                 <small *ngIf="nameInput.errors.maxlength">
-                    {{'account.form.full-name.maxlength' | translate}}
+                    {{'common.validation.maxlength' | translate:{value: 100} }}
                 </small>
                 <small *ngIf="nameInput.errors.pattern">
                     {{'account.form.full-name.pattern' | translate}}
@@ -59,13 +59,13 @@
                  class="field-invalid-message">
                 <ion-icon class="alert-info" name="alert"></ion-icon>
                 <small *ngIf="emailInput.errors.required">
-                    {{'account.form.email.required' | translate}}
+                    {{'common.validation.required' | translate}}
                 </small>
                 <small *ngIf="emailInput.errors.email">
                     {{'account.form.email.invalid' | translate}}
                 </small>
             </div>
         </ion-list>
-        <ion-button color="primary" expand="block" type="submit">{{'account.button.save' | translate}}</ion-button>
+        <ion-button color="primary" expand="block" type="submit">{{'common.button.save' | translate}}</ion-button>
     </form>
 </ion-content>

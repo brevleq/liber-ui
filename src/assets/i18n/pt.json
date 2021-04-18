@@ -1,7 +1,16 @@
 {
   "common": {
     "empty-list": "Nenhum item encontrado...",
-    "loading": "Carregando..."
+    "loading": "Carregando...",
+    "validation": {
+      "required": "Este campo é obrigatório",
+      "maxlength": "No máximo {{value}} caracteres",
+      "minlength": "No mínimo {{value}} caracteres"
+    },
+    "button": {
+      "save": "Salvar",
+      "new": "Novo"
+    }
   },
   "home": {
     "menus": {
@@ -13,10 +22,7 @@
     }
   },
   "users": {
-    "title": "Usuários",
-    "button": {
-      "new": "Novo Usuário"
-    }
+    "title": "Usuários"
   },
   "users-modal": {
     "title": {
@@ -26,13 +32,10 @@
     "form": {
       "full-name": {
         "label": "Nome completo",
-        "required": "Informe o nome completo",
-        "maxlength": "No máximo 100 caracteres",
         "pattern": "Informe o nome completo"
       },
       "email": {
         "label": "E-mail",
-        "required": "Informe o e-mail",
         "invalid": "E-mail inválido"
       },
       "roles": {
@@ -61,9 +64,6 @@
           "title": "Secretária",
           "description": "Acesso às funcionalidades disponíveis às secretárias, como agendamentos."
         }
-      },
-      "button": {
-        "save": "Salvar usuário"
       }
     }
   },
@@ -72,49 +72,32 @@
     "form": {
       "full-name": {
         "label": "Nome completo",
-        "required": "Informe o nome completo",
-        "maxlength": "No máximo 100 caracteres",
         "pattern": "Informe o nome completo"
       },
       "email": {
         "label": "E-mail",
-        "required": "Informe o e-mail",
         "invalid": "E-mail inválido"
       }
-    },
-    "button": {
-      "save": "Salvar"
     }
   },
   "change-password": {
     "title": "Alterar senha",
     "form": {
       "current-password": {
-        "label": "Senha atual",
-        "required": "Informe a senha atual"
+        "label": "Senha atual"
       },
       "new-password": {
-        "label": "Nova senha",
-        "required": "Informe a nova senha",
-        "minlength": "No mínimo 6 caracteres"
+        "label": "Nova senha"
       },
       "new-password-repetition": {
-        "label": "Repita a nova senha",
-        "required": "Repita a nova senha",
-        "minlength": "No mínimo 6 caracteres"
+        "label": "Repita a nova senha"
       }
     },
     "errors": {
       "password-not-match": "Nova senha e repetição da senha são diferentes!"
-    },
-    "button": {
-      "save": "Salvar"
     }
   },
   "patients": {
-    "title": "Pacientes",
-    "button": {
-      "new": "Novo Paciente"
-    }
+    "title": "Pacientes"
   }
 }
