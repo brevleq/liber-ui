@@ -19,7 +19,8 @@
 
 <ion-header>
     <ion-toolbar>
-        <h1>Criar ou editar usuário</h1>
+        <h1 *ngIf="user.id">{{'users-modal.title.edit' | translate}}</h1>
+        <h1 *ngIf="!user.id">{{'users-modal.title.new' | translate}}</h1>
         <ion-button (click)="close()" fill="clear" slot="end">
             <ion-icon class="modal-close-button" name="close"></ion-icon>
         </ion-button>
@@ -30,7 +31,7 @@
           formValidation name="userForm" novalidate role="form">
         <ion-list class="modal-body">
             <ion-item>
-                <ion-label position="floating">Nome completo</ion-label>
+                <ion-label position="floating">{{'users-modal.form.full-name.label'| translate}}</ion-label>
                 <ion-input #nameInput="ngModel" [(ngModel)]="name" autocomplete="off" id="nameField" maxlength="100"
                            name="nameField"
                            pattern="^([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./']+)( ([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./' ]+))+$"
@@ -43,17 +44,17 @@
                     <ion-icon class="alert-info" name="alert"></ion-icon>
                 </small>
                 <small *ngIf="nameInput.errors.required">
-                    Informe o nome completo
+                    {{'users-modal.form.full-name.required'| translate}}
                 </small>
                 <small *ngIf="nameInput.errors.maxlength">
-                    No máximo 100 caracteres
+                    {{'users-modal.form.full-name.maxlength'| translate}}
                 </small>
                 <small *ngIf="nameInput.errors.pattern">
-                    Informe o nome completo
+                    {{'users-modal.form.full-name.pattern'| translate}}
                 </small>
             </div>
             <ion-item>
-                <ion-label position="floating">E-mail</ion-label>
+                <ion-label position="floating">{{'users-modal.form.email.label'| translate}}</ion-label>
                 <ion-input #emailInput="ngModel" [(ngModel)]="user.email" autocomplete="off"
                            email id="email" name="email" required type="email"></ion-input>
             </ion-item>
@@ -61,15 +62,15 @@
                  class="field-invalid-message">
                 <ion-icon class="alert-info" name="alert"></ion-icon>
                 <small *ngIf="emailInput.errors.required">
-                    Informe o e-mail
+                    {{'users-modal.form.email.required'| translate}}
                 </small>
                 <small *ngIf="emailInput.errors.email">
-                    E-mail inválido
+                    {{'users-modal.form.email.invalid'| translate}}
                 </small>
             </div>
             <ion-row>
                 <ion-col size="12">
-                    Permissões
+                    {{'users-modal.form.roles.title'| translate}}
                 </ion-col>
             </ion-row>
 
@@ -78,13 +79,12 @@
                 <ion-grid>
                     <ion-row>
                         <ion-col>
-                            <ion-label color="dark">Administrador</ion-label>
+                            <ion-label color="dark">{{'users-modal.form.roles.admin.title'| translate}}</ion-label>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col>
-                            <small>Acesso à todas as funções vitais do sistema, cadastro de usuários e configurações
-                                gerais.</small>
+                            <small>{{'users-modal.form.roles.admin.description'| translate}}</small>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
@@ -94,12 +94,12 @@
                 <ion-grid>
                     <ion-row>
                         <ion-col>
-                            <ion-label color="dark">Dentista</ion-label>
+                            <ion-label color="dark">{{'users-modal.form.roles.dentist.title'| translate}}</ion-label>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col>
-                            <small>Acesso às funcionalidades disponíveis aos dentistas, como relatórios.</small>
+                            <small>{{'users-modal.form.roles.dentist.description'| translate}}</small>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
@@ -109,12 +109,13 @@
                 <ion-grid>
                     <ion-row>
                         <ion-col>
-                            <ion-label color="dark">Psicólogo</ion-label>
+                            <ion-label
+                                    color="dark">{{'users-modal.form.roles.psychologist.title'| translate}}</ion-label>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col>
-                            <small>Acesso às funcionalidades disponíveis aos psicólogos, como relatórios.</small>
+                            <small>{{'users-modal.form.roles.psychologist.description'| translate}}</small>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
@@ -124,12 +125,13 @@
                 <ion-grid>
                     <ion-row>
                         <ion-col>
-                            <ion-label color="dark">Psiquiatra</ion-label>
+                            <ion-label
+                                    color="dark">{{'users-modal.form.roles.psychiatrist.title'| translate}}</ion-label>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col>
-                            <small>Acesso às funcionalidades disponíveis aos psiquiatras, como relatórios.</small>
+                            <small>{{'users-modal.form.roles.psychiatrist.description'| translate}}</small>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
@@ -139,13 +141,13 @@
                 <ion-grid>
                     <ion-row>
                         <ion-col>
-                            <ion-label color="dark">Assistente Social</ion-label>
+                            <ion-label
+                                    color="dark">{{'users-modal.form.roles.social-assistant.title'| translate}}</ion-label>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col>
-                            <small>Acesso às funcionalidades disponíveis aos assistentes sociais, como
-                                relatórios.</small>
+                            <small>{{'users-modal.form.roles.social-assistant.description'| translate}}</small>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
@@ -155,17 +157,18 @@
                 <ion-grid>
                     <ion-row>
                         <ion-col>
-                            <ion-label color="dark">Secretária</ion-label>
+                            <ion-label color="dark">{{'users-modal.form.roles.secretary.title'| translate}}</ion-label>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col>
-                            <small>Acesso às funcionalidades disponíveis às secretárias, como agendamentos.</small>
+                            <small>{{'users-modal.form.roles.secretary.description'| translate}}</small>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
             </ion-item>
-            <ion-button color="primary" expand="block" type="submit">Salvar usuário</ion-button>
+            <ion-button color="primary" expand="block"
+                        type="submit">{{'users-modal.form.button.save'| translate}}</ion-button>
         </ion-list>
     </form>
 </ion-content>

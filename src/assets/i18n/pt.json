@@ -1,0 +1,120 @@
+{
+  "common": {
+    "empty-list": "Nenhum item encontrado...",
+    "loading": "Carregando..."
+  },
+  "home": {
+    "menus": {
+      "patients": "Pacientes",
+      "users": "Usuários",
+      "account": "Minha Conta",
+      "change-password": "Trocar Senha",
+      "logout": "Sair"
+    }
+  },
+  "users": {
+    "title": "Usuários",
+    "button": {
+      "new": "Novo Usuário"
+    }
+  },
+  "users-modal": {
+    "title": {
+      "new": "Criar Usuário",
+      "edit": "Editar Usuário"
+    },
+    "form": {
+      "full-name": {
+        "label": "Nome completo",
+        "required": "Informe o nome completo",
+        "maxlength": "No máximo 100 caracteres",
+        "pattern": "Informe o nome completo"
+      },
+      "email": {
+        "label": "E-mail",
+        "required": "Informe o e-mail",
+        "invalid": "E-mail inválido"
+      },
+      "roles": {
+        "title": "Permissões",
+        "admin": {
+          "title": "Administrador",
+          "description": "Acesso à todas as funções vitais do sistema, cadastro de usuários e configurações gerais."
+        },
+        "dentist": {
+          "title": "Dentista",
+          "description": "Acesso às funcionalidades disponíveis aos dentistas, como relatórios."
+        },
+        "psychologist": {
+          "title": "Psicólogo",
+          "description": "Acesso às funcionalidades disponíveis aos psicólogos, como relatórios."
+        },
+        "psychiatrist": {
+          "title": "Psiquiatra",
+          "description": "Acesso às funcionalidades disponíveis aos psiquiatras, como relatórios."
+        },
+        "social-assistant": {
+          "title": "Assistente Social",
+          "description": "Acesso às funcionalidades disponíveis aos assistentes sociais, como relatórios."
+        },
+        "secretary": {
+          "title": "Secretária",
+          "description": "Acesso às funcionalidades disponíveis às secretárias, como agendamentos."
+        }
+      },
+      "button": {
+        "save": "Salvar usuário"
+      }
+    }
+  },
+  "account": {
+    "title": "Alterar dados pessoais",
+    "form": {
+      "full-name": {
+        "label": "Nome completo",
+        "required": "Informe o nome completo",
+        "maxlength": "No máximo 100 caracteres",
+        "pattern": "Informe o nome completo"
+      },
+      "email": {
+        "label": "E-mail",
+        "required": "Informe o e-mail",
+        "invalid": "E-mail inválido"
+      }
+    },
+    "button": {
+      "save": "Salvar"
+    }
+  },
+  "change-password": {
+    "title": "Alterar senha",
+    "form": {
+      "current-password": {
+        "label": "Senha atual",
+        "required": "Informe a senha atual"
+      },
+      "new-password": {
+        "label": "Nova senha",
+        "required": "Informe a nova senha",
+        "minlength": "No mínimo 6 caracteres"
+      },
+      "new-password-repetition": {
+        "label": "Repita a nova senha",
+        "required": "Repita a nova senha",
+        "minlength": "No mínimo 6 caracteres"
+      }
+    },
+    "errors": {
+      "password-not-match": "Nova senha e repetição da senha são diferentes!"
+    },
+    "button": {
+      "save": "Salvar"
+    }
+  },
+  "patients": {
+    "title": "Pacientes",
+    "button": {
+      "new": "Novo Paciente"
+    }
+  }
+}

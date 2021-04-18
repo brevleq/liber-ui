@@ -1,0 +1,120 @@
+{
+  "common": {
+    "empty-list": "Nothing was found...",
+    "loading": "Loading..."
+  },
+  "home": {
+    "menus": {
+      "patients": "Patients",
+      "users": "Users",
+      "account": "Account",
+      "change-password": "Change Password",
+      "logout": "Logout"
+    }
+  },
+  "users": {
+    "title": "Users",
+    "button": {
+      "new": "New User"
+    }
+  },
+  "users-modal": {
+    "title": {
+      "new": "Create User",
+      "edit": "Edit User"
+    },
+    "form": {
+      "full-name": {
+        "label": "Full name",
+        "required": "Enter the full name",
+        "maxlength": "Maximum 100 characters",
+        "pattern": "Enter the full name"
+      },
+      "email": {
+        "label": "E-mail",
+        "required": "Enter the e-mail",
+        "invalid": "Invalid e-mail"
+      },
+      "roles": {
+        "title": "Roles",
+        "admin": {
+          "title": "Administrator",
+          "description": "Access to all vital system functions, user registration and general settings. "
+        },
+        "dentist": {
+          "title": "Dentist",
+          "description": "Access to functions available to dentists, such as reports."
+        },
+        "psychologist": {
+          "title": "Psychologist",
+          "description": "Access to functions available to psychologists, such as reports."
+        },
+        "psychiatrist": {
+          "title": "Psychiatrist",
+          "description": "Access to functions available to psychiatrists, such as reports."
+        },
+        "social-assistant": {
+          "title": "Social Assistant",
+          "description": "Access to functions available to social assistants, such as reports."
+        },
+        "secretary": {
+          "title": "Secretary",
+          "description": "Access to functions available to social secretaries, such as scheduling."
+        }
+      },
+      "button": {
+        "save": "Save user"
+      }
+    }
+  },
+  "account": {
+    "title": "Change personal data",
+    "form": {
+      "full-name": {
+        "label": "Full name",
+        "required": "Enter the full name",
+        "maxlength": "Maximum 100 characters",
+        "pattern": "Enter the full name"
+      },
+      "email": {
+        "label": "E-mail",
+        "required": "Enter the e-mail",
+        "invalid": "Invalid e-mail"
+      }
+    },
+    "button": {
+      "save": "Save"
+    }
+  },
+  "change-password": {
+    "title": "Change Password",
+    "form": {
+      "current-password": {
+        "label": "Current password",
+        "required": "Enter current password"
+      },
+      "new-password": {
+        "label": "New password",
+        "required": "Enter new password",
+        "minlength": "Minimum 6 characters"
+      },
+      "new-password-repetition": {
+        "label": "Repeat new password",
+        "required": "Repeat new password",
+        "minlength": "Minimum 6 characters"
+      }
+    },
+    "errors": {
+      "password-not-match": "New password and repeated new password does not match!"
+    },
+    "button": {
+      "save": "Save"
+    }
+  },
+  "patients": {
+    "title": "Patients",
+    "button": {
+      "new": "New Patient"
+    }
+  }
+}

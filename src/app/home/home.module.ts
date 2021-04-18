@@ -17,21 +17,24 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 import {HomeRoutingModule} from "./home-routing.module";
 import {HomePage} from "./home.page";
+import {SharedLibsModule} from "../shared/shared-libs.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    HomeRoutingModule
-  ],
-  declarations: [HomePage]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        HomeRoutingModule,
+        SharedLibsModule
+    ],
+    declarations: [HomePage]
 })
-export class HomeModule {}
+export class HomeModule {
+}

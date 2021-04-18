@@ -18,48 +18,48 @@
   -->
 
 <ion-app>
-  <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Liber</ion-list-header>
-          <ion-menu-toggle auto-hide="false">
-            <ion-item [class.selected]="true" detail="false"
-                      lines="none" routerDirection="root" routerLink="/patients">
-              <ion-icon name="fitness" slot="start"></ion-icon>
-              <ion-label>Pacientes</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-          <ion-menu-toggle auto-hide="false">
-            <ion-item [class.selected]="true" routerLink="/users"
-                      detail="false" lines="none" routerDirection="root">
-              <ion-icon name="people" slot="start"></ion-icon>
-              <ion-label>Usuários</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-          <ion-menu-toggle auto-hide="false">
-            <ion-item [class.selected]="true" detail="false"
-                      lines="none" routerDirection="root" routerLink="/account">
-              <ion-icon name="person" slot="start"></ion-icon>
-              <ion-label>Minha Conta</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-          <ion-menu-toggle auto-hide="false">
-            <ion-item [class.selected]="true" detail="false"
-                      lines="none" routerDirection="root" routerLink="/password">
-              <ion-icon name="key" slot="start"></ion-icon>
-              <ion-label>Trocar Senha</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-          <ion-menu-toggle auto-hide="false">
-            <ion-item (click)="logout()" [class.selected]="true" detail="false" lines="none">
-              <ion-icon name="log-out-outline" slot="start"></ion-icon>
-              <ion-label>Sair</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
-  </ion-split-pane>
+    <ion-split-pane contentId="main-content">
+        <ion-menu contentId="main-content" type="overlay">
+            <ion-content>
+                <ion-list id="inbox-list">
+                    <ion-list-header>Liber</ion-list-header>
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item [class.selected]="true" detail="false"
+                                  lines="none" routerDirection="root" routerLink="/patients">
+                            <ion-icon name="fitness" slot="start"></ion-icon>
+                            <ion-label>{{'home.menus.patients' | translate}}</ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item [class.selected]="true" detail="false"
+                                  lines="none" routerDirection="root" routerLink="/users">
+                            <ion-icon name="people" slot="start"></ion-icon>
+                            <ion-label>{{'home.menus.users' | translate}}</ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item [class.selected]="true" detail="false"
+                                  lines="none" routerDirection="root" routerLink="/account">
+                            <ion-icon name="person" slot="start"></ion-icon>
+                            <ion-label>{{'home.menus.account' | translate}}</ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item [class.selected]="true" detail="false"
+                                  lines="none" routerDirection="root" routerLink="/password">
+                            <ion-icon name="key" slot="start"></ion-icon>
+                            <ion-label>{{'home.menus.change-password'|translate}}</ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+                    <ion-menu-toggle auto-hide="false">
+                        <ion-item (click)="logout()" [class.selected]="true" detail="false" lines="none">
+                            <ion-icon name="log-out-outline" slot="start"></ion-icon>
+                            <ion-label>{{'home.menus.logout'| translate}}</ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
+                </ion-list>
+            </ion-content>
+        </ion-menu>
+        <ion-router-outlet id="main-content"></ion-router-outlet>
+    </ion-split-pane>
 </ion-app>

@@ -20,21 +20,21 @@
 <ion-content>
     <ion-grid>
         <ion-item class="main-head" lines="none">
-            <ion-text color="secondary"><h1>Pacientes</h1></ion-text>
+            <ion-text color="secondary"><h1>{{'patients.title' |translate}}</h1></ion-text>
             <ion-buttons slot="end">
                 <ion-button color="secondary" fill="clear">
                     <ion-icon name="search"></ion-icon>
                 </ion-button>
                 <ion-button (click)="create()" color="primary" fill="solid">
                     <ion-icon name="add"></ion-icon>
-                    Novo Paciente
+                    {{'patients.button.new' | translate}}
                 </ion-button>
             </ion-buttons>
         </ion-item>
     </ion-grid>
     <ion-list class="card-list">
         <ion-item *ngIf="!items?.length" lines="none">
-            Nenhum item encontrado
+            {{'common.empty-list' | translate}}
         </ion-item>
         <ion-item *ngFor="let item of items; let last=last;trackBy: trackById" [lines]="last?'none':'full'">
             <ion-col size="8">{{item.name}}</ion-col>
@@ -46,7 +46,7 @@
     <ion-infinite-scroll (ionInfinite)="loadPage()" threshold="100px">
         <ion-infinite-scroll-content
                 loadingSpinner="circular"
-                loadingText="Carregando...">
+                loadingText="{{'common.loading' | translate}}">
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>

@@ -23,10 +23,12 @@ import {HttpClientModule} from '@angular/common/http';
 import {CommonModule, registerLocaleData} from '@angular/common';
 import {NgxWebstorageModule} from "ngx-webstorage";
 import locale from '@angular/common/locales/pt';
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
     imports: [
         NgxWebstorageModule.forRoot({prefix: 'liber', separator: '-'}),
+        TranslateModule.forChild()
     ],
     providers: [{
         provide: LOCALE_ID,
@@ -35,6 +37,7 @@ import locale from '@angular/common/locales/pt';
     exports: [
         FormsModule,
         HttpClientModule,
+        TranslateModule,
         CommonModule,
     ]
 })
