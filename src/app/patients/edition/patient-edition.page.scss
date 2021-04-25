@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
  *
  * This file is part of Liber UI.
@@ -17,29 +17,45 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {NgModule} from '@angular/core';
-import {IonicModule} from '@ionic/angular';
-import {RouterModule} from '@angular/router';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {SharedModule} from "../shared/shared.module";
-import {PatientsPage} from "./patients.page";
-import {PatientsRoutingModule} from "./patients-routing.module";
-import {PatientEditionPage} from "./edition/patient-edition.page";
-
-@NgModule({
-    declarations: [
-        PatientsPage,
-        PatientEditionPage
-    ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        RouterModule,
-        SharedModule,
-        IonicModule,
-        PatientsRoutingModule
-    ]
-})
-export class PatientsModule {
+.tracking-icon {
+  margin: 20px auto;
+  font-size: 73px;
 }
+
+.date-description {
+  height: 32px;
+
+  span {
+    font-size: 15px;
+    color: var(--ion-color-medium);
+  }
+}
+
+ion-button {
+  --border-radius: 4px;
+  font-size: 25px;
+  height: 45px;
+  text-transform: unset;
+  font-family: 'Nunito';
+  font-weight: bold;
+  margin-top: 35px;
+}
+
+.footer-description {
+  text-align: center;
+
+  small {
+    width: 100%;
+    font-size: 10px;
+    color: var(--ion-color-medium);
+  }
+}
+
+.col-with-icon {
+  position: relative;
+
+  ion-img {
+    top: 24px;
+  }
+}
+

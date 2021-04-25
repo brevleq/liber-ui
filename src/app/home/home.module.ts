@@ -24,7 +24,7 @@ import {FormsModule} from '@angular/forms';
 import {IonicModule} from '@ionic/angular';
 import {HomeRoutingModule} from "./home-routing.module";
 import {HomePage} from "./home.page";
-import {SharedLibsModule} from "../shared/shared-libs.module";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
     imports: [
@@ -32,7 +32,7 @@ import {SharedLibsModule} from "../shared/shared-libs.module";
         FormsModule,
         IonicModule,
         HomeRoutingModule,
-        SharedLibsModule
+        SharedModule
     ],
     declarations: [HomePage]
 })

@@ -23,7 +23,9 @@
             <ion-content>
                 <ion-list id="inbox-list">
                     <ion-list-header>Liber</ion-list-header>
-                    <ion-menu-toggle auto-hide="false">
+                    <ion-menu-toggle
+                            *jhiHasAnyAuthority="['ROLE_DENTIST','ROLE_PSYCHOLOGIST','ROLE_PSYCHIATRIST','ROLE_SECRETARY','ROLE_SOCIAL_ASSISTANT']"
+                            auto-hide="false">
                         <ion-item [class.selected]="true" detail="false"
                                   lines="none" routerDirection="root" routerLink="/patients">
                             <ion-icon name="fitness" slot="start"></ion-icon>

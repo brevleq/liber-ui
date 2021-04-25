@@ -99,5 +99,66 @@
   },
   "patients": {
     "title": "Pacientes"
+  },
+  "patient-edition": {
+    "title": {
+      "edition": "Editar dados do Paciente",
+      "creation": "Criar novo Paciente"
+    },
+    "form": {
+      "name": {
+        "label": "Nome completo"
+      },
+      "birthDate": {
+        "label": "Data de nascimento"
+      },
+      "sex": {
+        "label": "Sexo"
+      },
+      "birthPlace": {
+        "label": "Naturalidade"
+      },
+      "documents": {
+        "label": "Documentos"
+      },
+      "motherName": {
+        "label": "Nome da mãe"
+      },
+      "fatherName": {
+        "label": "Nome do pai"
+      },
+      "maritalStatus": {
+        "label": "Estado civil"
+      },
+      "scholarity": {
+        "label": "Escolaridade"
+      },
+      "profession": {
+        "label": "Profissão"
+      },
+      "isWorking": {
+        "label": "Está trabalhando?"
+      }
+    }
+  },
+  "address": {
+    "street": {
+      "label": "Endereço"
+    },
+    "number": {
+      "label": "Número"
+    },
+    "neighborhood": {
+      "label": "Bairro"
+    },
+    "complement": {
+      "label": "Complemento"
+    },
+    "zip": {
+      "label": "CEP"
+    },
+    "city": {
+      "label": "Cidade"
+    }
   }
 }
