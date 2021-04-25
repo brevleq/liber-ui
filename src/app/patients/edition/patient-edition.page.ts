@@ -30,16 +30,10 @@ import {PatientService} from "../../shared/services/patient.service";
 export class PatientEditionPage implements OnInit {
 
     @Input() patient: Patient;
-    isAdmin: boolean;
-    isDentist: boolean;
-    isPsychologist: boolean;
-    isPsychiatrist: boolean;
-    isSecretary: boolean;
-    isSocialAssistant: boolean;
-    name: string;
 
     constructor(private toast: ToastHelper,
                 private patientService: PatientService) {
+        this.patient = new Patient();
     }
 
     ngOnInit(): void {

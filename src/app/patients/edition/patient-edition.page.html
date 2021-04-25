@@ -19,148 +19,268 @@
 
 
 <ion-content>
-    <!--    <form #userForm="ngForm" (validSubmit)="submit()" [form]="userForm"-->
-    <!--          formValidation name="userForm" novalidate role="form">-->
-    <!--        <ion-list class="modal-body">-->
-    <!--            <ion-item>-->
-    <!--                <ion-label position="floating">{{'users-modal.form.full-name.label'| translate}}</ion-label>-->
-    <!--                <ion-input #nameInput="ngModel" [(ngModel)]="name" autocomplete="off" id="nameField" maxlength="100"-->
-    <!--                           name="nameField"-->
-    <!--                           pattern="^([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./']+)( ([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./' ]+))+$"-->
-    <!--                           required>-->
-    <!--                </ion-input>-->
-    <!--            </ion-item>-->
-    <!--            <div *ngIf="userForm.submitted && nameInput.invalid"-->
-    <!--                 class="field-invalid-message">-->
-    <!--                <small>-->
-    <!--                    <ion-icon class="alert-info" name="alert"></ion-icon>-->
-    <!--                </small>-->
-    <!--                <small *ngIf="nameInput.errors.required">-->
-    <!--                    {{'common.validation.required'| translate}}-->
-    <!--                </small>-->
-    <!--                <small *ngIf="nameInput.errors.maxlength">-->
-    <!--                    {{'common.validation.maxlength'| translate:{value: 100} }}-->
-    <!--                </small>-->
-    <!--                <small *ngIf="nameInput.errors.pattern">-->
-    <!--                    {{'users-modal.form.full-name.pattern'| translate}}-->
-    <!--                </small>-->
-    <!--            </div>-->
-    <!--            <ion-item>-->
-    <!--                <ion-label position="floating">{{'users-modal.form.email.label'| translate}}</ion-label>-->
-    <!--                <ion-input #emailInput="ngModel" [(ngModel)]="user.email" autocomplete="off"-->
-    <!--                           email id="email" name="email" required type="email"></ion-input>-->
-    <!--            </ion-item>-->
-    <!--            <div *ngIf="userForm.submitted && emailInput.invalid"-->
-    <!--                 class="field-invalid-message">-->
-    <!--                <ion-icon class="alert-info" name="alert"></ion-icon>-->
-    <!--                <small *ngIf="emailInput.errors.required">-->
-    <!--                    {{'common.validation.required'| translate}}-->
-    <!--                </small>-->
-    <!--                <small *ngIf="emailInput.errors.email">-->
-    <!--                    {{'users-modal.form.email.invalid'| translate}}-->
-    <!--                </small>-->
-    <!--            </div>-->
-    <!--            <ion-row>-->
-    <!--                <ion-col size="12">-->
-    <!--                    {{'users-modal.form.roles.title'| translate}}-->
-    <!--                </ion-col>-->
-    <!--            </ion-row>-->
+    <form #patientForm="ngForm" (validSubmit)="submit()" [form]="patientForm"
+          formValidation name="patientForm" novalidate role="form">
+        <ion-list>
+            <ion-item>
+                <ion-label position="floating">{{'patient-edition.form.full-name.label'| translate}}</ion-label>
+                <ion-input #nameInput="ngModel" [(ngModel)]="patient.name" autocomplete="off" id="nameField"
+                           maxlength="100"
+                           name="nameField"
+                           pattern="^([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./']+)( ([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./' ]+))+$"
+                           required>
+                </ion-input>
+            </ion-item>
+            <div *ngIf="patientForm.submitted && nameInput.invalid"
+                 class="field-invalid-message">
+                <small>
+                    <ion-icon class="alert-info" name="alert"></ion-icon>
+                </small>
+                <small *ngIf="nameInput.errors.required">
+                    {{'common.validation.required'| translate}}
+                </small>
+                <small *ngIf="nameInput.errors.maxlength">
+                    {{'common.validation.maxlength'| translate:{value: 100} }}
+                </small>
+                <small *ngIf="nameInput.errors.pattern">
+                    {{'patients-modal.form.full-name.pattern'| translate}}
+                </small>
+            </div>
+            <ion-row>
+                <ion-col size="6" size-lg="4">
+                    <ion-item>
+                        <ion-label
+                                position="floating">{{'patient-edition.form.birthdate.label'| translate}}</ion-label>
+                        <ion-datetime #birthdateInput="ngModel" [(ngModel)]="patient.birthDate" autocomplete="off"
+                                      id="birthdate" name="birthdate" required></ion-datetime>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && birthdateInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="birthdateInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+                <ion-col size="6" size-lg="4">
+                    <ion-item>
+                        <ion-label position="floating">{{'patient-edition.form.sex.label'| translate}}</ion-label>
+                        <ion-select #sexInput="ngModel" [(ngModel)]="patient.sex" autocomplete="off"
+                                    id="sex" name="sex" required>
+                            <ion-select-option value="F">{{'common.sex.female' | translate}}</ion-select-option>
+                            <ion-select-option value="M">{{'common.sex.male' | translate}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && sexInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="sexInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+                <ion-col size="12" size-lg="4">
+                    <ion-item>
+                        <ion-label
+                                position="floating">{{'patient-edition.form.birthplace.label'| translate}}</ion-label>
+                        <ion-input #birthplaceInput="ngModel" [(ngModel)]="patient.birthPlaceId" autocomplete="off"
+                                   id="birthplace" name="birthplace" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && birthplaceInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="birthplaceInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-item>
+                {{'patient-edition.form.documents.label'| translate}}
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">{{'patient-edition.form.mother-name.label'| translate}}</ion-label>
+                <ion-input #motherNameInput="ngModel" [(ngModel)]="patient.motherName" autocomplete="off"
+                           id="motherNameInput" maxlength="100"
+                           name="motherNameInput"
+                           pattern="^([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./']+)( ([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./' ]+))+$"
+                           required>
+                </ion-input>
+            </ion-item>
+            <div *ngIf="patientForm.submitted && motherNameInput.invalid"
+                 class="field-invalid-message">
+                <small>
+                    <ion-icon class="alert-info" name="alert"></ion-icon>
+                </small>
+                <small *ngIf="motherNameInput.errors.required">
+                    {{'common.validation.required'| translate}}
+                </small>
+                <small *ngIf="motherNameInput.errors.maxlength">
+                    {{'common.validation.maxlength'| translate:{value: 100} }}
+                </small>
+                <small *ngIf="motherNameInput.errors.pattern">
+                    {{'patients-modal.form.full-name.pattern'| translate}}
+                </small>
+            </div>
+            <ion-item>
+                <ion-label position="floating">{{'patient-edition.form.father-name.label'| translate}}</ion-label>
+                <ion-input #fatherNameInput="ngModel" [(ngModel)]="patient.fatherName" autocomplete="off"
+                           id="fatherNameInput" maxlength="100"
+                           name="fatherNameInput"
+                           pattern="^([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./']+)( ([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./' ]+))+$">
+                </ion-input>
+            </ion-item>
+            <div *ngIf="patientForm.submitted && fatherNameInput.invalid"
+                 class="field-invalid-message">
+                <small>
+                    <ion-icon class="alert-info" name="alert"></ion-icon>
+                </small>
+                <small *ngIf="fatherNameInput.errors.maxlength">
+                    {{'common.validation.maxlength'| translate:{value: 100} }}
+                </small>
+                <small *ngIf="fatherNameInput.errors.pattern">
+                    {{'patients-modal.form.full-name.pattern'| translate}}
+                </small>
+            </div>
+            <ion-row>
+                <ion-col size="6" size-lg="3">
+                    <ion-item>
+                        <ion-label
+                                position="floating">{{'patient-edition.form.marital-status.label'| translate}}</ion-label>
+                        <ion-input #maritalStatusInput="ngModel" [(ngModel)]="patient.maritalStatusId"
+                                   autocomplete="off"
+                                   id="maritalStatus" name="maritalStatus" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && maritalStatusInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="maritalStatusInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+                <ion-col size="6" size-lg="3">
+                    <ion-item>
+                        <ion-label
+                                position="floating">{{'patient-edition.form.scholarity.label'| translate}}</ion-label>
+                        <ion-input #scholarityInput="ngModel" [(ngModel)]="patient.scholarityId" autocomplete="off"
+                                   id="scholarity" name="scholarity" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && scholarityInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="scholarityInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+                <ion-col size="6" size-lg="3">
+                    <ion-item>
+                        <ion-label
+                                position="floating">{{'patient-edition.form.profession.label'| translate}}</ion-label>
+                        <ion-input #professionInput="ngModel" [(ngModel)]="patient.professionId" autocomplete="off"
+                                   id="profession" name="profession" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && professionInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="professionInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+                <ion-col size="6" size-lg="3">
+                    <ion-item>
+                        <ion-label>{{'patient-edition.form.is-working.label'| translate}}</ion-label>
+                        <ion-checkbox [(ngModel)]="patient.working" id="working" name="working"
+                                      slot="end"></ion-checkbox>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-item>
+                <ion-label position="floating">{{'address.street.label'| translate}}</ion-label>
+                <ion-input #streetInput="ngModel" [(ngModel)]="patient.addressStreet" autocomplete="off"
+                           id="street" name="street" required></ion-input>
+            </ion-item>
+            <div *ngIf="patientForm.submitted && streetInput.invalid"
+                 class="field-invalid-message">
+                <ion-icon class="alert-info" name="alert"></ion-icon>
+                <small *ngIf="streetInput.errors.required">
+                    {{'common.validation.required'| translate}}
+                </small>
+            </div>
+            <ion-row>
+                <ion-col size="12" size-lg="3">
+                    <ion-item>
+                        <ion-label position="floating">{{'address.number.label'| translate}}</ion-label>
+                        <ion-input #numberInput="ngModel" [(ngModel)]="patient.addressNumber" autocomplete="off"
+                                   id="number" name="number" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && numberInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="numberInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+                <ion-col size="12" size-lg="9">
+                    <ion-item>
+                        <ion-label position="floating">{{'address.neighborhood.label'| translate}}</ion-label>
+                        <ion-input #neighborhoodInput="ngModel" [(ngModel)]="patient.addressNeighborhood"
+                                   autocomplete="off"
+                                   id="neighborhood" name="neighborhood" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && neighborhoodInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="neighborhoodInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" size-lg="4">
+                    <ion-item>
+                        <ion-label position="floating">{{'address.complement.label'| translate}}</ion-label>
+                        <ion-input #complementInput="ngModel" [(ngModel)]="patient.addressComplement" autocomplete="off"
+                                   id="complement" name="complement"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="12" size-lg="4">
+                    <ion-item>
+                        <ion-label position="floating">{{'address.zip.label'| translate}}</ion-label>
+                        <ion-input #zipInput="ngModel" [(ngModel)]="patient.addressZip" autocomplete="off"
+                                   id="zip" name="zip" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && zipInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="zipInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+                <ion-col size="12" size-lg="4">
+                    <ion-item>
+                        <ion-label position="floating">{{'address.city.label'| translate}}</ion-label>
+                        <ion-input #cityInput="ngModel" [(ngModel)]="patient.addressCityId" autocomplete="off"
+                                   id="city" name="city" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && cityInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="cityInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+            </ion-row>
 
-    <!--            <ion-item>-->
-    <!--                <ion-toggle [(ngModel)]="isAdmin" name="adminToggle" slot="start"></ion-toggle>-->
-    <!--                <ion-grid>-->
-    <!--                    <ion-row>-->
-    <!--                        <ion-col>-->
-    <!--                            <ion-label color="dark">{{'users-modal.form.roles.admin.title'| translate}}</ion-label>-->
-    <!--                        </ion-col>-->
-    <!--                    </ion-row>-->
-    <!--                    <ion-row>-->
-    <!--                        <ion-col>-->
-    <!--                            <small>{{'users-modal.form.roles.admin.description'| translate}}</small>-->
-    <!--                        </ion-col>-->
-    <!--                    </ion-row>-->
-    <!--                </ion-grid>-->
-    <!--            </ion-item>-->
-    <!--            <ion-item>-->
-    <!--                <ion-toggle [(ngModel)]="isDentist" name="dentistToggle" slot="start"></ion-toggle>-->
-    <!--                <ion-grid>-->
-    <!--                    <ion-row>-->
-    <!--                        <ion-col>-->
-    <!--                            <ion-label color="dark">{{'users-modal.form.roles.dentist.title'| translate}}</ion-label>-->
-    <!--                        </ion-col>-->
-    <!--                    </ion-row>-->
-    <!--                    <ion-row>-->
-    <!--                        <ion-col>-->
-    <!--                            <small>{{'users-modal.form.roles.dentist.description'| translate}}</small>-->
-    <!--                        </ion-col>-->
-    <!--                    </ion-row>-->
-    <!--                </ion-grid>-->
-    <!--            </ion-item>-->
-    <!--            <ion-item>-->
-    <!--                <ion-toggle [(ngModel)]="isPsychologist" name="psychologistToggle" slot="start"></ion-toggle>-->
-    <!--                <ion-grid>-->
-    <!--                    <ion-row>-->
-    <!--                        <ion-col>-->
-    <!--                            <ion-label-->
-    <!--                                    color="dark">{{'users-modal.form.roles.psychologist.title'| translate}}</ion-label>-->
-    <!--                        </ion-col>-->
-    <!--                    </ion-row>-->
-    <!--                    <ion-row>-->
-    <!--                        <ion-col>-->
-    <!--                            <small>{{'users-modal.form.roles.psychologist.description'| translate}}</small>-->
-    <!--                        </ion-col>-->
-    <!--                    </ion-row>-->
-    <!--                </ion-grid>-->
-    <!--            </ion-item>-->
-    <!--            <ion-item>-->
-    <!--                <ion-toggle [(ngModel)]="isPsychiatrist" name="psychiatristToggle" slot="start"></ion-toggle>-->
-    <!--                <ion-grid>-->
-    <!--                    <ion-row>-->
-    <!--                        <ion-col>-->
-    <!--                            <ion-label-->
-    <!--                                    color="dark">{{'users-modal.form.roles.psychiatrist.title'| translate}}</ion-label>-->
-    <!--                        </ion-col>-->
-    <!--                    </ion-row>-->
-    <!--                    <ion-row>-->
-    <!--                        <ion-col>-->
-    <!--                            <small>{{'users-modal.form.roles.psychiatrist.description'| translate}}</small>-->
-    <!--                        </ion-col>-->
-    <!--                    </ion-row>-->
-    <!--                </ion-grid>-->
-    <!--            </ion-item>-->
-    <!--            <ion-item>-->
-    <!--                <ion-toggle [(ngModel)]="isSocialAssistant" name="socialAssistantToggle" slot="start"></ion-toggle>-->
-    <!--                <ion-grid>-->
-    <!--                    <ion-row>-->
-    <!--                        <ion-col>-->
-    <!--                            <ion-label-->
-    <!--                                    color="dark">{{'users-modal.form.roles.social-assistant.title'| translate}}</ion-label>-->
-    <!--                        </ion-col>-->
-    <!--                    </ion-row>-->
-    <!--                    <ion-row>-->
-    <!--                        <ion-col>-->
-    <!--                            <small>{{'users-modal.form.roles.social-assistant.description'| translate}}</small>-->
-    <!--                        </ion-col>-->
-    <!--                    </ion-row>-->
-    <!--                </ion-grid>-->
-    <!--            </ion-item>-->
-    <!--            <ion-item>-->
-    <!--                <ion-toggle [(ngModel)]="isSecretary" name="secretaryToggle" slot="start"></ion-toggle>-->
-    <!--                <ion-grid>-->
-    <!--                    <ion-row>-->
-    <!--                        <ion-col>-->
-    <!--                            <ion-label color="dark">{{'users-modal.form.roles.secretary.title'| translate}}</ion-label>-->
-    <!--                        </ion-col>-->
-    <!--                    </ion-row>-->
-    <!--                    <ion-row>-->
-    <!--                        <ion-col>-->
-    <!--                            <small>{{'users-modal.form.roles.secretary.description'| translate}}</small>-->
-    <!--                        </ion-col>-->
-    <!--                    </ion-row>-->
-    <!--                </ion-grid>-->
-    <!--            </ion-item>-->
-    <!--            <ion-button color="primary" expand="block"-->
-    <!--                        type="submit">{{'common.button.save'| translate}}</ion-button>-->
-    <!--        </ion-list>-->
-    <!--    </form>-->
+
+            <ion-button color="primary" expand="block"
+                        type="submit">{{'common.button.save'| translate}}</ion-button>
+        </ion-list>
+    </form>
 </ion-content>

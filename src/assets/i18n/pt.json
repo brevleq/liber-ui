@@ -2,6 +2,10 @@
   "common": {
     "empty-list": "Nenhum item encontrado...",
     "loading": "Carregando...",
+    "sex": {
+      "male": "Masculino",
+      "female": "Feminino"
+    },
     "validation": {
       "required": "Este campo é obrigatório",
       "maxlength": "No máximo {{value}} caracteres",
@@ -106,28 +110,28 @@
       "creation": "Criar novo Paciente"
     },
     "form": {
-      "name": {
+      "full-name": {
         "label": "Nome completo"
       },
-      "birthDate": {
+      "birthdate": {
         "label": "Data de nascimento"
       },
       "sex": {
         "label": "Sexo"
       },
-      "birthPlace": {
+      "birthplace": {
         "label": "Naturalidade"
       },
       "documents": {
         "label": "Documentos"
       },
-      "motherName": {
+      "mother-name": {
         "label": "Nome da mãe"
       },
-      "fatherName": {
+      "father-name": {
         "label": "Nome do pai"
       },
-      "maritalStatus": {
+      "marital-status": {
         "label": "Estado civil"
       },
       "scholarity": {
@@ -136,8 +140,20 @@
       "profession": {
         "label": "Profissão"
       },
-      "isWorking": {
+      "is-working": {
         "label": "Está trabalhando?"
+      },
+      "companion-name": {
+        "label": "Nome do acompanhante"
+      },
+      "companion-kinship": {
+        "label": "Grau de parentesco"
+      },
+      "companion-same-address": {
+        "label": "Mesmo endereço?"
+      },
+      "companion-phone": {
+        "label": "Telefone"
       }
     }
   },

@@ -2,6 +2,10 @@
   "common": {
     "empty-list": "Nothing was found...",
     "loading": "Loading...",
+    "sex": {
+      "male": "Male",
+      "female": "Female"
+    },
     "validation": {
       "required": "This field is required",
       "maxlength": "Maximum {{value}} characters",
@@ -99,5 +103,78 @@
   },
   "patients": {
     "title": "Patients"
+  },
+  "patient-edition": {
+    "title": {
+      "edition": "Editing patient's data",
+      "creation": "Creating new patient"
+    },
+    "form": {
+      "full-name": {
+        "label": "Full name"
+      },
+      "birthdate": {
+        "label": "Birthdate"
+      },
+      "sex": {
+        "label": "Sex"
+      },
+      "birthplace": {
+        "label": "Birthplace"
+      },
+      "documents": {
+        "label": "Documents"
+      },
+      "mother-name": {
+        "label": "Mother's name"
+      },
+      "father-name": {
+        "label": "Father's name"
+      },
+      "marital-status": {
+        "label": "Marital status"
+      },
+      "scholarity": {
+        "label": "Scholarity"
+      },
+      "profession": {
+        "label": "Profession"
+      },
+      "is-working": {
+        "label": "Is working?"
+      },
+      "companion-name": {
+        "label": "Companion's name"
+      },
+      "companion-kinship": {
+        "label": "Kinship"
+      },
+      "companion-same-address": {
+        "label": "Same address?"
+      },
+      "companion-phone": {
+        "label": "Phone"
+      }
+    }
+  },
+  "address": {
+    "street": {
+      "label": "Street"
+    },
+    "number": {
+      "label": "Number"
+    },
+    "neighborhood": {
+      "label": "Neighborhood"
+    },
+    "complement": {
+      "label": "Complement"
+    },
+    "zip": {
+      "label": "ZIP code"
+    },
+    "city": {
+      "label": "City"
+    }
   }
 }
