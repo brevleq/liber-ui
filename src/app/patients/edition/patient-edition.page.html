@@ -83,8 +83,8 @@
                     <ion-item>
                         <ion-label
                                 position="floating">{{'patient-edition.form.birthplace.label'| translate}}</ion-label>
-                        <ion-input #birthplaceInput="ngModel" [(ngModel)]="patient.birthPlaceId" autocomplete="off"
-                                   id="birthplace" name="birthplace" required></ion-input>
+                        <ion-select #birthplaceInput="ngModel" [(ngModel)]="patient.birthPlaceId" autocomplete="off"
+                                    customModal id="birthplace" name="birthplace" required></ion-select>
                     </ion-item>
                     <div *ngIf="patientForm.submitted && birthplaceInput.invalid"
                          class="field-invalid-message">
@@ -147,9 +147,10 @@
                     <ion-item>
                         <ion-label
                                 position="floating">{{'patient-edition.form.marital-status.label'| translate}}</ion-label>
-                        <ion-input #maritalStatusInput="ngModel" [(ngModel)]="patient.maritalStatusId"
-                                   autocomplete="off"
-                                   id="maritalStatus" name="maritalStatus" required></ion-input>
+                        <liber-modal-select #maritalStatusInput="ngModel" [(ngModel)]="patient.maritalStatusId"
+                                            autocomplete="off" id="maritalStatus" modalClass="MaritalStatusModal"
+                                            name="maritalStatus" required>
+                        </liber-modal-select>
                     </ion-item>
                     <div *ngIf="patientForm.submitted && maritalStatusInput.invalid"
                          class="field-invalid-message">

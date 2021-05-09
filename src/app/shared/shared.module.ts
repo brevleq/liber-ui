@@ -32,6 +32,8 @@ import {CurrencyPipe} from '@angular/common';
 import {LoadingService} from './services/loading.service';
 import {LoadingInterceptor} from "./blocks/interceptor/loading.interceptor";
 import {FormValidationDirective} from "./directives/form-validation.directive";
+import {ModalSelectComponent} from "./components/select/modal-select.component";
+import {MaritalStatusModal} from "./components/modals/marital-status.modal";
 
 @NgModule({
     imports: [
@@ -40,12 +42,16 @@ import {FormValidationDirective} from "./directives/form-validation.directive";
         IonicModule
     ],
     declarations: [
+        MaritalStatusModal,
+        ModalSelectComponent,
+        FormValidationDirective,
         HasAnyAuthorityDirective,
-        FormValidationDirective
     ],
     exports: [
-        HasAnyAuthorityDirective,
+        MaritalStatusModal,
+        ModalSelectComponent,
         FormValidationDirective,
+        HasAnyAuthorityDirective,
         SharedLibsModule
     ],
     providers: [
