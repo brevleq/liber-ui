@@ -34,6 +34,17 @@
             <ion-label>{{item.name}}</ion-label>
         </ion-item>
     </ion-list>
+    <ng-container *ngIf="totalItems==0">
+        <ion-item *ngIf="filter==''">
+            <ion-text>{{'selection-modal.empty' | translate}}</ion-text>
+        </ion-item>
+        <ion-item *ngIf="filter!=''">
+            <ion-text>{{'selection-modal.not-found' | translate}}</ion-text>
+        </ion-item>
+        <ion-item>
+            <ion-button (click)="createAndSelect()">{{'common.button.create' | translate}}</ion-button>
+        </ion-item>
+    </ng-container>
     <ion-infinite-scroll (ionInfinite)="loadPage()" threshold="100px">
         <ion-infinite-scroll-content
                 loadingSpinner="circular"

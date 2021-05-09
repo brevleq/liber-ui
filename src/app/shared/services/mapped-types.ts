@@ -17,8 +17,8 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {MaritalStatusModal} from "../modals/marital-status.modal";
+import {Type} from "@angular/core";
+import {MaritalStatusService} from "./marital-status.service";
 
-//Did not found better approach
-export const enabledModals = new Map<string, any>();
-enabledModals.set('MaritalStatusModal', MaritalStatusModal)
+export const mappedTypes = new Map<String, Type<any>>();
+mappedTypes.set("MaritalStatusService", MaritalStatusService);

@@ -148,8 +148,10 @@
                         <ion-label
                                 position="floating">{{'patient-edition.form.marital-status.label'| translate}}</ion-label>
                         <liber-modal-select #maritalStatusInput="ngModel" [(ngModel)]="patient.maritalStatusId"
-                                            autocomplete="off" id="maritalStatus" modalClass="MaritalStatusModal"
-                                            name="maritalStatus" required>
+                                            autocomplete="off" crudServiceClass="MaritalStatusService"
+                                            id="maritalStatus"
+                                            name="maritalStatus" required
+                                            title="{{'selection-modal.titles.marital-status' | translate}}">
                         </liber-modal-select>
                     </ion-item>
                     <div *ngIf="patientForm.submitted && maritalStatusInput.invalid"

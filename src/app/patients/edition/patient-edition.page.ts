@@ -39,7 +39,6 @@ export class PatientEditionPage implements OnInit {
     ngOnInit(): void {
     }
 
-
     submit() {
         if (this.patient.id) {
             this.patientService.update(this.patient).subscribe(

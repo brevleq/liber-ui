@@ -17,27 +17,34 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {InfiniteScrollPage} from "../../base/infinite-scroll.page";
 import {CommonClassifier} from "../../model/common-classifier.model";
 import {CrudService} from "../../services/crud.service";
 import {EventManager} from "../../services/event.manager.service";
 import {ToastHelper} from "../../helpers/toast.helper";
-import {QueryService} from "../../services/query.service";
 
-export abstract class CommonClassifierModal extends InfiniteScrollPage<CommonClassifier> {
+@Component({
+    selector: 'common-classifier-modal',
+    templateUrl: 'common-classifier.modal.html',
+    styleUrls: ['common-classifier.modal.scss']
+})
+export class CommonClassifierModal extends InfiniteScrollPage<CommonClassifier> {
 
     @Input() title: string;
+    @Input() crudService: CrudService<CommonClassifier>;
     private selected: CommonClassifier;
-    private readonly canCreate: boolean;
 
-    protected constructor(private crudService: CrudService<CommonClassifier> | QueryService<CommonClassifier>,
-                          protected eventManager: EventManager,
-                          private toast: ToastHelper,
-                          private modalController: ModalController) {
-        super(crudService, eventManager, {sort: ['name,asc']});
-        this.canCreate = crudService instanceof CrudService;
+    constructor(protected eventManager: EventManager,
+                private toast: ToastHelper,
+                private modalController: ModalController) {
+        super(null, eventManager, {sort: ['name,asc']});
+    }
+
+    ionViewWillEnter() {
+        this.queryService = this.crudService;
+        super.ionViewWillEnter();
     }
 
     trackById(index, item: CommonClassifier): any {
@@ -49,11 +56,9 @@ export abstract class CommonClassifierModal extends InfiniteScrollPage<CommonCla
     }
 
     createAndSelect() {
-        if (!this.canCreate)
-            return;
         const item = new CommonClassifier();
         item.name = this.filter;
-        (this.crudService as CrudService<CommonClassifier>).create(item).subscribe(
+        this.crudService.create(item).subscribe(
             res => this.selected = res.body,
             error => this.toast.showErrorMessage()
         );

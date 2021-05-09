@@ -33,7 +33,7 @@ import {LoadingService} from './services/loading.service';
 import {LoadingInterceptor} from "./blocks/interceptor/loading.interceptor";
 import {FormValidationDirective} from "./directives/form-validation.directive";
 import {ModalSelectComponent} from "./components/select/modal-select.component";
-import {MaritalStatusModal} from "./components/modals/marital-status.modal";
+import {CommonClassifierModal} from "./components/modals/common-classifier.modal";
 
 @NgModule({
     imports: [
@@ -42,13 +42,13 @@ import {MaritalStatusModal} from "./components/modals/marital-status.modal";
         IonicModule
     ],
     declarations: [
-        MaritalStatusModal,
+        CommonClassifierModal,
         ModalSelectComponent,
         FormValidationDirective,
         HasAnyAuthorityDirective,
     ],
     exports: [
-        MaritalStatusModal,
+        CommonClassifierModal,
         ModalSelectComponent,
         FormValidationDirective,
         HasAnyAuthorityDirective,

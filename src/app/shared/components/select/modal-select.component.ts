@@ -17,10 +17,11 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {Component, EventEmitter, forwardRef, Input, Output, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Injector, Input, Output, ViewChild, ViewContainerRef} from '@angular/core';
 import {IonButton, ModalController} from "@ionic/angular";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
-import {enabledModals} from "./enabled-modals";
+import {mappedTypes} from "../../services/mapped-types";
+import {CommonClassifierModal} from "../modals/common-classifier.modal";
 
 @Component({
     selector: 'liber-modal-select',
@@ -41,17 +42,22 @@ export class ModalSelectComponent implements ControlValueAccessor {
     @ViewChild(ViewContainerRef) viewContainerRef: ViewContainerRef;
     @Input() ngModel: any;
     @Output() ngModelChange: EventEmitter<string> = new EventEmitter<string>();
-    @Input() modalClass: any; //ComponentRef
+    @Input() crudServiceClass: string;
+    @Input() title: string;
 
     private onChanges: any;
 
-
-    constructor(private modalController: ModalController) {
+    constructor(private modalController: ModalController,
+                private injector: Injector) {
     }
 
     async openModal() {
         const modal = await this.modalController.create({
-            component: enabledModals.get(this.modalClass)
+            component: CommonClassifierModal,
+            componentProps: {
+                crudService: this.injector.get(mappedTypes.get(this.crudServiceClass)),
+                title: this.title
+            }
         });
         modal.present();
     }
