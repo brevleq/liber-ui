@@ -181,9 +181,6 @@
   },
   "selection-modal": {
     "empty": "No item exists in database yet! Type the desired value in search box and click in create button to save a new item.",
-    "not-found": "Nothing was found with this name! Click in create button to save the searched item.",
-    "titles": {
-      "marital-status": "Marital Status"
-    }
+    "not-found": "Nothing was found with this name! Click in create button to save the searched item."
   }
 }

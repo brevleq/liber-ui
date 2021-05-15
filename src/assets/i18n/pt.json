@@ -181,9 +181,6 @@
   },
   "selection-modal": {
     "empty": "Não existe nenhum item cadastrado ainda! Digite o valor desejado no campo de busca e clique no botão criar para cadastrar um novo item.",
-    "not-found": "Nenhum item encontrado com este nome! Clique no botão criar para salvar o item pesquisado.",
-    "titles": {
-      "marital-status": "Estado Civil"
-    }
+    "not-found": "Nenhum item encontrado com este nome! Clique no botão criar para salvar o item pesquisado."
   }
 }

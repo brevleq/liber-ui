@@ -151,7 +151,7 @@
                                             autocomplete="off" crudServiceClass="MaritalStatusService"
                                             id="maritalStatus"
                                             name="maritalStatus" required
-                                            title="{{'selection-modal.titles.marital-status' | translate}}">
+                                            title="{{'patient-edition.form.marital-status.label'| translate}}">
                         </liber-modal-select>
                     </ion-item>
                     <div *ngIf="patientForm.submitted && maritalStatusInput.invalid"
@@ -166,8 +166,11 @@
                     <ion-item>
                         <ion-label
                                 position="floating">{{'patient-edition.form.scholarity.label'| translate}}</ion-label>
-                        <ion-input #scholarityInput="ngModel" [(ngModel)]="patient.scholarityId" autocomplete="off"
-                                   id="scholarity" name="scholarity" required></ion-input>
+                        <liber-modal-select #scholarityInput="ngModel" [(ngModel)]="patient.scholarityId"
+                                            autocomplete="off" crudServiceClass="ScholarityService"
+                                            id="scholarity" name="scholarity" required
+                                            title="{{'patient-edition.form.scholarity.label'| translate}}">
+                        </liber-modal-select>
                     </ion-item>
                     <div *ngIf="patientForm.submitted && scholarityInput.invalid"
                          class="field-invalid-message">
@@ -181,8 +184,11 @@
                     <ion-item>
                         <ion-label
                                 position="floating">{{'patient-edition.form.profession.label'| translate}}</ion-label>
-                        <ion-input #professionInput="ngModel" [(ngModel)]="patient.professionId" autocomplete="off"
-                                   id="profession" name="profession" required></ion-input>
+                        <liber-modal-select #professionInput="ngModel" [(ngModel)]="patient.professionId"
+                                            autocomplete="off" crudServiceClass="ProfessionService"
+                                            id="profession" name="profession" required
+                                            title="{{'patient-edition.form.profession.label'| translate}}">
+                        </liber-modal-select>
                     </ion-item>
                     <div *ngIf="patientForm.submitted && professionInput.invalid"
                          class="field-invalid-message">
