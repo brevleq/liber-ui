@@ -59,7 +59,10 @@ export class CommonClassifierModal extends InfiniteScrollPage<CommonClassifier> 
         const item = new CommonClassifier();
         item.name = this.filter;
         this.crudService.create(item).subscribe(
-            res => this.selected = res.body,
+            res => {
+                this.selected = res.body;
+                this.submit();
+            },
             error => this.toast.showErrorMessage()
         );
     }
@@ -70,7 +73,7 @@ export class CommonClassifierModal extends InfiniteScrollPage<CommonClassifier> 
 
     close(item?: CommonClassifier) {
         this.modalController.dismiss({
-            data: item
+            item
         });
     }
 }

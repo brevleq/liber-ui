@@ -27,10 +27,12 @@
 </ion-header>
 <ion-content>
     <ion-item>
-        <ion-searchbar (ionChange)="onFilterInput()" [value]="filter"></ion-searchbar>
+        <ion-searchbar (ionChange)="onFilterInput()" [(ngModel)]="filter"></ion-searchbar>
     </ion-item>
     <ion-list>
-        <ion-item *ngFor="let item of items; trackBy: trackById">
+        <ion-item (click)="select(item)"
+                  *ngFor="let item of items; trackBy: trackById"
+                  [color]="selected?.id==item?.id?'primary':''">
             <ion-label>{{item.name}}</ion-label>
         </ion-item>
     </ion-list>
@@ -41,9 +43,6 @@
         <ion-item *ngIf="filter!=''">
             <ion-text>{{'selection-modal.not-found' | translate}}</ion-text>
         </ion-item>
-        <ion-item>
-            <ion-button (click)="createAndSelect()">{{'common.button.create' | translate}}</ion-button>
-        </ion-item>
     </ng-container>
     <ion-infinite-scroll (ionInfinite)="loadPage()" threshold="100px">
         <ion-infinite-scroll-content
@@ -52,3 +51,13 @@
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>
 </ion-content>
+<ion-footer>
+    <ion-item>
+        <ion-button (click)="submit()" *ngIf="totalItems>0" [disabled]="!selected" slot="end">
+            {{'common.button.select' | translate}}
+        </ion-button>
+        <ion-button (click)="createAndSelect()" *ngIf="totalItems==0" slot="end">
+            {{'common.button.create' | translate}}
+        </ion-button>
+    </ion-item>
+</ion-footer>

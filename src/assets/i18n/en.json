@@ -14,7 +14,8 @@
     "button": {
       "save": "Save",
       "new": "New",
-      "create": "Create"
+      "create": "Create",
+      "select": "Select"
     }
   },
   "home": {

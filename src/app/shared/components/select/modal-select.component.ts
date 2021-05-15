@@ -17,7 +17,7 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {Component, EventEmitter, forwardRef, Injector, Input, Output, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ElementRef, EventEmitter, forwardRef, Injector, Input, Output, ViewChild} from '@angular/core';
 import {IonButton, ModalController} from "@ionic/angular";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {mappedTypes} from "../../services/mapped-types";
@@ -25,8 +25,8 @@ import {CommonClassifierModal} from "../modals/common-classifier.modal";
 
 @Component({
     selector: 'liber-modal-select',
-    template: '<ion-button expand="full" fill="clear" (click)="openModal()">{{valueLabel}}</ion-button>',
-    styles: [':host{width: 100%}'],
+    template: '<ion-button expand="full" fill="clear" (click)="openModal()">{{ngModel?.name}}</ion-button>',
+    styles: [':host{width: 100%} ion-button{--padding-end: 0; --padding-start: 0; margin: 0;} .button-inner{justify-content: left}'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -37,9 +37,7 @@ import {CommonClassifierModal} from "../modals/common-classifier.modal";
 })
 export class ModalSelectComponent implements ControlValueAccessor {
 
-    valueLabel: string = '';
     @ViewChild(IonButton) button: IonButton;
-    @ViewChild(ViewContainerRef) viewContainerRef: ViewContainerRef;
     @Input() ngModel: any;
     @Output() ngModelChange: EventEmitter<string> = new EventEmitter<string>();
     @Input() crudServiceClass: string;
@@ -47,7 +45,8 @@ export class ModalSelectComponent implements ControlValueAccessor {
 
     private onChanges: any;
 
-    constructor(private modalController: ModalController,
+    constructor(private elementRef: ElementRef,
+                private modalController: ModalController,
                 private injector: Injector) {
     }
 
@@ -60,6 +59,9 @@ export class ModalSelectComponent implements ControlValueAccessor {
             }
         });
         modal.present();
+        const {data} = await modal.onDidDismiss();
+        this.ngModel = data.item;
+        this.changeClasses();
     }
 
     registerOnChange(fn: any): void {
@@ -76,5 +78,27 @@ export class ModalSelectComponent implements ControlValueAccessor {
 
     writeValue(obj: any): void {
         this.ngModel = obj;
+    }
+
+    private changeClasses() {
+        if (this.ngModel) {
+            this.elementRef.nativeElement.parentNode.classList.add('item-interactive')
+            this.elementRef.nativeElement.parentNode.classList.add('item-select')
+            this.elementRef.nativeElement.parentNode.classList.add('ion-activatable')
+            this.elementRef.nativeElement.parentNode.classList.add('item-has-value')
+            this.elementRef.nativeElement.parentNode.classList.add('ion-activated')
+            this.elementRef.nativeElement.parentNode.classList.add('ion-touched')
+            this.elementRef.nativeElement.parentNode.classList.add('ion-dirty')
+            this.elementRef.nativeElement.parentNode.classList.add('ion-valid')
+        } else {
+            this.elementRef.nativeElement.parentNode.classList.remove('item-interactive')
+            this.elementRef.nativeElement.parentNode.classList.remove('item-select')
+            this.elementRef.nativeElement.parentNode.classList.remove('ion-activatable')
+            this.elementRef.nativeElement.parentNode.classList.remove('item-has-value')
+            this.elementRef.nativeElement.parentNode.classList.remove('ion-activated')
+            this.elementRef.nativeElement.parentNode.classList.remove('ion-touched')
+            this.elementRef.nativeElement.parentNode.classList.remove('ion-dirty')
+            this.elementRef.nativeElement.parentNode.classList.remove('ion-valid')
+        }
     }
 }
