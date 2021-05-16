@@ -1,5 +1,6 @@
 {
   "common": {
+    "date-format": "DD/MM/YYYY",
     "empty-list": "Nenhum item encontrado...",
     "loading": "Carregando...",
     "sex": {
@@ -180,7 +181,8 @@
     }
   },
   "selection-modal": {
-    "empty": "Não existe nenhum item cadastrado ainda! Digite o valor desejado no campo de busca e clique no botão criar para cadastrar um novo item.",
-    "not-found": "Nenhum item encontrado com este nome! Clique no botão criar para salvar o item pesquisado."
+    "empty": "Não existe nenhum item cadastrado ainda!",
+    "not-found": "Nenhum item encontrado com este nome!",
+    "create": "Clique no botão criar para salvar o item pesquisado."
   }
 }

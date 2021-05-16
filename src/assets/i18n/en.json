@@ -1,5 +1,6 @@
 {
   "common": {
+    "date-format": "MMM DD, YYYY",
     "empty-list": "Nothing was found...",
     "loading": "Loading...",
     "sex": {
@@ -180,7 +181,8 @@
     }
   },
   "selection-modal": {
-    "empty": "No item exists in database yet! Type the desired value in search box and click in create button to save a new item.",
-    "not-found": "Nothing was found with this name! Click in create button to save the searched item."
+    "empty": "No item exists in database yet!",
+    "not-found": "Nothing was found with this name!",
+    "create": "Click in create button to save the searched item."
   }
 }

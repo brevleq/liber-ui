@@ -25,7 +25,7 @@ import {CommonClassifierModal} from "../modals/common-classifier.modal";
 
 @Component({
     selector: 'liber-modal-select',
-    template: '<ion-button expand="full" fill="clear" (click)="openModal()">{{ngModel?.name}}</ion-button>',
+    template: '<ion-button expand="full" fill="clear" (click)="openModal()">{{buttonLabel}}</ion-button>',
     styles: [':host{width: 100%} ion-button{--padding-end: 0; --padding-start: 0; margin: 0;} .button-inner{justify-content: left}'],
     providers: [
         {
@@ -37,6 +37,7 @@ import {CommonClassifierModal} from "../modals/common-classifier.modal";
 })
 export class ModalSelectComponent implements ControlValueAccessor {
 
+    buttonLabel = '';
     @ViewChild(IonButton) button: IonButton;
     @Input() ngModel: any;
     @Output() ngModelChange: EventEmitter<string> = new EventEmitter<string>();
@@ -60,8 +61,12 @@ export class ModalSelectComponent implements ControlValueAccessor {
         });
         modal.present();
         const {data} = await modal.onDidDismiss();
-        this.ngModel = data.item;
-        this.changeClasses();
+        if (data.item) {
+            this.buttonLabel = data.item.name;
+            this.ngModel = data.item.id;
+            this.ngModelChange.emit(this.ngModel);
+            this.addClasses();
+        }
     }
 
     registerOnChange(fn: any): void {
@@ -80,25 +85,14 @@ export class ModalSelectComponent implements ControlValueAccessor {
         this.ngModel = obj;
     }
 
-    private changeClasses() {
-        if (this.ngModel) {
-            this.elementRef.nativeElement.parentNode.classList.add('item-interactive')
-            this.elementRef.nativeElement.parentNode.classList.add('item-select')
-            this.elementRef.nativeElement.parentNode.classList.add('ion-activatable')
-            this.elementRef.nativeElement.parentNode.classList.add('item-has-value')
-            this.elementRef.nativeElement.parentNode.classList.add('ion-activated')
-            this.elementRef.nativeElement.parentNode.classList.add('ion-touched')
-            this.elementRef.nativeElement.parentNode.classList.add('ion-dirty')
-            this.elementRef.nativeElement.parentNode.classList.add('ion-valid')
-        } else {
-            this.elementRef.nativeElement.parentNode.classList.remove('item-interactive')
-            this.elementRef.nativeElement.parentNode.classList.remove('item-select')
-            this.elementRef.nativeElement.parentNode.classList.remove('ion-activatable')
-            this.elementRef.nativeElement.parentNode.classList.remove('item-has-value')
-            this.elementRef.nativeElement.parentNode.classList.remove('ion-activated')
-            this.elementRef.nativeElement.parentNode.classList.remove('ion-touched')
-            this.elementRef.nativeElement.parentNode.classList.remove('ion-dirty')
-            this.elementRef.nativeElement.parentNode.classList.remove('ion-valid')
-        }
+    private addClasses() {
+        this.elementRef.nativeElement.parentNode.classList.add('item-interactive')
+        this.elementRef.nativeElement.parentNode.classList.add('item-select')
+        this.elementRef.nativeElement.parentNode.classList.add('ion-activatable')
+        this.elementRef.nativeElement.parentNode.classList.add('item-has-value')
+        this.elementRef.nativeElement.parentNode.classList.add('ion-activated')
+        this.elementRef.nativeElement.parentNode.classList.add('ion-touched')
+        this.elementRef.nativeElement.parentNode.classList.add('ion-dirty')
+        this.elementRef.nativeElement.parentNode.classList.add('ion-valid')
     }
 }

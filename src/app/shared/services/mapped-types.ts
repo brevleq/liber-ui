@@ -21,8 +21,10 @@ import {Type} from "@angular/core";
 import {MaritalStatusService} from "./marital-status.service";
 import {ScholarityService} from "./scholarity.service";
 import {ProfessionService} from "./profession.service";
+import {CityService} from "./city.service";
 
 export const mappedTypes = new Map<String, Type<any>>();
 mappedTypes.set("MaritalStatusService", MaritalStatusService);
 mappedTypes.set("ScholarityService", ScholarityService);
 mappedTypes.set("ProfessionService", ProfessionService);
+mappedTypes.set("CityService", CityService);

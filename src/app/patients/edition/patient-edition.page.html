@@ -52,6 +52,7 @@
                         <ion-label
                                 position="floating">{{'patient-edition.form.birthdate.label'| translate}}</ion-label>
                         <ion-datetime #birthdateInput="ngModel" [(ngModel)]="patient.birthDate" autocomplete="off"
+                                      display-format="{{'common.date-format' | translate}}"
                                       id="birthdate" name="birthdate" required></ion-datetime>
                     </ion-item>
                     <div *ngIf="patientForm.submitted && birthdateInput.invalid"
@@ -67,8 +68,8 @@
                         <ion-label position="floating">{{'patient-edition.form.sex.label'| translate}}</ion-label>
                         <ion-select #sexInput="ngModel" [(ngModel)]="patient.sex" autocomplete="off"
                                     id="sex" name="sex" required>
-                            <ion-select-option value="F">{{'common.sex.female' | translate}}</ion-select-option>
-                            <ion-select-option value="M">{{'common.sex.male' | translate}}</ion-select-option>
+                            <ion-select-option value="FEMALE">{{'common.sex.female' | translate}}</ion-select-option>
+                            <ion-select-option value="MALE">{{'common.sex.male' | translate}}</ion-select-option>
                         </ion-select>
                     </ion-item>
                     <div *ngIf="patientForm.submitted && sexInput.invalid"
@@ -83,8 +84,11 @@
                     <ion-item>
                         <ion-label
                                 position="floating">{{'patient-edition.form.birthplace.label'| translate}}</ion-label>
-                        <ion-select #birthplaceInput="ngModel" [(ngModel)]="patient.birthPlaceId" autocomplete="off"
-                                    customModal id="birthplace" name="birthplace" required></ion-select>
+                        <liber-modal-select #birthplaceInput="ngModel" [(ngModel)]="patient.birthPlaceId"
+                                            autocomplete="off" crudServiceClass="CityService"
+                                            id="birthplace" name="birthplace" required
+                                            title="{{'patient-edition.form.birthplace.label'| translate}}">
+                        </liber-modal-select>
                     </ion-item>
                     <div *ngIf="patientForm.submitted && birthplaceInput.invalid"
                          class="field-invalid-message">
@@ -149,8 +153,7 @@
                                 position="floating">{{'patient-edition.form.marital-status.label'| translate}}</ion-label>
                         <liber-modal-select #maritalStatusInput="ngModel" [(ngModel)]="patient.maritalStatusId"
                                             autocomplete="off" crudServiceClass="MaritalStatusService"
-                                            id="maritalStatus"
-                                            name="maritalStatus" required
+                                            id="maritalStatus" name="maritalStatus" required
                                             title="{{'patient-edition.form.marital-status.label'| translate}}">
                         </liber-modal-select>
                     </ion-item>
@@ -274,8 +277,11 @@
                 <ion-col size="12" size-lg="4">
                     <ion-item>
                         <ion-label position="floating">{{'address.city.label'| translate}}</ion-label>
-                        <ion-input #cityInput="ngModel" [(ngModel)]="patient.addressCityId" autocomplete="off"
-                                   id="city" name="city" required></ion-input>
+                        <liber-modal-select #cityInput="ngModel" [(ngModel)]="patient.addressCityId"
+                                            autocomplete="off" crudServiceClass="CityService"
+                                            id="city" name="city" required
+                                            title="{{'address.city.label'| translate}}">
+                        </liber-modal-select>
                     </ion-item>
                     <div *ngIf="patientForm.submitted && cityInput.invalid"
                          class="field-invalid-message">

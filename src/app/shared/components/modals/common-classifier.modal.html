@@ -37,11 +37,10 @@
         </ion-item>
     </ion-list>
     <ng-container *ngIf="totalItems==0">
-        <ion-item *ngIf="filter==''">
-            <ion-text>{{'selection-modal.empty' | translate}}</ion-text>
-        </ion-item>
-        <ion-item *ngIf="filter!=''">
-            <ion-text>{{'selection-modal.not-found' | translate}}</ion-text>
+        <ion-item>
+            <ion-text *ngIf="filter==''">{{'selection-modal.empty' | translate}}</ion-text>
+            <ion-text *ngIf="filter!=''">{{'selection-modal.not-found' | translate}}</ion-text>
+            <ion-text *ngIf="canCreate">{{'selection-modal.create' | translate}}</ion-text>
         </ion-item>
     </ng-container>
     <ion-infinite-scroll (ionInfinite)="loadPage()" threshold="100px">
@@ -53,10 +52,10 @@
 </ion-content>
 <ion-footer>
     <ion-item>
-        <ion-button (click)="submit()" *ngIf="totalItems>0" [disabled]="!selected" slot="end">
+        <ion-button (click)="close()" *ngIf="totalItems>0" [disabled]="!selected" slot="end">
             {{'common.button.select' | translate}}
         </ion-button>
-        <ion-button (click)="createAndSelect()" *ngIf="totalItems==0" slot="end">
+        <ion-button (click)="createAndSelect()" *ngIf="totalItems==0 && canCreate" slot="end">
             {{'common.button.create' | translate}}
         </ion-button>
     </ion-item>

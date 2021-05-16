@@ -21,6 +21,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ToastHelper} from "../../shared/helpers/toast.helper";
 import {Patient} from "../../shared/model/patient.model";
 import {PatientService} from "../../shared/services/patient.service";
+import * as moment from 'moment';
 
 @Component({
     selector: 'patient-edition-page',
@@ -40,6 +41,7 @@ export class PatientEditionPage implements OnInit {
     }
 
     submit() {
+        this.patient.birthDate = moment(this.patient.birthDate).format('YYYY-MM-DD');
         if (this.patient.id) {
             this.patientService.update(this.patient).subscribe(
                 () => this.onSuccess(),

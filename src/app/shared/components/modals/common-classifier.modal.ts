@@ -24,6 +24,7 @@ import {CommonClassifier} from "../../model/common-classifier.model";
 import {CrudService} from "../../services/crud.service";
 import {EventManager} from "../../services/event.manager.service";
 import {ToastHelper} from "../../helpers/toast.helper";
+import {QueryService} from "../../services/query.service";
 
 @Component({
     selector: 'common-classifier-modal',
@@ -33,7 +34,8 @@ import {ToastHelper} from "../../helpers/toast.helper";
 export class CommonClassifierModal extends InfiniteScrollPage<CommonClassifier> {
 
     @Input() title: string;
-    @Input() crudService: CrudService<CommonClassifier>;
+    @Input() crudService: CrudService<CommonClassifier> | QueryService<CommonClassifier>;
+    canCreate: boolean;
     private selected: CommonClassifier;
 
     constructor(protected eventManager: EventManager,
@@ -44,6 +46,7 @@ export class CommonClassifierModal extends InfiniteScrollPage<CommonClassifier> 
 
     ionViewWillEnter() {
         this.queryService = this.crudService;
+        this.canCreate = this.crudService instanceof CrudService;
         super.ionViewWillEnter();
     }
 
@@ -56,24 +59,22 @@ export class CommonClassifierModal extends InfiniteScrollPage<CommonClassifier> 
     }
 
     createAndSelect() {
+        if (!this.canCreate)
+            return;
         const item = new CommonClassifier();
         item.name = this.filter;
-        this.crudService.create(item).subscribe(
+        (this.crudService as CrudService<CommonClassifier>).create(item).subscribe(
             res => {
                 this.selected = res.body;
-                this.submit();
+                this.close();
             },
             error => this.toast.showErrorMessage()
         );
     }
 
-    submit() {
-        this.close(this.selected);
-    }
-
-    close(item?: CommonClassifier) {
+    close() {
         this.modalController.dismiss({
-            item
+            item: this.selected
         });
     }
 }
