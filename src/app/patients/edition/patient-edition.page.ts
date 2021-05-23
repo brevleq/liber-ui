@@ -17,27 +17,32 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ToastHelper} from "../../shared/helpers/toast.helper";
 import {Patient} from "../../shared/model/patient.model";
 import {PatientService} from "../../shared/services/patient.service";
 import * as moment from 'moment';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'patient-edition-page',
     templateUrl: 'patient-edition.page.html',
     styleUrls: ['patient-edition.page.scss']
 })
-export class PatientEditionPage implements OnInit {
+export class PatientEditionPage {
 
     @Input() patient: Patient;
 
     constructor(private toast: ToastHelper,
-                private patientService: PatientService) {
+                private patientService: PatientService,
+                private activatedRoute: ActivatedRoute) {
         this.patient = new Patient();
-    }
-
-    ngOnInit(): void {
+        this.activatedRoute.params.subscribe(params => {
+            const id = params['id'];
+            this.patientService.find(id).subscribe(
+                res => this.patient = res.body
+            )
+        });
     }
 
     submit() {

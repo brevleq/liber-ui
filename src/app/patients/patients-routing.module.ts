@@ -29,6 +29,9 @@ const routes: Routes = [
     }, {
         path: 'new',
         component: PatientEditionPage
+    }, {
+        path: 'edit/:id',
+        component: PatientEditionPage
     }
 ];
 

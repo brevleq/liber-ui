@@ -39,7 +39,12 @@
         <ion-item *ngFor="let item of items; let last=last;trackBy: trackById" [lines]="last?'none':'full'">
             <ion-col size="8">{{item.name}}</ion-col>
             <ion-col size="4">
-
+                <ion-button [routerLink]="'edit/'+item.id" fill="clear">
+                    <ion-icon name="create-outline"></ion-icon>
+                </ion-button>
+                <ion-button color="danger" fill="clear">
+                    <ion-icon name="trash-outline"></ion-icon>
+                </ion-button>
             </ion-col>
         </ion-item>
     </ion-list>

@@ -17,11 +17,23 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {Component, ElementRef, EventEmitter, forwardRef, Injector, Input, Output, ViewChild} from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    forwardRef,
+    Injector,
+    Input,
+    OnInit,
+    Output,
+    ViewChild
+} from '@angular/core';
 import {IonButton, ModalController} from "@ionic/angular";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {mappedTypes} from "../../services/mapped-types";
 import {CommonClassifierModal} from "../modals/common-classifier.modal";
+import {CrudService} from "../../services/crud.service";
+import {CommonClassifier} from "../../model/common-classifier.model";
 
 @Component({
     selector: 'liber-modal-select',
@@ -35,7 +47,7 @@ import {CommonClassifierModal} from "../modals/common-classifier.modal";
         }
     ]
 })
-export class ModalSelectComponent implements ControlValueAccessor {
+export class ModalSelectComponent implements ControlValueAccessor, OnInit {
 
     buttonLabel = '';
     @ViewChild(IonButton) button: IonButton;
@@ -45,17 +57,22 @@ export class ModalSelectComponent implements ControlValueAccessor {
     @Input() title: string;
 
     private onChanges: any;
+    private crudService: CrudService<CommonClassifier>
 
     constructor(private elementRef: ElementRef,
                 private modalController: ModalController,
                 private injector: Injector) {
     }
 
+    ngOnInit(): void {
+        this.crudService = this.injector.get(mappedTypes.get(this.crudServiceClass))
+    }
+
     async openModal() {
         const modal = await this.modalController.create({
             component: CommonClassifierModal,
             componentProps: {
-                crudService: this.injector.get(mappedTypes.get(this.crudServiceClass)),
+                crudService: this.crudService,
                 title: this.title
             }
         });
@@ -80,9 +97,20 @@ export class ModalSelectComponent implements ControlValueAccessor {
         this.button.disabled = isDisabled;
     }
 
-
     writeValue(obj: any): void {
         this.ngModel = obj;
+        if (this.ngModel && !this.buttonLabel) {
+            this.crudService.find(this.ngModel).subscribe(
+                res => this.loadedValue(res.body)
+            )
+        }
+    }
+
+    private loadedValue(dto: CommonClassifier) {
+        if (!dto)
+            return;
+        this.buttonLabel = dto.name;
+        this.addClasses();
     }
 
     private addClasses() {
