@@ -32,6 +32,7 @@ import {ActivatedRoute} from "@angular/router";
 export class PatientEditionPage {
 
     @Input() patient: Patient;
+    newDocumentRow: { typeId?: number, value?: string };
 
     constructor(private toast: ToastHelper,
                 private patientService: PatientService,
@@ -45,8 +46,14 @@ export class PatientEditionPage {
         });
     }
 
+    addDocument() {
+        this.putNewDocument();
+        this.newDocumentRow = {};
+    }
+
     submit() {
         this.patient.birthDate = moment(this.patient.birthDate).format('YYYY-MM-DD');
+        this.putNewDocument();
         if (this.patient.id) {
             this.patientService.update(this.patient).subscribe(
                 () => this.onSuccess(),
@@ -60,6 +67,10 @@ export class PatientEditionPage {
         }
     }
 
+    private putNewDocument() {
+        if (this.newDocumentRow && this.newDocumentRow.typeId && this.newDocumentRow.value)
+            this.patient.documents[this.newDocumentRow.typeId] = this.newDocumentRow.value;
+    }
 
     private onSuccess() {
         this.toast.showSuccessMessage();

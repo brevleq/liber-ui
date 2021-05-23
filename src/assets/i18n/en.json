@@ -126,7 +126,10 @@
         "label": "Birthplace"
       },
       "documents": {
-        "label": "Documents"
+        "label": "Documents",
+        "add-button": "Add document",
+        "type": "Type",
+        "value": "Value"
       },
       "mother-name": {
         "label": "Mother's name"

@@ -99,9 +99,59 @@
                     </div>
                 </ion-col>
             </ion-row>
-            <ion-item>
+            <ion-item lines="none">
                 {{'patient-edition.form.documents.label'| translate}}
             </ion-item>
+            <ion-item>
+                <ion-button
+                        (click)="addDocument()">{{'patient-edition.form.documents.add-button'| translate}}</ion-button>
+            </ion-item>
+            <ion-row *ngIf="newDocumentRow">
+                <ion-col size="6" size-lg="3">
+                    <ion-item>
+                        <ion-label
+                                position="floating">{{'patient-edition.form.documents.type'| translate}}</ion-label>
+                        <liber-modal-select [(ngModel)]="newDocumentRow.typeId"
+                                            autocomplete="off" crudServiceClass="DocumentTypeService"
+                                            id="documentTypeInput" name="documentTypeInput" required
+                                            title="{{'patient-edition.form.documents.type'| translate}}">
+                        </liber-modal-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6" size-lg="3">
+                    <ion-item>
+                        <ion-label position="floating">{{'patient-edition.form.documents.value'| translate}}</ion-label>
+                        <ion-input [(ngModel)]="newDocumentRow.value" autocomplete="off" id="newDocumentValueInput"
+                                   name="newDocumentValueInput" required>
+                        </ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let document of patient.documents | keyvalue">
+                <ion-col size="6" size-lg="3">
+                    <ion-item>
+                        <ion-label
+                                position="floating">{{'patient-edition.form.documents.type'| translate}}</ion-label>
+                        <liber-modal-select [(ngModel)]="document.key"
+                                            [id]="'documentTypeInput'+document.key"
+                                            [name]="'documentTypeInput'+document.key"
+                                            autocomplete="off" crudServiceClass="DocumentTypeService"
+                                            required
+                                            title="{{'patient-edition.form.documents.type'| translate}}">
+                        </liber-modal-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6" size-lg="3">
+                    <ion-item>
+                        <ion-label position="floating">{{'patient-edition.form.documents.value'| translate}}</ion-label>
+                        <ion-input [(ngModel)]="document.value"
+                                   [id]="'newDocumentValueInput'+document.key"
+                                   [name]="'newDocumentValueInput'+document.key"
+                                   autocomplete="off" required>
+                        </ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
             <ion-item>
                 <ion-label position="floating">{{'patient-edition.form.mother-name.label'| translate}}</ion-label>
                 <ion-input #motherNameInput="ngModel" [(ngModel)]="patient.motherName" autocomplete="off"

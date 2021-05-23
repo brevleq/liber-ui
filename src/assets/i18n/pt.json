@@ -126,7 +126,10 @@
         "label": "Naturalidade"
       },
       "documents": {
-        "label": "Documentos"
+        "label": "Documentos",
+        "add-button": "Adicionar documento",
+        "type": "Tipo",
+        "value": "Valor"
       },
       "mother-name": {
         "label": "Nome da mãe"

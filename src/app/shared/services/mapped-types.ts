@@ -22,9 +22,11 @@ import {MaritalStatusService} from "./marital-status.service";
 import {ScholarityService} from "./scholarity.service";
 import {ProfessionService} from "./profession.service";
 import {CityService} from "./city.service";
+import {DocumentTypeService} from "./document-type.service";
 
 export const mappedTypes = new Map<String, Type<any>>();
 mappedTypes.set("MaritalStatusService", MaritalStatusService);
 mappedTypes.set("ScholarityService", ScholarityService);
 mappedTypes.set("ProfessionService", ProfessionService);
 mappedTypes.set("CityService", CityService);
+mappedTypes.set("DocumentTypeService", DocumentTypeService);

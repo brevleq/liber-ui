@@ -99,18 +99,29 @@ export class ModalSelectComponent implements ControlValueAccessor, OnInit {
 
     writeValue(obj: any): void {
         this.ngModel = obj;
-        if (this.ngModel && !this.buttonLabel) {
+        if (this.ngModel)
+            this.loadedValue();
+        else
+            this.unloadedValue();
+    }
+
+    private loadedValue() {
+        if (!this.buttonLabel) {
             this.crudService.find(this.ngModel).subscribe(
-                res => this.loadedValue(res.body)
-            )
+                res => {
+                    const dto = res.body
+                    if (!dto)
+                        return;
+                    this.buttonLabel = dto.name;
+                    this.addClasses();
+                }
+            );
         }
     }
 
-    private loadedValue(dto: CommonClassifier) {
-        if (!dto)
-            return;
-        this.buttonLabel = dto.name;
-        this.addClasses();
+    private unloadedValue() {
+        this.buttonLabel = '';
+        this.removeClasses();
     }
 
     private addClasses() {
@@ -122,5 +133,16 @@ export class ModalSelectComponent implements ControlValueAccessor, OnInit {
         this.elementRef.nativeElement.parentNode.classList.add('ion-touched')
         this.elementRef.nativeElement.parentNode.classList.add('ion-dirty')
         this.elementRef.nativeElement.parentNode.classList.add('ion-valid')
+    }
+
+    private removeClasses() {
+        this.elementRef.nativeElement.parentNode.classList.remove('item-interactive')
+        this.elementRef.nativeElement.parentNode.classList.remove('item-select')
+        this.elementRef.nativeElement.parentNode.classList.remove('ion-activatable')
+        this.elementRef.nativeElement.parentNode.classList.remove('item-has-value')
+        this.elementRef.nativeElement.parentNode.classList.remove('ion-activated')
+        this.elementRef.nativeElement.parentNode.classList.remove('ion-touched')
+        this.elementRef.nativeElement.parentNode.classList.remove('ion-dirty')
+        this.elementRef.nativeElement.parentNode.classList.remove('ion-valid')
     }
 }

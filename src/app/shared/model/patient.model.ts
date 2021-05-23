@@ -37,4 +37,5 @@ export class Patient {
     public addressComplement: String;
     public addressZip: String;
     public addressCityId: number;
+    public documents: any = {};
 }
