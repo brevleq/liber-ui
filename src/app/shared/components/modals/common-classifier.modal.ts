@@ -34,6 +34,7 @@ import {QueryService} from "../../services/query.service";
 export class CommonClassifierModal extends InfiniteScrollPage<CommonClassifier> {
 
     @Input() title: string;
+    @Input() unavailableItems: [];
     @Input() crudService: CrudService<CommonClassifier> | QueryService<CommonClassifier>;
     canCreate: boolean;
     private selected: CommonClassifier;
@@ -54,8 +55,13 @@ export class CommonClassifierModal extends InfiniteScrollPage<CommonClassifier> 
         return item.id;
     }
 
+    isUnavailable(id: number): boolean {
+        return !!this.unavailableItems.find(i => id == i);
+    }
+
     select(item: CommonClassifier) {
-        this.selected = item;
+        if (!this.isUnavailable(item.id))
+            this.selected = item;
     }
 
     createAndSelect() {

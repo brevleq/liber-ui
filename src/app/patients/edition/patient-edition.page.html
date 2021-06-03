@@ -28,7 +28,7 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <form #patientForm="ngForm" (validSubmit)="submit()" [form]="patientForm"
+    <form #patientForm="ngForm" (validSubmit)="submit()" *ngIf="patient" [form]="patientForm"
           formValidation name="patientForm" novalidate role="form">
         <ion-list>
             <ion-item>
@@ -110,8 +110,6 @@
             </ion-row>
             <ion-item lines="none">
                 {{'patient-edition.form.documents.label'| translate}}
-            </ion-item>
-            <ion-item>
                 <ion-button
                         (click)="addDocument()">{{'patient-edition.form.documents.add-button'| translate}}</ion-button>
             </ion-item>
@@ -120,7 +118,7 @@
                     <ion-item>
                         <ion-label
                                 position="floating">{{'patient-edition.form.documents.type'| translate}}</ion-label>
-                        <liber-modal-select [(ngModel)]="newDocumentRow.typeId"
+                        <liber-modal-select [(ngModel)]="newDocumentRow.typeId" [unavailableIds]="documentIds"
                                             autocomplete="off" crudServiceClass="DocumentTypeService"
                                             id="documentTypeInput" name="documentTypeInput" required
                                             title="{{'patient-edition.form.documents.type'| translate}}">
@@ -356,10 +354,7 @@
                     </div>
                 </ion-col>
             </ion-row>
-
-
-            <ion-button color="primary" expand="block"
-                        type="submit">{{'common.button.save'| translate}}</ion-button>
         </ion-list>
+        <ion-button color="primary" expand="block" type="submit">{{'common.button.save'| translate}}</ion-button>
     </form>
 </ion-content>

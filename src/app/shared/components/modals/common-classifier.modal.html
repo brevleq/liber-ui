@@ -30,7 +30,7 @@
         <ion-searchbar (ionChange)="onFilterInput()" [(ngModel)]="filter"></ion-searchbar>
     </ion-item>
     <ion-list>
-        <ion-item (click)="select(item)"
+        <ion-item (click)="select(item)" [disabled]="isUnavailable(item.id)"
                   *ngFor="let item of items; trackBy: trackById"
                   [color]="selected?.id==item?.id?'primary':''">
             <ion-label>{{item.name}}</ion-label>
@@ -38,9 +38,12 @@
     </ion-list>
     <ng-container *ngIf="totalItems==0">
         <ion-item>
-            <ion-text *ngIf="filter==''">{{'selection-modal.empty' | translate}}</ion-text>
-            <ion-text *ngIf="filter!=''">{{'selection-modal.not-found' | translate}}</ion-text>
-            <ion-text *ngIf="canCreate">{{'selection-modal.create' | translate}}</ion-text>
+            <ion-text>
+                <ng-container *ngIf="filter==''">{{'selection-modal.empty' | translate}}</ng-container>
+                <ng-container *ngIf="filter!=''">{{'selection-modal.not-found' | translate}}</ng-container>
+                <br/>
+                <ng-container *ngIf="canCreate">{{'selection-modal.create' | translate}}</ng-container>
+            </ion-text>
         </ion-item>
     </ng-container>
     <ion-infinite-scroll (ionInfinite)="loadPage()" threshold="100px">

@@ -55,6 +55,7 @@ export class ModalSelectComponent implements ControlValueAccessor, OnInit {
     @Output() ngModelChange: EventEmitter<string> = new EventEmitter<string>();
     @Input() crudServiceClass: string;
     @Input() title: string;
+    @Input() unavailableIds: [];
 
     private onChanges: any;
     private crudService: CrudService<CommonClassifier>
@@ -73,7 +74,8 @@ export class ModalSelectComponent implements ControlValueAccessor, OnInit {
             component: CommonClassifierModal,
             componentProps: {
                 crudService: this.crudService,
-                title: this.title
+                title: this.title,
+                unavailableItems: this.unavailableIds ? this.unavailableIds : []
             }
         });
         modal.present();

@@ -32,22 +32,31 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class PatientEditionPage {
 
     @Input() patient: Patient;
+    documentIds: string[];
     newDocumentRow: { typeId?: number, value?: string };
 
     constructor(private toast: ToastHelper,
                 private router: Router,
                 private patientService: PatientService,
                 private activatedRoute: ActivatedRoute) {
-        this.patient = new Patient();
         this.activatedRoute.params.subscribe(params => {
             const id = params['id'];
-            if (id) {
-                this.patientService.find(id).subscribe(
-                    res => this.patient = res.body
-                )
-            } else
-                this.patient = new Patient();
+            if (id)
+                this.patientService.find(id).subscribe(res => this.loadPatient(res.body));
+            else
+                this.loadPatient(new Patient());
         });
+    }
+
+    removeDocument(document: any) {
+        const documents = this.patient.documents;
+        delete documents[document.key];
+        this.loadDocumentIds();
+    }
+
+    private loadPatient(patient: Patient) {
+        this.patient = patient;
+        this.loadDocumentIds();
     }
 
     addDocument() {
@@ -55,9 +64,8 @@ export class PatientEditionPage {
         this.newDocumentRow = {};
     }
 
-    removeDocument(document: any) {
-        const documents = this.patient.documents;
-        delete documents[document.key];
+    private loadDocumentIds() {
+        this.documentIds = Object.keys(this.patient.documents);
     }
 
     submit() {
@@ -77,8 +85,10 @@ export class PatientEditionPage {
     }
 
     private putNewDocument() {
-        if (this.newDocumentRow && this.newDocumentRow.typeId && this.newDocumentRow.value)
+        if (this.newDocumentRow && this.newDocumentRow.typeId && this.newDocumentRow.value) {
             this.patient.documents[this.newDocumentRow.typeId] = this.newDocumentRow.value;
+            this.loadDocumentIds();
+        }
     }
 
     private onSuccess() {
