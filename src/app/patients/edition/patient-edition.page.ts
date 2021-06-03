@@ -52,6 +52,11 @@ export class PatientEditionPage {
         this.newDocumentRow = {};
     }
 
+    removeDocument(document: any) {
+        const documents = this.patient.documents;
+        delete documents[document.key];
+    }
+
     submit() {
         this.patient.birthDate = moment(this.patient.birthDate).format('YYYY-MM-DD');
         this.putNewDocument();
@@ -71,11 +76,6 @@ export class PatientEditionPage {
     private putNewDocument() {
         if (this.newDocumentRow && this.newDocumentRow.typeId && this.newDocumentRow.value)
             this.patient.documents[this.newDocumentRow.typeId] = this.newDocumentRow.value;
-    }
-
-    removeDocument(document: any) {
-        const documents = this.patient.documents;
-        delete documents[document.key];
     }
 
     private onSuccess() {

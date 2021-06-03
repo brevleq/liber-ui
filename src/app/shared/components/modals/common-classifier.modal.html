@@ -52,7 +52,7 @@
 </ion-content>
 <ion-footer>
     <ion-item>
-        <ion-button (click)="close()" *ngIf="totalItems>0" [disabled]="!selected" slot="end">
+        <ion-button (click)="close(selected)" *ngIf="totalItems>0" [disabled]="!selected" slot="end">
             {{'common.button.select' | translate}}
         </ion-button>
         <ion-button (click)="createAndSelect()" *ngIf="totalItems==0 && canCreate" slot="end">

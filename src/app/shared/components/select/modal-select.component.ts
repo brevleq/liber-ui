@@ -37,8 +37,8 @@ import {CommonClassifier} from "../../model/common-classifier.model";
 
 @Component({
     selector: 'liber-modal-select',
-    template: '<ion-button expand="full" fill="clear" (click)="openModal()">{{buttonLabel}}</ion-button>',
-    styles: [':host{width: 100%} ion-button{--padding-end: 0; --padding-start: 0; margin: 0;} .button-inner{justify-content: left}'],
+    templateUrl: 'modal-select.component.html',
+    styleUrls: ['modal-select.component.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -129,7 +129,6 @@ export class ModalSelectComponent implements ControlValueAccessor, OnInit {
         this.elementRef.nativeElement.parentNode.classList.add('item-select')
         this.elementRef.nativeElement.parentNode.classList.add('ion-activatable')
         this.elementRef.nativeElement.parentNode.classList.add('item-has-value')
-        this.elementRef.nativeElement.parentNode.classList.add('ion-activated')
         this.elementRef.nativeElement.parentNode.classList.add('ion-touched')
         this.elementRef.nativeElement.parentNode.classList.add('ion-dirty')
         this.elementRef.nativeElement.parentNode.classList.add('ion-valid')
@@ -140,7 +139,6 @@ export class ModalSelectComponent implements ControlValueAccessor, OnInit {
         this.elementRef.nativeElement.parentNode.classList.remove('item-select')
         this.elementRef.nativeElement.parentNode.classList.remove('ion-activatable')
         this.elementRef.nativeElement.parentNode.classList.remove('item-has-value')
-        this.elementRef.nativeElement.parentNode.classList.remove('ion-activated')
         this.elementRef.nativeElement.parentNode.classList.remove('ion-touched')
         this.elementRef.nativeElement.parentNode.classList.remove('ion-dirty')
         this.elementRef.nativeElement.parentNode.classList.remove('ion-valid')

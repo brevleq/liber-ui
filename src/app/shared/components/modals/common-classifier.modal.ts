@@ -66,15 +66,15 @@ export class CommonClassifierModal extends InfiniteScrollPage<CommonClassifier> 
         (this.crudService as CrudService<CommonClassifier>).create(item).subscribe(
             res => {
                 this.selected = res.body;
-                this.close();
+                this.close(this.selected);
             },
             error => this.toast.showErrorMessage()
         );
     }
 
-    close() {
+    close(item?: CommonClassifier) {
         this.modalController.dismiss({
-            item: this.selected
+            item
         });
     }
 }
