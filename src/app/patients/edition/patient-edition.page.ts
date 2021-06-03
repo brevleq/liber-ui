@@ -22,7 +22,7 @@ import {ToastHelper} from "../../shared/helpers/toast.helper";
 import {Patient} from "../../shared/model/patient.model";
 import {PatientService} from "../../shared/services/patient.service";
 import * as moment from 'moment';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: 'patient-edition-page',
@@ -35,6 +35,7 @@ export class PatientEditionPage {
     newDocumentRow: { typeId?: number, value?: string };
 
     constructor(private toast: ToastHelper,
+                private router: Router,
                 private patientService: PatientService,
                 private activatedRoute: ActivatedRoute) {
         this.patient = new Patient();
@@ -72,7 +73,13 @@ export class PatientEditionPage {
             this.patient.documents[this.newDocumentRow.typeId] = this.newDocumentRow.value;
     }
 
+    removeDocument(document: any) {
+        const documents = this.patient.documents;
+        delete documents[document.key];
+    }
+
     private onSuccess() {
         this.toast.showSuccessMessage();
+        this.router.navigateByUrl('/patients');
     }
 }

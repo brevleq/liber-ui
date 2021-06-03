@@ -128,7 +128,7 @@
                 </ion-col>
             </ion-row>
             <ion-row *ngFor="let document of patient.documents | keyvalue">
-                <ion-col size="6" size-lg="3">
+                <ion-col size="4" size-lg="3">
                     <ion-item>
                         <ion-label
                                 position="floating">{{'patient-edition.form.documents.type'| translate}}</ion-label>
@@ -150,6 +150,11 @@
                                    autocomplete="off" required>
                         </ion-input>
                     </ion-item>
+                </ion-col>
+                <ion-col size="2" size-lg="1">
+                    <ion-button (click)="removeDocument(document)" color="dark" fill="clear">
+                        <ion-icon name="close"></ion-icon>
+                    </ion-button>
                 </ion-col>
             </ion-row>
             <ion-item>
