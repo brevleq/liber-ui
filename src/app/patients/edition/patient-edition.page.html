@@ -18,6 +18,15 @@
   -->
 
 
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title *ngIf="patient?.id">{{'patient-edition.title.edition' | translate}}</ion-title>
+        <ion-title *ngIf="!patient?.id">{{'patient-edition.title.creation' | translate}}</ion-title>
+    </ion-toolbar>
+</ion-header>
 <ion-content>
     <form #patientForm="ngForm" (validSubmit)="submit()" [form]="patientForm"
           formValidation name="patientForm" novalidate role="form">
@@ -107,7 +116,7 @@
                         (click)="addDocument()">{{'patient-edition.form.documents.add-button'| translate}}</ion-button>
             </ion-item>
             <ion-row *ngIf="newDocumentRow">
-                <ion-col size="6" size-lg="3">
+                <ion-col size="6" size-sm="3">
                     <ion-item>
                         <ion-label
                                 position="floating">{{'patient-edition.form.documents.type'| translate}}</ion-label>
@@ -202,7 +211,7 @@
                 </small>
             </div>
             <ion-row>
-                <ion-col size="6" size-lg="3">
+                <ion-col size="12" size-lg="3">
                     <ion-item>
                         <ion-label
                                 position="floating">{{'patient-edition.form.marital-status.label'| translate}}</ion-label>
@@ -220,7 +229,7 @@
                         </small>
                     </div>
                 </ion-col>
-                <ion-col size="6" size-lg="3">
+                <ion-col size="12" size-lg="3">
                     <ion-item>
                         <ion-label
                                 position="floating">{{'patient-edition.form.scholarity.label'| translate}}</ion-label>
@@ -238,7 +247,7 @@
                         </small>
                     </div>
                 </ion-col>
-                <ion-col size="6" size-lg="3">
+                <ion-col size="12" size-lg="3">
                     <ion-item>
                         <ion-label
                                 position="floating">{{'patient-edition.form.profession.label'| translate}}</ion-label>
@@ -256,7 +265,7 @@
                         </small>
                     </div>
                 </ion-col>
-                <ion-col size="6" size-lg="3">
+                <ion-col size="12" size-lg="3">
                     <ion-item>
                         <ion-label>{{'patient-edition.form.is-working.label'| translate}}</ion-label>
                         <ion-checkbox [(ngModel)]="patient.working" id="working" name="working"

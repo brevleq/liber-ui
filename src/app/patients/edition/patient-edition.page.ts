@@ -41,9 +41,12 @@ export class PatientEditionPage {
         this.patient = new Patient();
         this.activatedRoute.params.subscribe(params => {
             const id = params['id'];
-            this.patientService.find(id).subscribe(
-                res => this.patient = res.body
-            )
+            if (id) {
+                this.patientService.find(id).subscribe(
+                    res => this.patient = res.body
+                )
+            } else
+                this.patient = new Patient();
         });
     }
 

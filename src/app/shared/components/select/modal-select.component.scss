@@ -24,14 +24,16 @@
 ion-col {
   padding-inline-start: 0;
   padding-inline-end: 0;
+  display: flex;
+
+  ion-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   &.icon-col {
-    display: flex;
     justify-content: flex-end;
-
-    ion-icon {
-      height: 60%;
-    }
   }
 }
 
