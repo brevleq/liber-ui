@@ -19,10 +19,10 @@
 
 import {Component} from '@angular/core';
 import {InfiniteScrollPage} from "../shared/base/infinite-scroll.page";
-import {User} from "../shared/model/user.model";
 import {EventManager} from "../shared/services/event.manager.service";
 import {Patient} from "../shared/model/patient.model";
 import {PatientService} from "../shared/services/patient.service";
+import {DeletionService} from "../shared/services/deletion.service";
 
 @Component({
     selector: 'patients-page',
@@ -31,19 +31,31 @@ import {PatientService} from "../shared/services/patient.service";
 })
 export class PatientsPage extends InfiniteScrollPage<Patient> {
 
-
     constructor(private patientService: PatientService,
-                protected eventManager: EventManager) {
+                protected eventManager: EventManager,
+                private deletionService: DeletionService) {
         super(patientService, eventManager, {
             sort: ['name,asc']
         });
     }
 
-    trackById(index, item: User): any {
+    trackById(index, item: Patient): any {
         return item.id;
     }
 
-    create() {
+    tryDelete(patient: Patient) {
+        this.deletionService.delete({
+            item: patient,
+            idProperty: 'id',
+            crudService: this.patientService
+        }).subscribe(result => this.onDeletionSuccess(result))
+    }
 
+    private onDeletionSuccess(patient: any) {
+        const found = this.items.find(r => r.id === patient.id);
+        const index = this.items.indexOf(found);
+        if (index !== -1) {
+            this.items.splice(index, 1);
+        }
     }
 }

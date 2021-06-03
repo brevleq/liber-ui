@@ -19,24 +19,28 @@
 
 import {Injectable} from '@angular/core';
 import {ToastController} from '@ionic/angular';
+import {TranslateService} from "@ngx-translate/core";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ToastHelper {
-    constructor(private toastController: ToastController) {
+    constructor(private toastController: ToastController,
+                private translate: TranslateService) {
     }
 
     showSuccessMessage(message?: string) {
-        if (!message)
-            message = 'Requisição processada com sucesso!';
-        this.showToast(message, 'success');
+        if (message)
+            this.showToast(message, 'success');
+        else
+            this.translate.get('common.success').subscribe(translated => this.showToast(translated, 'success'));
     }
 
     showErrorMessage(message?: string) {
-        if (!message)
-            message = 'Erro ao processar sua requisição!';
-        this.showToast(message, 'danger');
+        if (message)
+            this.showToast(message, 'danger');
+        else
+            this.translate.get('common.error').subscribe(translated => this.showToast(translated, 'danger'));
     }
 
     private async showToast(message: string, color: string) {

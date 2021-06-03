@@ -42,7 +42,7 @@
                 <ion-button [routerLink]="'edit/'+item.id" fill="clear">
                     <ion-icon name="create-outline"></ion-icon>
                 </ion-button>
-                <ion-button color="danger" fill="clear">
+                <ion-button (click)="tryDelete(item)" color="danger" fill="clear">
                     <ion-icon name="trash-outline"></ion-icon>
                 </ion-button>
             </ion-col>

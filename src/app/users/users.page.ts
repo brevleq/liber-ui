@@ -26,6 +26,7 @@ import {AlertController, ModalController} from "@ionic/angular";
 import {EventManager} from "../shared/services/event.manager.service";
 import {ToastHelper} from "../shared/helpers/toast.helper";
 import {UserService} from "../shared/services/user.service";
+import {DeletionService} from "../shared/services/deletion.service";
 
 @Component({
     selector: 'users-page',
@@ -41,7 +42,8 @@ export class UsersPage extends InfiniteScrollPage<User> {
                 private alertController: AlertController,
                 private modalController: ModalController,
                 protected eventManager: EventManager,
-                private toast: ToastHelper) {
+                private toast: ToastHelper,
+                private deletionService: DeletionService) {
         super(userService, eventManager, {
             roles: [
                 'ROLE_ADMIN',
@@ -86,27 +88,14 @@ export class UsersPage extends InfiniteScrollPage<User> {
     }
 
     tryDelete(user: User) {
-        this.alertController.create({
-            header: 'Excluir',
-            message: 'Você tem certeza que deseja excluir permanentemente este usuário?',
-            buttons: [
-                {role: 'confirm', text: 'Sim', handler: () => this.deletionConfirmed(user)},
-                {role: 'cancel', text: 'Não'}
-            ]
-        }).then(alert => {
-            alert.present();
-        });
+        this.deletionService.delete({
+            item: user,
+            idProperty: 'login',
+            crudService: this.userService
+        }).subscribe(result => this.onDeletionSuccess(result))
     }
 
-    private deletionConfirmed(user: User) {
-        this.userService.delete(user.login).subscribe(
-            () => this.onDeletionSuccess(user),
-            () => this.toast.showErrorMessage('Ocorreu um erro ao excluir o usuário.')
-        );
-    }
-
-    private onDeletionSuccess(user: User) {
-        this.toast.showSuccessMessage('O usuário foi excluído com sucesso');
+    private onDeletionSuccess(user: any) {
         const found = this.items.find(r => r.id === user.id);
         const index = this.items.indexOf(found);
         if (index !== -1) {

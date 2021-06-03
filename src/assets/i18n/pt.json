@@ -3,6 +3,8 @@
     "date-format": "DD/MM/YYYY",
     "empty-list": "Nenhum item encontrado...",
     "loading": "Carregando...",
+    "success": "Requisição processada com sucesso!",
+    "error": "Erro ao processar sua requisição!",
     "sex": {
       "male": "Masculino",
       "female": "Feminino"
@@ -17,6 +19,14 @@
       "new": "Novo",
       "create": "Criar",
       "select": "Selecionar"
+    },
+    "deletion": {
+      "title": "Excluir",
+      "message": "Você tem certeza que deseja excluir permanentemente este cadastro?",
+      "yes": "Sim",
+      "no": "Não",
+      "error": "Ocorreu um erro ao excluir os dados!",
+      "success": "Os dados foram excluídos com sucesso!"
     }
   },
   "home": {

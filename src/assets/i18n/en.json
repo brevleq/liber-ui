@@ -3,6 +3,8 @@
     "date-format": "MMM DD, YYYY",
     "empty-list": "Nothing was found...",
     "loading": "Loading...",
+    "success": "Request processed successfully!",
+    "error": "An error occurred when processing the request!",
     "sex": {
       "male": "Male",
       "female": "Female"
@@ -17,6 +19,14 @@
       "new": "New",
       "create": "Create",
       "select": "Select"
+    },
+    "deletion": {
+      "title": "Delete",
+      "message": "Are you sure you want to delete this register permanently?",
+      "yes": "Yes",
+      "no": "No",
+      "error": "An error occurred when deleting the data!",
+      "success": "The data was deleted successfully!"
     }
   },
   "home": {
