@@ -34,6 +34,7 @@ import {LoadingInterceptor} from "./blocks/interceptor/loading.interceptor";
 import {FormValidationDirective} from "./directives/form-validation.directive";
 import {ModalSelectComponent} from "./components/select/modal-select.component";
 import {CommonClassifierModal} from "./components/modals/common-classifier.modal";
+import {SearchButtonComponent} from "./components/search/search-button.component";
 
 @NgModule({
     imports: [
@@ -44,12 +45,14 @@ import {CommonClassifierModal} from "./components/modals/common-classifier.modal
     declarations: [
         CommonClassifierModal,
         ModalSelectComponent,
+        SearchButtonComponent,
         FormValidationDirective,
         HasAnyAuthorityDirective,
     ],
     exports: [
         CommonClassifierModal,
         ModalSelectComponent,
+        SearchButtonComponent,
         FormValidationDirective,
         HasAnyAuthorityDirective,
         SharedLibsModule
