@@ -58,7 +58,8 @@ export class ModalSelectComponent implements ControlValueAccessor, OnInit {
     @Input() unavailableIds: [];
 
     private onChanges: any;
-    private crudService: CrudService<CommonClassifier>
+    private crudService: CrudService<CommonClassifier>;
+    private isDisabled = false;
 
     constructor(private elementRef: ElementRef,
                 private modalController: ModalController,
@@ -70,6 +71,8 @@ export class ModalSelectComponent implements ControlValueAccessor, OnInit {
     }
 
     async openModal() {
+        if (this.isDisabled)
+            return;
         const modal = await this.modalController.create({
             component: CommonClassifierModal,
             componentProps: {
@@ -96,7 +99,14 @@ export class ModalSelectComponent implements ControlValueAccessor, OnInit {
     }
 
     setDisabledState(isDisabled: boolean): void {
-        this.button.disabled = isDisabled;
+        this.isDisabled = isDisabled;
+        if (this.isDisabled) {
+            this.elementRef.nativeElement.parentNode.classList.add('item-select-disabled');
+            this.elementRef.nativeElement.parentNode.classList.add('item-interactive-disabled');
+        } else {
+            this.elementRef.nativeElement.parentNode.classList.remove('item-select-disabled');
+            this.elementRef.nativeElement.parentNode.classList.remove('item-interactive-disabled');
+        }
     }
 
     writeValue(obj: any): void {
@@ -127,22 +137,22 @@ export class ModalSelectComponent implements ControlValueAccessor, OnInit {
     }
 
     private addClasses() {
-        this.elementRef.nativeElement.parentNode.classList.add('item-interactive')
-        this.elementRef.nativeElement.parentNode.classList.add('item-select')
-        this.elementRef.nativeElement.parentNode.classList.add('ion-activatable')
-        this.elementRef.nativeElement.parentNode.classList.add('item-has-value')
-        this.elementRef.nativeElement.parentNode.classList.add('ion-touched')
-        this.elementRef.nativeElement.parentNode.classList.add('ion-dirty')
-        this.elementRef.nativeElement.parentNode.classList.add('ion-valid')
+        this.elementRef.nativeElement.parentNode.classList.add('item-interactive');
+        this.elementRef.nativeElement.parentNode.classList.add('item-select');
+        this.elementRef.nativeElement.parentNode.classList.add('ion-activatable');
+        this.elementRef.nativeElement.parentNode.classList.add('item-has-value');
+        this.elementRef.nativeElement.parentNode.classList.add('ion-touched');
+        this.elementRef.nativeElement.parentNode.classList.add('ion-dirty');
+        this.elementRef.nativeElement.parentNode.classList.add('ion-valid');
     }
 
     private removeClasses() {
-        this.elementRef.nativeElement.parentNode.classList.remove('item-interactive')
-        this.elementRef.nativeElement.parentNode.classList.remove('item-select')
-        this.elementRef.nativeElement.parentNode.classList.remove('ion-activatable')
-        this.elementRef.nativeElement.parentNode.classList.remove('item-has-value')
-        this.elementRef.nativeElement.parentNode.classList.remove('ion-touched')
-        this.elementRef.nativeElement.parentNode.classList.remove('ion-dirty')
-        this.elementRef.nativeElement.parentNode.classList.remove('ion-valid')
+        this.elementRef.nativeElement.parentNode.classList.remove('item-interactive');
+        this.elementRef.nativeElement.parentNode.classList.remove('item-select');
+        this.elementRef.nativeElement.parentNode.classList.remove('ion-activatable');
+        this.elementRef.nativeElement.parentNode.classList.remove('item-has-value');
+        this.elementRef.nativeElement.parentNode.classList.remove('ion-touched');
+        this.elementRef.nativeElement.parentNode.classList.remove('ion-dirty');
+        this.elementRef.nativeElement.parentNode.classList.remove('ion-valid');
     }
 }

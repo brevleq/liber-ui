@@ -26,10 +26,12 @@ import {SharedModule} from "../shared/shared.module";
 import {PatientsPage} from "./patients.page";
 import {PatientsRoutingModule} from "./patients-routing.module";
 import {PatientEditionPage} from "./edition/patient-edition.page";
+import {PatientDetailPage} from "./detail/patient-detail.page";
 
 @NgModule({
     declarations: [
         PatientsPage,
+        PatientDetailPage,
         PatientEditionPage
     ],
     imports: [

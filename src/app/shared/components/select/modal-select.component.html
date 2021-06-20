@@ -19,9 +19,9 @@
 
 <ion-row (click)="openModal()">
     <ion-col size="11">
-        <ion-text>{{buttonLabel}}</ion-text>
+        <ion-text [ngClass]="isDisabled?'sc-ion-label-md-h':''">{{buttonLabel}}</ion-text>
     </ion-col>
     <ion-col class="icon-col" size="1">
-        <ion-icon color="medium" name="caret-down-sharp"></ion-icon>
+        <ion-icon [ngClass]="isDisabled?'sc-ion-label-md-h':''" color="medium" name="caret-down-sharp"></ion-icon>
     </ion-col>
 </ion-row>

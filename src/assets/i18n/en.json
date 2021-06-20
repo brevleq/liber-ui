@@ -18,7 +18,8 @@
       "save": "Save",
       "new": "New",
       "create": "Create",
-      "select": "Select"
+      "select": "Select",
+      "edit": "Edit"
     },
     "deletion": {
       "title": "Delete",
