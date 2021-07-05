@@ -116,7 +116,10 @@
     }
   },
   "patients": {
-    "title": "Patients"
+    "title": "Patients",
+    "button": {
+      "new-report": "New report"
+    }
   },
   "patient-edition": {
     "title": {
@@ -171,6 +174,23 @@
       },
       "companion-phone": {
         "label": "Phone"
+      }
+    }
+  },
+  "patient-report": {
+    "psychiatric-title": "Psychiatric report for patient: ",
+    "psychological-title": "Psychological report for patient: ",
+    "social-title": "Social report for patient: ",
+    "dental-title": "Dental report for patient: ",
+    "type": {
+      "psychiatric": "Psychiatric",
+      "psychological": "Psychological",
+      "social": "Social",
+      "dental": "Dental"
+    },
+    "form": {
+      "title": {
+        "label": "Title"
       }
     }
   },

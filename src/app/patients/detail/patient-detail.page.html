@@ -172,5 +172,32 @@
     </ion-list>
     <ion-item *ngIf="patient?.id">
         <ion-button [routerLink]="'../../edit/'+patient.id">{{'common.button.edit' | translate}}</ion-button>
+        <ion-button
+                [routerLink]="'../../'+patient.id+'/report/new'">{{'patients.button.new-report' | translate}}</ion-button>
     </ion-item>
+    <ion-list>
+        <ion-item *ngFor="let report of items; trackBy: trackById">
+            <ion-col>{{report.title}}</ion-col>
+            <ion-col>
+                <ng-container
+                        *ngIf="report.type=='SOCIAL'">{{'patient-report.type.social' | translate}}</ng-container>
+                <ng-container
+                        *ngIf="report.type=='PSYCHIATRIC'">{{'patient-report.type.psychiatric' | translate}}</ng-container>
+                <ng-container
+                        *ngIf="report.type=='PSYCHOLOGICAL'">{{'patient-report.type.psychological' | translate}}</ng-container>
+                <ng-container
+                        *ngIf="report.type=='DENTAL'">{{'patient-report.type.dental' | translate}}</ng-container>
+            </ion-col>
+            <ion-col>{{report.status}}</ion-col>
+            <ion-col>
+                <ion-button color="default" fill="clear">
+                    <ion-icon name="eye-outline"></ion-icon>
+                </ion-button>
+                <ion-button *ngIf="report.authorId===user.id"
+                            [routerLink]="'../../'+report.patientId+'/report/'+report.id" color="default" fill="clear">
+                    <ion-icon name="create-outline"></ion-icon>
+                </ion-button>
+            </ion-col>
+        </ion-item>
+    </ion-list>
 </ion-content>

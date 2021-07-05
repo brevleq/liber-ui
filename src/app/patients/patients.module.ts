@@ -27,12 +27,15 @@ import {PatientsPage} from "./patients.page";
 import {PatientsRoutingModule} from "./patients-routing.module";
 import {PatientEditionPage} from "./edition/patient-edition.page";
 import {PatientDetailPage} from "./detail/patient-detail.page";
+import {ReportEditionPage} from "./report/report-edition.page";
+import {QuillModule} from "ngx-quill";
 
 @NgModule({
     declarations: [
         PatientsPage,
         PatientDetailPage,
-        PatientEditionPage
+        PatientEditionPage,
+        ReportEditionPage
     ],
     imports: [
         CommonModule,
@@ -40,7 +43,12 @@ import {PatientDetailPage} from "./detail/patient-detail.page";
         RouterModule,
         SharedModule,
         IonicModule,
-        PatientsRoutingModule
+        PatientsRoutingModule,
+        QuillModule.forRoot({
+            modules: {
+                // toolbar: [...]
+            },
+        })
     ]
 })
 export class PatientsModule {

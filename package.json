@@ -27,6 +27,7 @@
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "moment": "^2.29.1",
+    "ngx-quill": "^14.1.1",
     "ngx-webstorage": "^5.0.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",

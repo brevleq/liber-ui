@@ -116,7 +116,10 @@
     }
   },
   "patients": {
-    "title": "Pacientes"
+    "title": "Pacientes",
+    "button": {
+      "new-report": "Novo relatório"
+    }
   },
   "patient-edition": {
     "title": {
@@ -171,6 +174,23 @@
       },
       "companion-phone": {
         "label": "Telefone"
+      }
+    }
+  },
+  "patient-report": {
+    "psychiatric-title": "Relatório psiquiátrico do paciente: ",
+    "psychological-title": "Relatório psicológico do paciente: ",
+    "social-title": "Relatório social do paciente: ",
+    "dental-title": "Relatório dentário do paciente: ",
+    "type": {
+      "psychiatric": "Psiquiátrico",
+      "psychological": "Psicológico",
+      "social": "Social",
+      "dental": "Dentário"
+    },
+    "form": {
+      "title": {
+        "label": "Título"
       }
     }
   },
