@@ -23,6 +23,7 @@ import {PatientsPage} from './patients.page';
 import {PatientEditionPage} from "./edition/patient-edition.page";
 import {PatientDetailPage} from "./detail/patient-detail.page";
 import {ReportEditionPage} from "./report/report-edition.page";
+import {ReportDetailPage} from "./report/report-detail.page";
 
 const routes: Routes = [
     {
@@ -41,8 +42,11 @@ const routes: Routes = [
         path: ':patientId/report/new',
         component: ReportEditionPage
     }, {
-        path: ':patientId/report/:reportId',
+        path: ':patientId/report/:reportId/edit',
         component: ReportEditionPage
+    }, {
+        path: ':patientId/report/:reportId',
+        component: ReportDetailPage
     }
 ];
 

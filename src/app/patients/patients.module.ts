@@ -29,13 +29,17 @@ import {PatientEditionPage} from "./edition/patient-edition.page";
 import {PatientDetailPage} from "./detail/patient-detail.page";
 import {ReportEditionPage} from "./report/report-edition.page";
 import {QuillModule} from "ngx-quill";
+import {ReportDetailPage} from "./report/report-detail.page";
+import {ReportOptionsComponent} from "./report/report-options.component";
 
 @NgModule({
     declarations: [
         PatientsPage,
         PatientDetailPage,
         PatientEditionPage,
-        ReportEditionPage
+        ReportEditionPage,
+        ReportDetailPage,
+        ReportOptionsComponent
     ],
     imports: [
         CommonModule,

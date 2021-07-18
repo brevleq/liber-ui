@@ -5,6 +5,7 @@
     "loading": "Loading...",
     "success": "Request processed successfully!",
     "error": "An error occurred when processing the request!",
+    "print": "Print",
     "sex": {
       "male": "Male",
       "female": "Female"

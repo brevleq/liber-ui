@@ -189,12 +189,14 @@
                         *ngIf="report.type=='DENTAL'">{{'patient-report.type.dental' | translate}}</ng-container>
             </ion-col>
             <ion-col>{{report.status}}</ion-col>
+            <ion-col>{{report.createdDate}}</ion-col>
             <ion-col>
-                <ion-button color="default" fill="clear">
+                <ion-button [routerLink]="'../../'+report.patientId+'/report/'+report.id" color="default" fill="clear">
                     <ion-icon name="eye-outline"></ion-icon>
                 </ion-button>
                 <ion-button *ngIf="report.authorId===user.id"
-                            [routerLink]="'../../'+report.patientId+'/report/'+report.id" color="default" fill="clear">
+                            [routerLink]="'../../'+report.patientId+'/report/'+report.id+'/edit'" color="default"
+                            fill="clear">
                     <ion-icon name="create-outline"></ion-icon>
                 </ion-button>
             </ion-col>

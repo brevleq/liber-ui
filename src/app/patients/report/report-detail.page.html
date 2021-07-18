@@ -1,0 +1,54 @@
+<!--
+  ~ Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
+  ~
+  ~ This file is part of Liber UI.
+  ~
+  ~ Liber UI is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or any later
+  ~ version.
+  ~
+  ~ Liber UI is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
+  -->
+
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            <ng-container *ngIf="report?.type=='SOCIAL'">{{'patient-report.social-title' | translate}}</ng-container>
+            <ng-container
+                    *ngIf="report?.type=='PSYCHIATRIC'">{{'patient-report.psychiatric-title' | translate}}</ng-container>
+            <ng-container
+                    *ngIf="report?.type=='PSYCHOLOGICAL'">{{'patient-report.psychological-title' | translate}}</ng-container>
+            <ng-container *ngIf="report?.type=='DENTAL'">{{'patient-report.dental-title' | translate}}</ng-container>
+            {{patient?.name}}
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="showOptions($event)" fill="clear">
+                <ion-icon name="ellipsis-horizontal"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content id="report-content">
+    <ion-list>
+        <ion-item>{{report?.title}}</ion-item>
+        <ion-item>
+            <ion-col>{{report?.createdDate}}</ion-col>
+            <ion-col>{{report?.authorFirstName + ' ' + report?.authorLastName}}</ion-col>
+        </ion-item>
+        <ion-grid>
+            <ion-row>
+                <ion-col [innerHTML]="report?.content"></ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-list>
+</ion-content>

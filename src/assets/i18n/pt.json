@@ -5,6 +5,7 @@
     "loading": "Carregando...",
     "success": "Requisição processada com sucesso!",
     "error": "Erro ao processar sua requisição!",
+    "print": "Imprimir",
     "sex": {
       "male": "Masculino",
       "female": "Feminino"
