@@ -18,29 +18,33 @@
  */
 
 import {Component} from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
 import {LocalStorageService} from "ngx-webstorage";
+import {TranslateService} from "@ngx-translate/core";
 import {Router} from "@angular/router";
 
 @Component({
-    selector: 'app-root',
-    templateUrl: 'app.component.html',
-    styleUrls: ['app.component.scss']
+    selector: 'language-page',
+    templateUrl: './language.page.html',
+    styleUrls: ['./language.page.scss'],
 })
-export class AppComponent {
+export class LanguagePage {
+    language: string;
 
-    constructor(private translate: TranslateService,
+    constructor(private localStorage: LocalStorageService,
                 private router: Router,
-                private localStorage: LocalStorageService) {
-        translate.use(this.getPreferredLanguage())
+                private translate: TranslateService) {
+        this.language = this.localStorage.retrieve('preferredLanguage');
+        if (!this.language)
+            this.language = 'en';
     }
 
-    private getPreferredLanguage(): string {
-        const preferredLanguage = this.localStorage.retrieve('preferredLanguage');
-        if (!preferredLanguage) {
-            this.router.navigateByUrl('/choose-language');
-            return 'en';
-        }
-        return preferredLanguage;
+    changedLanguage(event: any) {
+        console.log('changed -> ', this.language);
+        this.translate.use(this.language);
+    }
+
+    save() {
+        this.localStorage.store('preferredLanguage', this.language);
+        this.router.navigateByUrl('/');
     }
 }

@@ -219,5 +219,13 @@
     "empty": "Não existe nenhum item cadastrado ainda!",
     "not-found": "Nenhum item encontrado com este nome!",
     "create": "Clique no botão criar para salvar o item pesquisado."
+  },
+  "language": {
+    "intro": "Escolha o idioma que será utilizado no sistema Liber",
+    "label": "Idioma",
+    "choices": {
+      "english": "English",
+      "portuguese": "Português"
+    }
   }
 }

@@ -219,5 +219,13 @@
     "empty": "No item exists in database yet!",
     "not-found": "Nothing was found with this name!",
     "create": "Click in create button to save the searched item."
+  },
+  "language": {
+    "intro": "Select your preferred language to use in Liber system",
+    "label": "Language",
+    "choices": {
+      "english": "English",
+      "portuguese": "Português"
+    }
   }
 }

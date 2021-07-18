@@ -38,11 +38,11 @@ const routes: Routes = [
     {
         path: 'change-default-password',
         loadChildren: () => import('./password/password.module').then(m => m.PasswordModule)
+    },
+    {
+        path: 'choose-language',
+        loadChildren: () => import('./language/language.module').then(m => m.LanguageModule)
     }
-    // {
-    //   path: 'home',
-
-    // },
 ];
 
 @NgModule({
