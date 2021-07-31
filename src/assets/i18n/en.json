@@ -125,7 +125,8 @@
   "patient-edition": {
     "title": {
       "edition": "Editing patient's data",
-      "creation": "Creating new patient"
+      "creation": "Creating new patient",
+      "detail": "Patient's details"
     },
     "form": {
       "full-name": {

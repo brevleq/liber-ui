@@ -14,7 +14,7 @@
   ~ GNU Affero General Public License for more details.
   ~
   ~ You should have received a copy of the GNU Affero General Public License
-  ~ along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
+  ~ along with Liber UI. If not, see <https://www.gnu.org/licenses/>
   -->
 
 
@@ -23,8 +23,7 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title *ngIf="patient?.id">{{'patient-edition.title.edition' | translate}}</ion-title>
-        <ion-title *ngIf="!patient?.id">{{'patient-edition.title.creation' | translate}}</ion-title>
+        <ion-title>{{'patient-edition.title.detail' | translate}}</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -188,7 +187,7 @@
                 <ng-container
                         *ngIf="report.type=='DENTAL'">{{'patient-report.type.dental' | translate}}</ng-container>
             </ion-col>
-            <ion-col>{{report.status}}</ion-col>
+            <ion-col>{{report.authorFirstName + ' ' + report.authorLastName}}</ion-col>
             <ion-col>{{report.createdDate}}</ion-col>
             <ion-col>
                 <ion-button [routerLink]="'../../'+report.patientId+'/report/'+report.id" color="default" fill="clear">

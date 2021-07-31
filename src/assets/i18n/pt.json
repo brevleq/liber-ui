@@ -124,8 +124,9 @@
   },
   "patient-edition": {
     "title": {
-      "edition": "Editar dados do Paciente",
-      "creation": "Criar novo Paciente"
+      "edition": "Editar dados do paciente",
+      "creation": "Criar novo paciente",
+      "detail": "Detalhes do paciente"
     },
     "form": {
       "full-name": {
