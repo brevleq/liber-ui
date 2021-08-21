@@ -37,7 +37,7 @@ export class CommonClassifierModal extends InfiniteScrollPage<CommonClassifier> 
     @Input() unavailableItems: [];
     @Input() crudService: CrudService<CommonClassifier> | QueryService<CommonClassifier>;
     canCreate: boolean;
-    private selected: CommonClassifier;
+    selected: CommonClassifier;
 
     constructor(protected eventManager: EventManager,
                 private toast: ToastHelper,

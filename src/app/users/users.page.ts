@@ -35,7 +35,7 @@ import {DeletionService} from "../shared/services/deletion.service";
 })
 export class UsersPage extends InfiniteScrollPage<User> {
 
-    private user: User;
+    user: User;
 
     constructor(private userService: UserService,
                 private principal: Principal,

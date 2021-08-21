@@ -20,11 +20,12 @@
 import {HttpResponse} from '@angular/common/http';
 import {EventManager} from '../services/event.manager.service';
 import {IonInfiniteScroll} from '@ionic/angular';
-import {OnDestroy, ViewChild} from '@angular/core';
+import {Directive, OnDestroy, ViewChild} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ITEMS_PER_PAGE} from '../constants/app.constants';
 import {IQueryService} from '../services/iquery.service';
 
+@Directive()
 export abstract class InfiniteScrollPage<T> implements OnDestroy {
 
     itemsPerPage: number;

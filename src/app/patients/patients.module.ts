@@ -17,7 +17,7 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {IonicModule} from '@ionic/angular';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
@@ -53,7 +53,8 @@ import {ReportOptionsComponent} from "./report/report-options.component";
                 // toolbar: [...]
             },
         })
-    ]
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PatientsModule {
 }

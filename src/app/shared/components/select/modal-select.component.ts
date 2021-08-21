@@ -50,6 +50,7 @@ import {CommonClassifier} from "../../model/common-classifier.model";
 export class ModalSelectComponent implements ControlValueAccessor, OnInit {
 
     buttonLabel = '';
+    isDisabled = false;
     @ViewChild(IonButton) button: IonButton;
     @Input() ngModel: any;
     @Output() ngModelChange: EventEmitter<string> = new EventEmitter<string>();
@@ -59,7 +60,6 @@ export class ModalSelectComponent implements ControlValueAccessor, OnInit {
 
     private onChanges: any;
     private crudService: CrudService<CommonClassifier>;
-    private isDisabled = false;
 
     constructor(private elementRef: ElementRef,
                 private modalController: ModalController,

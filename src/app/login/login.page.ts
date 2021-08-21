@@ -43,7 +43,6 @@ export class LoginPage implements OnDestroy {
             () => this.router.navigateByUrl('/')
         ).catch(
             (e) => {
-                console.warn(e);
                 this.toastHelper.showErrorMessage('Verifique o login e senha e tente novamente')
             }
         );

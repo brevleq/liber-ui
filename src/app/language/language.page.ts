@@ -39,7 +39,6 @@ export class LanguagePage {
     }
 
     changedLanguage(event: any) {
-        console.log('changed -> ', this.language);
         this.translate.use(this.language);
     }
 

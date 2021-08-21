@@ -34,7 +34,6 @@ export class LoginService {
     }
 
     login(credentials) {
-        console.warn('credentials  -> ', credentials);
         return new Promise((resolve, reject) => {
             this.authServerProvider.login(credentials).subscribe(
                 data => {

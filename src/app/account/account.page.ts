@@ -30,7 +30,7 @@ import {AccountService} from "../shared/services/account.service";
 export class AccountPage implements OnInit {
 
     name: string;
-    private user: User;
+    user: User;
 
     constructor(private accountService: AccountService,
                 private toast: ToastHelper) {

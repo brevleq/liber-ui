@@ -51,8 +51,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
     private getToken(): Observable<string> {
         return new Observable<string>(observer => {
-            console.warn('localStorage -> ', this.localStorage);
-            console.warn('sessionStorage -> ', this.sessionStorage);
             const token = this.localStorage.retrieve('authenticationToken') || this.sessionStorage.retrieve('authenticationToken');
             observer.next(token);
             observer.complete();
