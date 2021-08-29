@@ -19,12 +19,12 @@
 
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {PassswordPage} from "./passsword.page";
+import {PasswordPage} from "./password-page.component";
 
 const routes: Routes = [
     {
         path: '',
-        component: PassswordPage
+        component: PasswordPage
     },
 ];
 

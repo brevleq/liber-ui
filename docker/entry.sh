@@ -7,7 +7,7 @@ MAIN_FILE="/www/main-es*"
 if [ ! -f "$FLAG_FILE" ]; then
     sed -i "s/≠domain/$DOMAIN/" $NGINX_CONFIG_FILE
     if [ "$IGNORE_CERTBOT" = false ]; then
-        certbot --nginx -n --agree-tos --email "$EMAIL" -d "$DOMAIN"
+        certbot --nginx --redirect --hsts --uir -n --agree-tos --email "$EMAIL" -d "$DOMAIN"
     else
         echo "Ignoring certbot configuration"
     fi

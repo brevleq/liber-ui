@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
  *
  * This file is part of Liber UI.
@@ -17,25 +17,31 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+ion-menu-button {
+  color: var(--ion-color-primary);
+}
 
-import {IonicModule} from '@ionic/angular';
-import {HomeRoutingModule} from "./home-routing.module";
-import {HomePage} from "./home.page";
-import {SharedModule} from "../shared/shared.module";
-import {InitialPage} from "./initial.page";
+#container {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-@NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-        HomeRoutingModule,
-        SharedModule
-    ],
-    declarations: [HomePage, InitialPage]
-})
-export class HomeModule {
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
 }

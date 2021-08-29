@@ -20,4 +20,4 @@
 rm -R docker/www
 ionic build --prod
 mv www docker/
-docker build -t brevleq/liber-ui:0.0.1 -t brevleq/liber-ui:latest docker
+docker build -t brevleq/liber-ui:0.0.2 -t brevleq/liber-ui:latest docker

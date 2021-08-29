@@ -23,12 +23,12 @@ import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {SharedModule} from "../shared/shared.module";
-import {PassswordPage} from "./passsword.page";
+import {PasswordPage} from "./password-page.component";
 import {PasswordRoutingModule} from "./password-routing.module";
 
 @NgModule({
     declarations: [
-        PassswordPage
+        PasswordPage
     ],
     imports: [
         CommonModule,

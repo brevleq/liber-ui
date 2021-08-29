@@ -228,5 +228,9 @@
       "english": "English",
       "portuguese": "Português"
     }
+  },
+  "initial": {
+    "title": "Bem vindo",
+    "intro": "Escolha a opção desejada no menu lateral..."
   }
 }

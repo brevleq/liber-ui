@@ -21,6 +21,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomePage} from "./home.page";
 import {UserRouteAccessService} from "../shared/auth/user-route-access-service";
+import {InitialPage} from "./initial.page";
 
 
 const routes: Routes = [
@@ -30,7 +31,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'patients'
+        component: InitialPage,
       },
       {
         path: 'users',

@@ -28,7 +28,7 @@ import {Router} from "@angular/router";
     templateUrl: 'password.page.html',
     styleUrls: ['password.page.scss']
 })
-export class PassswordPage implements OnInit {
+export class PasswordPage implements OnInit {
 
     model: ChangePassword = new ChangePassword();
     newPasswordRepetition: string;
@@ -59,6 +59,6 @@ export class PassswordPage implements OnInit {
     private onSuccess() {
         this.toast.showSuccessMessage("Senha trocada com sucesso!")
         if (this.isChangingDefaultPassword)
-            this.router.navigateByUrl("/");
+            this.router.navigateByUrl("/", {replaceUrl: true}).then((result) => console.log('mudou a página?', result));
     }
 }
