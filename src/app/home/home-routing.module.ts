@@ -29,6 +29,10 @@ const routes: Routes = [
     component: HomePage,
     children: [
       {
+        path: '',
+        redirectTo: 'patients'
+      },
+      {
         path: 'users',
         canActivate: [UserRouteAccessService],
         data: {
