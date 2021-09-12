@@ -60,9 +60,14 @@ export class PatientDetailPage extends InfiniteScrollPage<Report> {
         return item.id;
     }
 
+    ionViewWillEnter() {
+        //    override parent's method
+    }
+
     private loadPatient(patient: Patient) {
         this.patient = patient;
         this.documentIds = Object.keys(this.patient.documents);
         this.queryObject.patientId = this.patient.id;
+        super.cleanLoad();
     }
 }

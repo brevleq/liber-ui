@@ -59,6 +59,6 @@ export class PasswordPage implements OnInit {
     private onSuccess() {
         this.toast.showSuccessMessage("Senha trocada com sucesso!")
         if (this.isChangingDefaultPassword)
-            this.router.navigateByUrl("/", {replaceUrl: true}).then((result) => console.log('mudou a página?', result));
+            window.location.href = '/';
     }
 }
