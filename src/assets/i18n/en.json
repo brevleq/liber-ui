@@ -34,6 +34,7 @@
   "home": {
     "menus": {
       "patients": "Patients",
+      "hospitalizations": "Hospitalizations",
       "users": "Users",
       "account": "Account",
       "change-password": "Change Password",
@@ -120,6 +121,12 @@
     "title": "Patients",
     "button": {
       "new-report": "New report"
+    }
+  },
+  "hospitalizations": {
+    "title": "Hospitalizations",
+    "button": {
+      "finish": "Finish"
     }
   },
   "patient-edition": {

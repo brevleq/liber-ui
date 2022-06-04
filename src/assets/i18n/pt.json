@@ -34,6 +34,7 @@
   "home": {
     "menus": {
       "patients": "Pacientes",
+      "hospitalizations": "Internações",
       "users": "Usuários",
       "account": "Minha Conta",
       "change-password": "Trocar Senha",
@@ -120,6 +121,12 @@
     "title": "Pacientes",
     "button": {
       "new-report": "Novo relatório"
+    }
+  },
+  "hospitalizations": {
+    "title": "Internações",
+    "button": {
+      "finish": "Encerrar"
     }
   },
   "patient-edition": {

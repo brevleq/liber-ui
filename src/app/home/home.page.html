@@ -32,6 +32,15 @@
                             <ion-label>{{'home.menus.patients' | translate}}</ion-label>
                         </ion-item>
                     </ion-menu-toggle>
+                    <ion-menu-toggle
+                            *jhiHasAnyAuthority="['ROLE_DENTIST','ROLE_PSYCHOLOGIST','ROLE_PSYCHIATRIST','ROLE_SECRETARY','ROLE_SOCIAL_ASSISTANT']"
+                            auto-hide="false">
+                        <ion-item [class.selected]="true" detail="false"
+                                  lines="none" routerDirection="root" routerLink="/hospitalizations">
+                            <ion-icon name="medkit" slot="start"></ion-icon>
+                            <ion-label>{{'home.menus.hospitalizations' | translate}}</ion-label>
+                        </ion-item>
+                    </ion-menu-toggle>
                     <ion-menu-toggle auto-hide="false">
                         <ion-item [class.selected]="true" detail="false"
                                   lines="none" routerDirection="root" routerLink="/users">
