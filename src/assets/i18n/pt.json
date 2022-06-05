@@ -120,13 +120,24 @@
   "patients": {
     "title": "Pacientes",
     "button": {
-      "new-report": "Novo relatório"
+      "new-report": "Novo relatório",
+      "hospitalize": "Internar",
+      "finish-hospitalization": "Finalizar internação"
     }
   },
   "hospitalizations": {
     "title": "Internações",
     "button": {
       "finish": "Encerrar"
+    }
+  },
+  "new-hospitalization": {
+    "title": "Nova internação",
+    "description": "Informe abaixo a data de início da internação para o paciente ",
+    "form": {
+      "date": {
+        "label": "Data"
+      }
     }
   },
   "patient-edition": {

@@ -120,13 +120,24 @@
   "patients": {
     "title": "Patients",
     "button": {
-      "new-report": "New report"
+      "new-report": "New report",
+      "hospitalize": "Hospitalize",
+      "finish-hospitalization": "Finish Hospitalization"
     }
   },
   "hospitalizations": {
     "title": "Hospitalizations",
     "button": {
       "finish": "Finish"
+    }
+  },
+  "new-hospitalization": {
+    "title": "New hospitalization",
+    "description": "Inform below the initial hospitalization date for patient ",
+    "form": {
+      "date": {
+        "label": "Date"
+      }
     }
   },
   "patient-edition": {

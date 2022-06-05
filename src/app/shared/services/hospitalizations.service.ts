@@ -18,9 +18,12 @@
  */
 
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {CrudService} from "./crud.service";
 import {Hospitalization} from "../model/hospitalization.model";
+import {Result} from "../model/result.model";
+import {Observable} from "rxjs";
+import {SERVER_API_URL} from "../constants/app.constants";
 
 @Injectable({
     providedIn: 'root'
@@ -29,5 +32,9 @@ export class HospitalizationsService extends CrudService<Hospitalization> {
 
     constructor(http: HttpClient) {
         super(http, 'api/hospitalizations');
+    }
+
+    public isHospitalized(patientId: number): Observable<HttpResponse<Result>> {
+        return this.http.get<Result>(SERVER_API_URL + `${this.resourceUrl}/${patientId}/is-hospitalized`, {observe: 'response'});
     }
 }

@@ -28,6 +28,9 @@ import {Report} from "../../shared/model/report.model";
 import {EventManager} from "../../shared/services/event.manager.service";
 import {Principal} from "../../shared/auth/principal.service";
 import {User} from "../../shared/model/user.model";
+import {ModalController} from "@ionic/angular";
+import {HospitalizationStartModal} from "../../hospitalizations/start/hospitalization-start.modal";
+import {HospitalizationsService} from "../../shared/services/hospitalizations.service";
 
 @Component({
     selector: 'patient-detail-page',
@@ -39,6 +42,7 @@ export class PatientDetailPage extends InfiniteScrollPage<Report> {
     @Input() patient: Patient;
     user: User;
     documentIds: string[];
+    isHospitalized = false;
 
     constructor(private toast: ToastHelper,
                 private router: Router,
@@ -46,13 +50,16 @@ export class PatientDetailPage extends InfiniteScrollPage<Report> {
                 private activatedRoute: ActivatedRoute,
                 private reportService: ReportService,
                 protected eventManager: EventManager,
-                private principal: Principal) {
+                private principal: Principal,
+                private modalController: ModalController,
+                private hospitalizationService: HospitalizationsService) {
         super(reportService, eventManager, {sort: ['createdDate,desc']})
         this.patient = new Patient();
-        this.principal.identity().then(u => this.user = u)
+        this.principal.identity().then(u => this.user = u);
         this.activatedRoute.params.subscribe(params => {
             const id = params['id'];
             this.patientService.find(id).subscribe(res => this.loadPatient(res.body));
+            this.hospitalizationService.isHospitalized(id).subscribe(res => this.isHospitalized = res.body.result);
         });
     }
 
@@ -69,5 +76,20 @@ export class PatientDetailPage extends InfiniteScrollPage<Report> {
         this.documentIds = Object.keys(this.patient.documents);
         this.queryObject.patientId = this.patient.id;
         super.cleanLoad();
+    }
+
+    public async hospitalize() {
+        const modal = await this.modalController.create({
+            component: HospitalizationStartModal,
+            componentProps: {
+                patient: this.patient
+            }
+        });
+        modal.present();
+        modal.onDidDismiss().then(result => this.isHospitalized = result.data);
+    }
+
+    finishHospitalization() {
+
     }
 }
