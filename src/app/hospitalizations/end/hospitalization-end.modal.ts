@@ -17,7 +17,7 @@
  * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
  */
 
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {ToastHelper} from "../../shared/helpers/toast.helper";
 import {Patient} from "../../shared/model/patient.model";
@@ -26,39 +26,34 @@ import {Hospitalization} from "../../shared/model/hospitalization.model";
 import * as moment from "moment";
 
 @Component({
-    selector: 'hospitalization-start-modal',
-    templateUrl: 'hospitalization-start.modal.html',
-    styleUrls: ['hospitalization-start.modal.scss']
+    selector: 'hospitalization-end-modal',
+    templateUrl: 'hospitalization-end.modal.html',
+    styleUrls: ['hospitalization-end.modal.scss']
 })
-export class HospitalizationStartModal implements OnInit {
+export class HospitalizationEndModal {
 
     @Input() patient: Patient;
-    public hospitalization: Hospitalization;
+    @Input() hospitalization: Hospitalization;
 
     constructor(private modalController: ModalController,
                 private toast: ToastHelper,
                 private hospitalizationService: HospitalizationsService) {
     }
 
-    ngOnInit(): void {
-        this.hospitalization = new Hospitalization();
-        this.hospitalization.patientId = this.patient.id;
-    }
-
-    close(hospitalization?: Hospitalization) {
-        this.modalController.dismiss(hospitalization);
+    close(result?: boolean) {
+        this.modalController.dismiss(!result ? this.hospitalization : null);
     }
 
     submit() {
-        this.hospitalization.startDate = moment(this.hospitalization.startDate).format('YYYY-MM-DD');
-        this.hospitalizationService.create(this.hospitalization).subscribe(
-            (res) => this.onSuccess(res.body),
+        this.hospitalization.endDate = moment(this.hospitalization.endDate).format('YYYY-MM-DD');
+        this.hospitalizationService.update(this.hospitalization).subscribe(
+            () => this.onSuccess(),
             () => this.toast.showErrorMessage()
         );
     }
 
-    private onSuccess(hospitalization: Hospitalization) {
+    private onSuccess() {
         this.toast.showSuccessMessage();
-        this.close(hospitalization);
+        this.close(true);
     }
 }

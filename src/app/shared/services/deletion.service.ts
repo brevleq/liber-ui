@@ -45,7 +45,7 @@ export class DeletionService {
             .subscribe(result => this.translation = result);
     }
 
-    delete(obj: { item: any, idProperty: string, crudService: CrudService<any> }) {
+    delete(obj: { item: any, idProperty?: string, crudService: CrudService<any> }) {
         return new Observable((observer) => {
             this.alertController.create({
                 header: this.translation['common.deletion.title'],
@@ -74,8 +74,11 @@ export class DeletionService {
         observer.complete();
     }
 
-    private deletionConfirmed(obj: { item: any, idProperty: string, crudService: CrudService<any> }, observer: Subscriber<any>) {
-        obj.crudService.delete(obj.item[obj.idProperty]).subscribe(
+    private deletionConfirmed(obj: { item: any, idProperty?: string, crudService: CrudService<any> }, observer: Subscriber<any>) {
+        let param = obj.item;
+        if (obj.idProperty)
+            param = obj.item[obj.idProperty]
+        obj.crudService.delete(param).subscribe(
             () => this.onDeletionSuccess(obj.item, observer),
             () => this.onDeletionError(observer)
         );

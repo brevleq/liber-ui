@@ -21,9 +21,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {CrudService} from "./crud.service";
 import {Hospitalization} from "../model/hospitalization.model";
-import {Result} from "../model/result.model";
 import {Observable} from "rxjs";
 import {SERVER_API_URL} from "../constants/app.constants";
+import {createRequestOption} from "../model/request-util";
 
 @Injectable({
     providedIn: 'root'
@@ -34,7 +34,12 @@ export class HospitalizationsService extends CrudService<Hospitalization> {
         super(http, 'api/hospitalizations');
     }
 
-    public isHospitalized(patientId: number): Observable<HttpResponse<Result>> {
-        return this.http.get<Result>(SERVER_API_URL + `${this.resourceUrl}/${patientId}/is-hospitalized`, {observe: 'response'});
+    public findCurrent(patientId: number): Observable<HttpResponse<Hospitalization>> {
+        return this.http.get<Hospitalization>(SERVER_API_URL + `${this.resourceUrl}/${patientId}/current`, {observe: 'response'});
+    }
+
+    public delete(hospitalization: Hospitalization): Observable<HttpResponse<any>> {
+        const options = createRequestOption(hospitalization);
+        return this.http.delete(SERVER_API_URL + `${this.resourceUrl}`, {params: options, observe: 'response',});
     }
 }

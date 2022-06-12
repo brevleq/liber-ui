@@ -140,6 +140,18 @@
       }
     }
   },
+  "finish-hospitalization": {
+    "title": "Finalizar internação",
+    "description": "Informe abaixo da data final da internação e o motivo da alta para o paciente ",
+    "form": {
+      "date": {
+        "label": "Data final"
+      },
+      "reason": {
+        "label": "Motivo"
+      }
+    }
+  },
   "patient-edition": {
     "title": {
       "edition": "Editar dados do paciente",

@@ -26,13 +26,15 @@ import {SharedModule} from "../shared/shared.module";
 import {HospitalizationsRoutingModule} from "./hospitalizations-routing.module";
 import {HospitalizationsPage} from "./hospitalizations.page";
 import {HospitalizationStartModal} from "./start/hospitalization-start.modal";
+import {HospitalizationEndModal} from "./end/hospitalization-end.modal";
 
 @NgModule({
     declarations: [
         HospitalizationsPage,
-        HospitalizationStartModal
+        HospitalizationStartModal,
+        HospitalizationEndModal
     ],
-    entryComponents: [HospitalizationStartModal],
+    entryComponents: [HospitalizationStartModal, HospitalizationEndModal],
     imports: [
         CommonModule,
         FormsModule,

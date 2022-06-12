@@ -46,7 +46,6 @@ export class HospitalizationsPage extends InfiniteScrollPage<Hospitalization> {
     tryDelete(hospitalization: Hospitalization) {
         this.deletionService.delete({
             item: hospitalization,
-            idProperty: 'patientId',
             crudService: this.hospitalizationService
         }).subscribe(result => this.onDeletionSuccess(result))
     }

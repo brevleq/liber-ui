@@ -140,6 +140,18 @@
       }
     }
   },
+  "finish-hospitalization": {
+    "title": "Finish hospitalization",
+    "description": "Inform below the final hospitalization date and the reason of release for patient ",
+    "form": {
+      "date": {
+        "label": "End date"
+      },
+      "reason": {
+        "label": "Reason"
+      }
+    }
+  },
   "patient-edition": {
     "title": {
       "edition": "Editing patient's data",

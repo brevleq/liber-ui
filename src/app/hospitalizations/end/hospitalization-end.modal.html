@@ -1,0 +1,70 @@
+<!--
+  ~ Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
+  ~
+  ~ This file is part of Liber UI.
+  ~
+  ~ Liber UI is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or any later
+  ~ version.
+  ~
+  ~ Liber UI is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
+  -->
+
+<ion-header>
+    <ion-toolbar>
+        <h1>{{'finish-hospitalization.title' | translate}}</h1>
+        <ion-button (click)="close()" fill="clear" slot="end">
+            <ion-icon class="modal-close-button" name="close"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form #hospitalizationForm="ngForm" (validSubmit)="submit()" [form]="hospitalizationForm"
+          formValidation name="hospitalizationForm" novalidate role="form">
+        <ion-list class="modal-body">
+            <ion-item>
+                <ion-text>{{'finish-hospitalization.description' | translate}}{{patient.name}}</ion-text>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">{{'finish-hospitalization.form.date.label'| translate}}</ion-label>
+                <ion-datetime #dateInput="ngModel" [(ngModel)]="hospitalization.endDate" autocomplete="off"
+                              display-format="{{'common.date-format' | translate}}"
+                              id="dateField" name="dateField" required></ion-datetime>
+            </ion-item>
+            <div *ngIf="hospitalizationForm.submitted && dateInput.invalid"
+                 class="field-invalid-message">
+                <small>
+                    <ion-icon class="alert-info" name="alert"></ion-icon>
+                </small>
+                <small *ngIf="dateInput.errors.required">
+                    {{'common.validation.required'| translate}}
+                </small>
+            </div>
+            <ion-item>
+                <ion-label
+                        position="floating">{{'finish-hospitalization.form.reason.label'| translate}}</ion-label>
+                <liber-modal-select #releaseReasonInput="ngModel" [(ngModel)]="hospitalization.releaseReasonId"
+                                    autocomplete="off" crudServiceClass="ReleaseReasonService"
+                                    id="releaseReason" name="releaseReason" required
+                                    title="{{'finish-hospitalization.form.reason.label'| translate}}">
+                </liber-modal-select>
+            </ion-item>
+            <div *ngIf="hospitalizationForm.submitted && releaseReasonInput.invalid"
+                 class="field-invalid-message">
+                <ion-icon class="alert-info" name="alert"></ion-icon>
+                <small *ngIf="releaseReasonInput.errors.required">
+                    {{'common.validation.required'| translate}}
+                </small>
+            </div>
+            <ion-button color="primary" expand="block"
+                        type="submit">{{'common.button.save'| translate}}</ion-button>
+        </ion-list>
+    </form>
+</ion-content>

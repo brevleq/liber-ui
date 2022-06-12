@@ -175,9 +175,9 @@
                 [routerLink]="'../../'+patient.id+'/report/new'">{{'patients.button.new-report' | translate}}</ion-button>
         <ng-container *jhiHasAnyAuthority="['ROLE_PSYCHOLOGIST','ROLE_SOCIAL_ASSISTANT']">
             <ion-button (click)="hospitalize()"
-                        *ngIf="!isHospitalized">{{'patients.button.hospitalize' | translate}}</ion-button>
+                        *ngIf="!hospitalization">{{'patients.button.hospitalize' | translate}}</ion-button>
             <ion-button (click)="finishHospitalization()"
-                        *ngIf="isHospitalized">{{'patients.button.finish-hospitalization' | translate}}</ion-button>
+                        *ngIf="hospitalization">{{'patients.button.finish-hospitalization' | translate}}</ion-button>
         </ng-container>
     </ion-item>
     <ion-list>
