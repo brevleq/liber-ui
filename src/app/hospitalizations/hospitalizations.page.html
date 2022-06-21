@@ -1,0 +1,89 @@
+<!--
+  ~ Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
+  ~
+  ~ This file is part of Liber UI.
+  ~
+  ~ Liber UI is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or any later
+  ~ version.
+  ~
+  ~ Liber UI is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
+  -->
+
+<ion-header>
+    <ion-toolbar>
+        <ion-menu-button *ngIf="!patientId" slot="start"></ion-menu-button>
+        <ion-back-button *ngIf="patientId" slot="start"></ion-back-button>
+        <ion-text color="secondary">
+            {{'hospitalizations.title' |translate}}
+            <br/>
+            <ng-container *ngIf="patientId">
+                {{patient?.name}}
+            </ng-container>
+        </ion-text>
+        <ion-buttons slot="end">
+            <ng-container *ngIf="patientId">
+                <ng-container
+                        *jhiHasAnyAuthority="['ROLE_DENTIST','ROLE_PSYCHOLOGIST','ROLE_PSYCHIATRIST','ROLE_SECRETARY','ROLE_SOCIAL_ASSISTANT']">
+                    <ion-button (click)="hospitalize()" *ngIf="!hospitalization"
+                                fill="solid">{{'patients.button.hospitalize' | translate}}</ion-button>
+                    <ion-button (click)="finishHospitalization()" *ngIf="hospitalization"
+                                fill="solid">{{'patients.button.finish-hospitalization' | translate}}</ion-button>
+                </ng-container>
+            </ng-container>
+            <liber-search-button (change)="onFilterInput()" *ngIf="!patientId"
+                                 [(ngModel)]="filter"></liber-search-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list class="card-list">
+        <ion-item *ngIf="!items?.length" lines="none">
+            {{'common.empty-list' | translate}}
+        </ion-item>
+        <ion-item *ngFor="let item of items; let last=last;trackBy: trackById" [lines]="last?'none':'full'">
+            <ng-container *ngIf="!patientId">
+                <ion-col size="10">
+                    {{item.name}}
+                    <br/>
+                    <small>{{item.startDate | date:'dd/MM/yyyy'}}</small> -
+                    <small>{{item.endDate | date:'dd/MM/yyyy'}}</small>
+                    <br/>
+                    <small>{{item.releaseReasonName}}</small>
+                </ion-col>
+                <ion-col size="2">
+                    <ion-button (click)="tryDelete(item)" color="danger" fill="clear">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </ion-button>
+                </ion-col>
+            </ng-container>
+            <ng-container *ngIf="patientId">
+                <ion-col size="4">
+                    <small>{{item.startDate | date:'dd/MM/yyyy'}}</small>
+                    <br/>
+                    <small *ngIf="item.endDate">{{item.endDate | date:'dd/MM/yyyy'}}</small>
+                    <small *ngIf="!item.endDate">-</small>
+                </ion-col>
+                <ion-col size="6">{{item.releaseReasonName}}</ion-col>
+                <ion-col size="2">
+                    <ion-button (click)="tryDelete(item)" color="danger" fill="clear">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </ion-button>
+                </ion-col>
+            </ng-container>
+        </ion-item>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="loadPage()" threshold="100px">
+        <ion-infinite-scroll-content
+                loadingSpinner="circular"
+                loadingText="{{'common.loading' | translate}}">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

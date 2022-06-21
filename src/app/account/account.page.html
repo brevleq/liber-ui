@@ -1,0 +1,71 @@
+<!--
+  ~ Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
+  ~
+  ~ This file is part of Liber UI.
+  ~
+  ~ Liber UI is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or any later
+  ~ version.
+  ~
+  ~ Liber UI is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
+  -->
+
+<ion-header>
+    <ion-toolbar>
+        <ion-menu-button slot="start"></ion-menu-button>
+        <ion-text color="secondary"><h1>{{'account.title' |translate}}</h1></ion-text>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form #accountForm="ngForm" (validSubmit)="save()" [form]="accountForm"
+          formValidation name="accountForm" novalidate role="form">
+        <ion-list>
+            <ion-item>
+                <ion-label position="floating">{{'account.form.full-name.label' | translate}}</ion-label>
+                <ion-input #nameInput="ngModel" [(ngModel)]="name" autocomplete="off" id="nameField" maxlength="100"
+                           name="nameField"
+                           pattern="^([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./']+)( ([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./' ]+))+$"
+                           required>
+                </ion-input>
+            </ion-item>
+            <div *ngIf="accountForm.submitted && nameInput.invalid"
+                 class="field-invalid-message">
+                <small>
+                    <ion-icon class="alert-info" name="alert"></ion-icon>
+                </small>
+                <small *ngIf="nameInput.errors.required">
+                    {{'common.validation.required' | translate}}
+                </small>
+                <small *ngIf="nameInput.errors.maxlength">
+                    {{'common.validation.maxlength' | translate:{value: 100} }}
+                </small>
+                <small *ngIf="nameInput.errors.pattern">
+                    {{'account.form.full-name.pattern' | translate}}
+                </small>
+            </div>
+            <ion-item>
+                <ion-label position="floating">{{'account.form.email.label' | translate}}</ion-label>
+                <ion-input #emailInput="ngModel" [(ngModel)]="user.email" autocomplete="off"
+                           email id="email" name="email" required type="email"></ion-input>
+            </ion-item>
+            <div *ngIf="accountForm.submitted && emailInput.invalid"
+                 class="field-invalid-message">
+                <ion-icon class="alert-info" name="alert"></ion-icon>
+                <small *ngIf="emailInput.errors.required">
+                    {{'common.validation.required' | translate}}
+                </small>
+                <small *ngIf="emailInput.errors.email">
+                    {{'account.form.email.invalid' | translate}}
+                </small>
+            </div>
+        </ion-list>
+        <ion-button color="primary" expand="block" type="submit">{{'common.button.save' | translate}}</ion-button>
+    </form>
+</ion-content>

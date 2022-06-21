@@ -1,0 +1,360 @@
+<!--
+  ~ Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
+  ~
+  ~ This file is part of Liber UI.
+  ~
+  ~ Liber UI is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or any later
+  ~ version.
+  ~
+  ~ Liber UI is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
+  -->
+
+
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title *ngIf="patient?.id">{{'patient-edition.title.edition' | translate}}</ion-title>
+        <ion-title *ngIf="!patient?.id">{{'patient-edition.title.creation' | translate}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form #patientForm="ngForm" (validSubmit)="submit()" *ngIf="patient" [form]="patientForm"
+          formValidation name="patientForm" novalidate role="form">
+        <ion-list>
+            <ion-item>
+                <ion-label position="floating">{{'patient-edition.form.full-name.label'| translate}}</ion-label>
+                <ion-input #nameInput="ngModel" [(ngModel)]="patient.name" autocomplete="off" id="nameField"
+                           maxlength="100"
+                           name="nameField"
+                           pattern="^([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./']+)( ([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./' ]+))+$"
+                           required>
+                </ion-input>
+            </ion-item>
+            <div *ngIf="patientForm.submitted && nameInput.invalid"
+                 class="field-invalid-message">
+                <small>
+                    <ion-icon class="alert-info" name="alert"></ion-icon>
+                </small>
+                <small *ngIf="nameInput.errors.required">
+                    {{'common.validation.required'| translate}}
+                </small>
+                <small *ngIf="nameInput.errors.maxlength">
+                    {{'common.validation.maxlength'| translate:{value: 100} }}
+                </small>
+                <small *ngIf="nameInput.errors.pattern">
+                    {{'patients-modal.form.full-name.pattern'| translate}}
+                </small>
+            </div>
+            <ion-row>
+                <ion-col size="6" size-lg="4">
+                    <ion-item>
+                        <ion-label
+                                position="floating">{{'patient-edition.form.birthdate.label'| translate}}</ion-label>
+                        <ion-datetime #birthdateInput="ngModel" [(ngModel)]="patient.birthDate" autocomplete="off"
+                                      display-format="{{'common.date-format' | translate}}"
+                                      id="birthdate" name="birthdate" required></ion-datetime>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && birthdateInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="birthdateInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+                <ion-col size="6" size-lg="4">
+                    <ion-item>
+                        <ion-label position="floating">{{'patient-edition.form.sex.label'| translate}}</ion-label>
+                        <ion-select #sexInput="ngModel" [(ngModel)]="patient.sex" autocomplete="off"
+                                    id="sex" name="sex" required>
+                            <ion-select-option value="FEMALE">{{'common.sex.female' | translate}}</ion-select-option>
+                            <ion-select-option value="MALE">{{'common.sex.male' | translate}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && sexInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="sexInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+                <ion-col size="12" size-lg="4">
+                    <ion-item>
+                        <ion-label
+                                position="floating">{{'patient-edition.form.birthplace.label'| translate}}</ion-label>
+                        <liber-modal-select #birthplaceInput="ngModel" [(ngModel)]="patient.birthPlaceId"
+                                            autocomplete="off" crudServiceClass="CityService"
+                                            id="birthplace" name="birthplace" required
+                                            title="{{'patient-edition.form.birthplace.label'| translate}}">
+                        </liber-modal-select>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && birthplaceInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="birthplaceInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-item lines="none">
+                <ion-text class="ion-margin-end">{{'patient-edition.form.documents.label'| translate}}</ion-text>
+                <ion-button
+                        (click)="addDocument()">{{'patient-edition.form.documents.add-button'| translate}}</ion-button>
+            </ion-item>
+            <ion-row *ngIf="newDocumentRow">
+                <ion-col size="6" size-sm="3">
+                    <ion-item>
+                        <ion-label
+                                position="floating">{{'patient-edition.form.documents.type'| translate}}</ion-label>
+                        <liber-modal-select [(ngModel)]="newDocumentRow.typeId" [unavailableIds]="documentIds"
+                                            autocomplete="off" crudServiceClass="DocumentTypeService"
+                                            id="documentTypeInput" name="documentTypeInput" required
+                                            title="{{'patient-edition.form.documents.type'| translate}}">
+                        </liber-modal-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6" size-lg="3">
+                    <ion-item>
+                        <ion-label position="floating">{{'patient-edition.form.documents.value'| translate}}</ion-label>
+                        <ion-input [(ngModel)]="newDocumentRow.value" autocomplete="off" id="newDocumentValueInput"
+                                   name="newDocumentValueInput" required>
+                        </ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let document of patient.documents | keyvalue">
+                <ion-col size="4" size-lg="3">
+                    <ion-item>
+                        <ion-label
+                                position="floating">{{'patient-edition.form.documents.type'| translate}}</ion-label>
+                        <liber-modal-select [(ngModel)]="document.key"
+                                            [id]="'documentTypeInput'+document.key"
+                                            [name]="'documentTypeInput'+document.key"
+                                            autocomplete="off" crudServiceClass="DocumentTypeService"
+                                            required
+                                            title="{{'patient-edition.form.documents.type'| translate}}">
+                        </liber-modal-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6" size-lg="3">
+                    <ion-item>
+                        <ion-label position="floating">{{'patient-edition.form.documents.value'| translate}}</ion-label>
+                        <ion-input [(ngModel)]="document.value"
+                                   [id]="'newDocumentValueInput'+document.key"
+                                   [name]="'newDocumentValueInput'+document.key"
+                                   autocomplete="off" required>
+                        </ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="2" size-lg="1">
+                    <ion-button (click)="removeDocument(document)" color="dark" fill="clear">
+                        <ion-icon name="close"></ion-icon>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-item>
+                <ion-label position="floating">{{'patient-edition.form.mother-name.label'| translate}}</ion-label>
+                <ion-input #motherNameInput="ngModel" [(ngModel)]="patient.motherName" autocomplete="off"
+                           id="motherNameInput" maxlength="100"
+                           name="motherNameInput"
+                           pattern="^([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./']+)( ([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./' ]+))+$"
+                           required>
+                </ion-input>
+            </ion-item>
+            <div *ngIf="patientForm.submitted && motherNameInput.invalid"
+                 class="field-invalid-message">
+                <small>
+                    <ion-icon class="alert-info" name="alert"></ion-icon>
+                </small>
+                <small *ngIf="motherNameInput.errors.required">
+                    {{'common.validation.required'| translate}}
+                </small>
+                <small *ngIf="motherNameInput.errors.maxlength">
+                    {{'common.validation.maxlength'| translate:{value: 100} }}
+                </small>
+                <small *ngIf="motherNameInput.errors.pattern">
+                    {{'patients-modal.form.full-name.pattern'| translate}}
+                </small>
+            </div>
+            <ion-item>
+                <ion-label position="floating">{{'patient-edition.form.father-name.label'| translate}}</ion-label>
+                <ion-input #fatherNameInput="ngModel" [(ngModel)]="patient.fatherName" autocomplete="off"
+                           id="fatherNameInput" maxlength="100"
+                           name="fatherNameInput"
+                           pattern="^([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./']+)( ([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./' ]+))+$">
+                </ion-input>
+            </ion-item>
+            <div *ngIf="patientForm.submitted && fatherNameInput.invalid"
+                 class="field-invalid-message">
+                <small>
+                    <ion-icon class="alert-info" name="alert"></ion-icon>
+                </small>
+                <small *ngIf="fatherNameInput.errors.maxlength">
+                    {{'common.validation.maxlength'| translate:{value: 100} }}
+                </small>
+                <small *ngIf="fatherNameInput.errors.pattern">
+                    {{'patients-modal.form.full-name.pattern'| translate}}
+                </small>
+            </div>
+            <ion-row>
+                <ion-col size="12" size-lg="3">
+                    <ion-item>
+                        <ion-label
+                                position="floating">{{'patient-edition.form.marital-status.label'| translate}}</ion-label>
+                        <liber-modal-select #maritalStatusInput="ngModel" [(ngModel)]="patient.maritalStatusId"
+                                            autocomplete="off" crudServiceClass="MaritalStatusService"
+                                            id="maritalStatus" name="maritalStatus" required
+                                            title="{{'patient-edition.form.marital-status.label'| translate}}">
+                        </liber-modal-select>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && maritalStatusInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="maritalStatusInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+                <ion-col size="12" size-lg="3">
+                    <ion-item>
+                        <ion-label
+                                position="floating">{{'patient-edition.form.scholarity.label'| translate}}</ion-label>
+                        <liber-modal-select #scholarityInput="ngModel" [(ngModel)]="patient.scholarityId"
+                                            autocomplete="off" crudServiceClass="ScholarityService"
+                                            id="scholarity" name="scholarity" required
+                                            title="{{'patient-edition.form.scholarity.label'| translate}}">
+                        </liber-modal-select>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && scholarityInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="scholarityInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+                <ion-col size="12" size-lg="3">
+                    <ion-item>
+                        <ion-label
+                                position="floating">{{'patient-edition.form.profession.label'| translate}}</ion-label>
+                        <liber-modal-select #professionInput="ngModel" [(ngModel)]="patient.professionId"
+                                            autocomplete="off" crudServiceClass="ProfessionService"
+                                            id="profession" name="profession" required
+                                            title="{{'patient-edition.form.profession.label'| translate}}">
+                        </liber-modal-select>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && professionInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="professionInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+                <ion-col size="12" size-lg="3">
+                    <ion-item>
+                        <ion-label>{{'patient-edition.form.is-working.label'| translate}}</ion-label>
+                        <ion-checkbox [(ngModel)]="patient.working" id="working" name="working"
+                                      slot="end"></ion-checkbox>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-item>
+                <ion-label position="floating">{{'address.street.label'| translate}}</ion-label>
+                <ion-input #streetInput="ngModel" [(ngModel)]="patient.addressStreet" autocomplete="off"
+                           id="street" name="street" required></ion-input>
+            </ion-item>
+            <div *ngIf="patientForm.submitted && streetInput.invalid"
+                 class="field-invalid-message">
+                <ion-icon class="alert-info" name="alert"></ion-icon>
+                <small *ngIf="streetInput.errors.required">
+                    {{'common.validation.required'| translate}}
+                </small>
+            </div>
+            <ion-row>
+                <ion-col size="12" size-lg="3">
+                    <ion-item>
+                        <ion-label position="floating">{{'address.number.label'| translate}}</ion-label>
+                        <ion-input #numberInput="ngModel" [(ngModel)]="patient.addressNumber" autocomplete="off"
+                                   id="number" name="number" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && numberInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="numberInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+                <ion-col size="12" size-lg="9">
+                    <ion-item>
+                        <ion-label position="floating">{{'address.neighborhood.label'| translate}}</ion-label>
+                        <ion-input #neighborhoodInput="ngModel" [(ngModel)]="patient.addressNeighborhood"
+                                   autocomplete="off"
+                                   id="neighborhood" name="neighborhood" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && neighborhoodInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="neighborhoodInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" size-lg="4">
+                    <ion-item>
+                        <ion-label position="floating">{{'address.complement.label'| translate}}</ion-label>
+                        <ion-input #complementInput="ngModel" [(ngModel)]="patient.addressComplement" autocomplete="off"
+                                   id="complement" name="complement"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="12" size-lg="4">
+                    <ion-item>
+                        <ion-label position="floating">{{'address.zip.label'| translate}}</ion-label>
+                        <ion-input #zipInput="ngModel" [(ngModel)]="patient.addressZip" autocomplete="off"
+                                   id="zip" name="zip" required></ion-input>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && zipInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="zipInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+                <ion-col size="12" size-lg="4">
+                    <ion-item>
+                        <ion-label position="floating">{{'address.city.label'| translate}}</ion-label>
+                        <liber-modal-select #cityInput="ngModel" [(ngModel)]="patient.addressCityId"
+                                            autocomplete="off" crudServiceClass="CityService"
+                                            id="city" name="city" required
+                                            title="{{'address.city.label'| translate}}">
+                        </liber-modal-select>
+                    </ion-item>
+                    <div *ngIf="patientForm.submitted && cityInput.invalid"
+                         class="field-invalid-message">
+                        <ion-icon class="alert-info" name="alert"></ion-icon>
+                        <small *ngIf="cityInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-list>
+        <ion-button color="primary" expand="block" type="submit">{{'common.button.save'| translate}}</ion-button>
+    </form>
+</ion-content>

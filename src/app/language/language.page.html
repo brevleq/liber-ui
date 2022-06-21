@@ -1,0 +1,43 @@
+<!--
+  ~ Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
+  ~
+  ~ This file is part of Liber UI.
+  ~
+  ~ Liber UI is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or any later
+  ~ version.
+  ~
+  ~ Liber UI is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
+  -->
+
+<ion-content class="background">
+    <ion-grid>
+        <ion-row>
+            <ion-col offset-md="2" size-md="8" size-sm="12">
+                <ion-list>
+                    <ion-item lines="none">
+                        <ion-text>{{'language.intro' | translate}}</ion-text>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">{{'language.label' | translate}}</ion-label>
+                        <ion-select (ionChange)="changedLanguage($event)" [(ngModel)]="language">
+                            <ion-select-option value="en">{{'language.choices.english' | translate}}</ion-select-option>
+                            <ion-select-option
+                                    value="pt">{{'language.choices.portuguese' | translate}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-button (click)="save()" expand="full">{{'common.button.save' | translate}}</ion-button>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

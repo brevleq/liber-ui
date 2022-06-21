@@ -1,0 +1,174 @@
+<!--
+  ~ Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
+  ~
+  ~ This file is part of Liber UI.
+  ~
+  ~ Liber UI is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or any later
+  ~ version.
+  ~
+  ~ Liber UI is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
+  -->
+
+<ion-header>
+    <ion-toolbar>
+        <h1 *ngIf="user.id">{{'users-modal.title.edit' | translate}}</h1>
+        <h1 *ngIf="!user.id">{{'users-modal.title.new' | translate}}</h1>
+        <ion-button (click)="close()" fill="clear" slot="end">
+            <ion-icon class="modal-close-button" name="close"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form #userForm="ngForm" (validSubmit)="submit()" [form]="userForm"
+          formValidation name="userForm" novalidate role="form">
+        <ion-list class="modal-body">
+            <ion-item>
+                <ion-label position="floating">{{'users-modal.form.full-name.label'| translate}}</ion-label>
+                <ion-input #nameInput="ngModel" [(ngModel)]="name" autocomplete="off" id="nameField" maxlength="100"
+                           name="nameField"
+                           pattern="^([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./']+)( ([0-9A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\./' ]+))+$"
+                           required>
+                </ion-input>
+            </ion-item>
+            <div *ngIf="userForm.submitted && nameInput.invalid"
+                 class="field-invalid-message">
+                <small>
+                    <ion-icon class="alert-info" name="alert"></ion-icon>
+                </small>
+                <small *ngIf="nameInput.errors.required">
+                    {{'common.validation.required'| translate}}
+                </small>
+                <small *ngIf="nameInput.errors.maxlength">
+                    {{'common.validation.maxlength'| translate:{value: 100} }}
+                </small>
+                <small *ngIf="nameInput.errors.pattern">
+                    {{'users-modal.form.full-name.pattern'| translate}}
+                </small>
+            </div>
+            <ion-item>
+                <ion-label position="floating">{{'users-modal.form.email.label'| translate}}</ion-label>
+                <ion-input #emailInput="ngModel" [(ngModel)]="user.email" autocomplete="off"
+                           email id="email" name="email" required type="email"></ion-input>
+            </ion-item>
+            <div *ngIf="userForm.submitted && emailInput.invalid"
+                 class="field-invalid-message">
+                <ion-icon class="alert-info" name="alert"></ion-icon>
+                <small *ngIf="emailInput.errors.required">
+                    {{'common.validation.required'| translate}}
+                </small>
+                <small *ngIf="emailInput.errors.email">
+                    {{'users-modal.form.email.invalid'| translate}}
+                </small>
+            </div>
+            <ion-row>
+                <ion-col size="12">
+                    {{'users-modal.form.roles.title'| translate}}
+                </ion-col>
+            </ion-row>
+
+            <ion-item>
+                <ion-toggle [(ngModel)]="isAdmin" name="adminToggle" slot="start"></ion-toggle>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label color="dark">{{'users-modal.form.roles.admin.title'| translate}}</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <small>{{'users-modal.form.roles.admin.description'| translate}}</small>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+            <ion-item>
+                <ion-toggle [(ngModel)]="isDentist" name="dentistToggle" slot="start"></ion-toggle>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label color="dark">{{'users-modal.form.roles.dentist.title'| translate}}</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <small>{{'users-modal.form.roles.dentist.description'| translate}}</small>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+            <ion-item>
+                <ion-toggle [(ngModel)]="isPsychologist" name="psychologistToggle" slot="start"></ion-toggle>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label
+                                    color="dark">{{'users-modal.form.roles.psychologist.title'| translate}}</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <small>{{'users-modal.form.roles.psychologist.description'| translate}}</small>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+            <ion-item>
+                <ion-toggle [(ngModel)]="isPsychiatrist" name="psychiatristToggle" slot="start"></ion-toggle>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label
+                                    color="dark">{{'users-modal.form.roles.psychiatrist.title'| translate}}</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <small>{{'users-modal.form.roles.psychiatrist.description'| translate}}</small>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+            <ion-item>
+                <ion-toggle [(ngModel)]="isSocialAssistant" name="socialAssistantToggle" slot="start"></ion-toggle>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label
+                                    color="dark">{{'users-modal.form.roles.social-assistant.title'| translate}}</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <small>{{'users-modal.form.roles.social-assistant.description'| translate}}</small>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+            <ion-item>
+                <ion-toggle [(ngModel)]="isSecretary" name="secretaryToggle" slot="start"></ion-toggle>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label color="dark">{{'users-modal.form.roles.secretary.title'| translate}}</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <small>{{'users-modal.form.roles.secretary.description'| translate}}</small>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+            <ion-button color="primary" expand="block"
+                        type="submit">{{'common.button.save'| translate}}</ion-button>
+        </ion-list>
+    </form>
+</ion-content>

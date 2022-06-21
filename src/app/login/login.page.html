@@ -1,0 +1,79 @@
+<!--
+  ~ Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
+  ~
+  ~ This file is part of Liber UI.
+  ~
+  ~ Liber UI is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or any later
+  ~ version.
+  ~
+  ~ Liber UI is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
+  -->
+
+<ion-content class="background">
+    <ion-toolbar class="toolbar">
+        <ion-text color="light"><h1 class="text-register ion-text-center">Login</h1></ion-text>
+        <ion-buttons class="back-button" slot="start">
+            <a routerDirection="back" routerLink="/home">
+                <ion-icon class="back-button" color="light" icon="arrow-back"></ion-icon>
+            </a>
+        </ion-buttons>
+    </ion-toolbar>
+    <div class="content">
+        <ion-avatar class="upload-image">
+            <div class="relative">
+                <ion-icon class="person" name="person-outline"></ion-icon>
+            </div>
+        </ion-avatar>
+        <div class="start-div">
+            <ion-list class="list-start">
+                <form #loginForm="ngForm" (submit)="onSubmit()" class="ion-margin-bottom" ngForm>
+                    <ion-item class="ion-margin-bottom">
+                        <ion-label>
+                            <ion-icon color="primary" name="mail-outline"></ion-icon>
+                        </ion-label>
+                        <ion-input #loginInput="ngModel" [(ngModel)]="credentials.username" email name="login"
+                                   placeholder="Seu login"
+                                   required type="text">
+                        </ion-input>
+                    </ion-item>
+                    <ion-grid *ngIf="loginForm.submitted && loginInput.errors">
+                        <ion-row *ngIf="loginInput.errors.required">
+                            <ion-col>
+                                Informe seu login
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+
+                    <ion-item class="ion-margin-bottom">
+                        <ion-label>
+                            <ion-icon color="primary" name="lock-closed-outline"></ion-icon>
+                        </ion-label>
+                        <ion-input #passwordInput="ngModel" [(ngModel)]="credentials.password" name="password"
+                                   placeholder="Senha"
+                                   required type="password">
+                        </ion-input>
+                    </ion-item>
+                    <ion-grid *ngIf="loginForm.submitted && passwordInput.errors">
+                        <ion-row *ngIf="passwordInput.errors.required">
+                            <ion-col>
+                                Informe sua senha
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+
+                    <ion-button expand="full" class="button-submit" color="primary" type="submit">ENTRAR
+                    </ion-button>
+                </form>
+                <ion-item lines="none"><a class="ion-margin-top ion-text-center">? Esqueci minha senha</a></ion-item>
+            </ion-list>
+        </div>
+    </div>
+</ion-content>

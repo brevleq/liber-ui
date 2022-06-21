@@ -1,8 +1,28 @@
+/*
+ * Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
+ *
+ * This file is part of Liber UI.
+ *
+ * Liber UI is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or any later
+ * version.
+ *
+ * Liber UI is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
+ */
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  serverUrl: 'http://localhost:8080/',
   production: false
 };
 

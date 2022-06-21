@@ -1,0 +1,267 @@
+{
+  "common": {
+    "date-format": "DD/MM/YYYY",
+    "empty-list": "Nenhum item encontrado...",
+    "loading": "Carregando...",
+    "success": "Requisição processada com sucesso!",
+    "error": "Erro ao processar sua requisição!",
+    "print": "Imprimir",
+    "sex": {
+      "male": "Masculino",
+      "female": "Feminino"
+    },
+    "validation": {
+      "required": "Este campo é obrigatório",
+      "maxlength": "No máximo {{value}} caracteres",
+      "minlength": "No mínimo {{value}} caracteres"
+    },
+    "button": {
+      "save": "Salvar",
+      "new": "Novo",
+      "create": "Criar",
+      "select": "Selecionar",
+      "edit": "Editar"
+    },
+    "deletion": {
+      "title": "Excluir",
+      "message": "Você tem certeza que deseja excluir permanentemente este cadastro?",
+      "yes": "Sim",
+      "no": "Não",
+      "error": "Ocorreu um erro ao excluir os dados!",
+      "success": "Os dados foram excluídos com sucesso!"
+    }
+  },
+  "home": {
+    "menus": {
+      "patients": "Pacientes",
+      "hospitalizations": "Internações",
+      "users": "Usuários",
+      "account": "Minha Conta",
+      "change-password": "Trocar Senha",
+      "logout": "Sair"
+    }
+  },
+  "users": {
+    "title": "Usuários"
+  },
+  "users-modal": {
+    "title": {
+      "new": "Criar Usuário",
+      "edit": "Editar Usuário"
+    },
+    "form": {
+      "full-name": {
+        "label": "Nome completo",
+        "pattern": "Informe o nome completo"
+      },
+      "email": {
+        "label": "E-mail",
+        "invalid": "E-mail inválido"
+      },
+      "roles": {
+        "title": "Permissões",
+        "admin": {
+          "title": "Administrador",
+          "description": "Acesso à todas as funções vitais do sistema, cadastro de usuários e configurações gerais."
+        },
+        "dentist": {
+          "title": "Dentista",
+          "description": "Acesso às funcionalidades disponíveis aos dentistas, como relatórios."
+        },
+        "psychologist": {
+          "title": "Psicólogo",
+          "description": "Acesso às funcionalidades disponíveis aos psicólogos, como relatórios."
+        },
+        "psychiatrist": {
+          "title": "Psiquiatra",
+          "description": "Acesso às funcionalidades disponíveis aos psiquiatras, como relatórios."
+        },
+        "social-assistant": {
+          "title": "Assistente Social",
+          "description": "Acesso às funcionalidades disponíveis aos assistentes sociais, como relatórios."
+        },
+        "secretary": {
+          "title": "Secretária",
+          "description": "Acesso às funcionalidades disponíveis às secretárias, como agendamentos."
+        }
+      }
+    }
+  },
+  "account": {
+    "title": "Alterar dados pessoais",
+    "form": {
+      "full-name": {
+        "label": "Nome completo",
+        "pattern": "Informe o nome completo"
+      },
+      "email": {
+        "label": "E-mail",
+        "invalid": "E-mail inválido"
+      }
+    }
+  },
+  "change-password": {
+    "title": "Alterar senha",
+    "form": {
+      "current-password": {
+        "label": "Senha atual"
+      },
+      "new-password": {
+        "label": "Nova senha"
+      },
+      "new-password-repetition": {
+        "label": "Repita a nova senha"
+      }
+    },
+    "errors": {
+      "password-not-match": "Nova senha e repetição da senha são diferentes!"
+    }
+  },
+  "patients": {
+    "title": "Pacientes",
+    "button": {
+      "new-report": "Novo relatório",
+      "hospitalizations": "Internações",
+      "hospitalize": "Internar",
+      "finish-hospitalization": "Finalizar internação"
+    }
+  },
+  "hospitalizations": {
+    "title": "Internações",
+    "button": {
+      "finish": "Encerrar"
+    }
+  },
+  "new-hospitalization": {
+    "title": "Nova internação",
+    "description": "Informe abaixo a data de início da internação para o paciente ",
+    "form": {
+      "date": {
+        "label": "Data"
+      }
+    }
+  },
+  "finish-hospitalization": {
+    "title": "Finalizar internação",
+    "description": "Informe abaixo da data final da internação e o motivo da alta para o paciente ",
+    "form": {
+      "date": {
+        "label": "Data final"
+      },
+      "reason": {
+        "label": "Motivo"
+      }
+    }
+  },
+  "patient-edition": {
+    "title": {
+      "edition": "Editar dados do paciente",
+      "creation": "Criar novo paciente",
+      "detail": "Detalhes do paciente"
+    },
+    "form": {
+      "full-name": {
+        "label": "Nome completo"
+      },
+      "birthdate": {
+        "label": "Data de nascimento"
+      },
+      "sex": {
+        "label": "Sexo"
+      },
+      "birthplace": {
+        "label": "Naturalidade"
+      },
+      "documents": {
+        "label": "Documentos",
+        "add-button": "Adicionar documento",
+        "type": "Tipo",
+        "value": "Valor"
+      },
+      "mother-name": {
+        "label": "Nome da mãe"
+      },
+      "father-name": {
+        "label": "Nome do pai"
+      },
+      "marital-status": {
+        "label": "Estado civil"
+      },
+      "scholarity": {
+        "label": "Escolaridade"
+      },
+      "profession": {
+        "label": "Profissão"
+      },
+      "is-working": {
+        "label": "Está trabalhando?"
+      },
+      "companion-name": {
+        "label": "Nome do acompanhante"
+      },
+      "companion-kinship": {
+        "label": "Grau de parentesco"
+      },
+      "companion-same-address": {
+        "label": "Mesmo endereço?"
+      },
+      "companion-phone": {
+        "label": "Telefone"
+      }
+    }
+  },
+  "patient-report": {
+    "psychiatric-title": "Relatório psiquiátrico do paciente: ",
+    "psychological-title": "Relatório psicológico do paciente: ",
+    "social-title": "Relatório social do paciente: ",
+    "dental-title": "Relatório dentário do paciente: ",
+    "type": {
+      "psychiatric": "Psiquiátrico",
+      "psychological": "Psicológico",
+      "social": "Social",
+      "dental": "Dentário"
+    },
+    "form": {
+      "title": {
+        "label": "Título"
+      }
+    }
+  },
+  "address": {
+    "street": {
+      "label": "Endereço"
+    },
+    "number": {
+      "label": "Número"
+    },
+    "neighborhood": {
+      "label": "Bairro"
+    },
+    "complement": {
+      "label": "Complemento"
+    },
+    "zip": {
+      "label": "CEP"
+    },
+    "city": {
+      "label": "Cidade"
+    }
+  },
+  "selection-modal": {
+    "empty": "Não existe nenhum item cadastrado ainda!",
+    "not-found": "Nenhum item encontrado com este nome!",
+    "create": "Clique no botão criar para salvar o item pesquisado."
+  },
+  "language": {
+    "intro": "Escolha o idioma que será utilizado no sistema Liber",
+    "label": "Idioma",
+    "choices": {
+      "english": "English",
+      "portuguese": "Português"
+    }
+  },
+  "initial": {
+    "title": "Bem vindo",
+    "intro": "Escolha a opção desejada no menu lateral..."
+  }
+}

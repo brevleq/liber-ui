@@ -1,0 +1,67 @@
+<!--
+  ~ Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
+  ~
+  ~ This file is part of Liber UI.
+  ~
+  ~ Liber UI is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or any later
+  ~ version.
+  ~
+  ~ Liber UI is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
+  -->
+<ion-header>
+    <ion-toolbar>
+        <ion-menu-button slot="start"></ion-menu-button>
+        <ion-text color="secondary"><h1>{{'users.title' | translate}}</h1></ion-text>
+        <ion-buttons slot="end">
+            <ion-button color="secondary" fill="clear">
+                <ion-icon name="search"></ion-icon>
+            </ion-button>
+            <ion-button (click)="create()" color="primary" fill="solid">
+                <ion-icon name="add"></ion-icon>
+                {{'common.button.new'| translate}}
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list class="card-list">
+        <ion-item *ngIf="!items?.length" lines="none">
+            {{'common.empty-list' | translate}}
+        </ion-item>
+        <ion-item *ngFor="let item of items; let last=last;trackBy: trackById" [lines]="last?'none':'full'">
+            <ion-col size="5">{{item.email}}</ion-col>
+            <ion-col size="5">{{item.firstName + ' ' + item.lastName}}</ion-col>
+            <ion-col size="2">
+                <ion-button (click)="edit(item)" fill="clear">
+                    <ion-icon color="secondary" name="options"></ion-icon>
+                </ion-button>
+                <ion-button (click)="tryDelete(item)" *ngIf="user.id!==item.id" fill="clear">
+                    <ion-icon color="secondary" name="trash-outline"></ion-icon>
+                </ion-button>
+                <ion-button (click)="tryResetPassword(item)" *ngIf="user.id!==item.id" fill="clear">
+                    <ion-icon color="secondary" name="key"></ion-icon>
+                </ion-button>
+                <ion-button (click)="deactivate(item)" *ngIf="user.id!==item.id && item.activated" fill="clear">
+                    <ion-icon color="secondary" name="checkmark-circle-outline"></ion-icon>
+                </ion-button>
+                <ion-button (click)="activate(item)" *ngIf="user.id!==item.id && !item.activated" fill="clear">
+                    <ion-icon name="ban-outline"></ion-icon>
+                </ion-button>
+            </ion-col>
+        </ion-item>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="loadPage()" threshold="100px">
+        <ion-infinite-scroll-content
+                loadingSpinner="circular"
+                loadingText="{{'common.loading' | translate}}">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

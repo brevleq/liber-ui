@@ -1,69 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+/*
+ * Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
+ *
+ * This file is part of Liber UI.
+ *
+ * Liber UI is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or any later
+ * version.
+ *
+ * Liber UI is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
+ */
 
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {Component} from '@angular/core';
+import {TranslateService} from "@ngx-translate/core";
+import {LocalStorageService} from "ngx-webstorage";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+    selector: 'app-root',
+    templateUrl: 'app.component.html',
+    styleUrls: ['app.component.scss']
 })
-export class AppComponent implements OnInit {
-  public selectedIndex = 0;
-  public appPages = [
-    {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
-    },
-    {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
-    },
-    {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
-    },
-    {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
-    },
-    {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
+export class AppComponent {
+
+    constructor(private translate: TranslateService,
+                private router: Router,
+                private localStorage: LocalStorageService) {
+        translate.use(this.getPreferredLanguage())
     }
-  ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) {
-    this.initializeApp();
-  }
-
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
-  }
-
-  ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+    private getPreferredLanguage(): string {
+        const preferredLanguage = this.localStorage.retrieve('preferredLanguage');
+        if (!preferredLanguage) {
+            this.router.navigateByUrl('/choose-language');
+            return 'en';
+        }
+        return preferredLanguage;
     }
-  }
 }

@@ -1,0 +1,267 @@
+{
+  "common": {
+    "date-format": "MMM DD, YYYY",
+    "empty-list": "Nothing was found...",
+    "loading": "Loading...",
+    "success": "Request processed successfully!",
+    "error": "An error occurred when processing the request!",
+    "print": "Print",
+    "sex": {
+      "male": "Male",
+      "female": "Female"
+    },
+    "validation": {
+      "required": "This field is required",
+      "maxlength": "Maximum {{value}} characters",
+      "minlength": "Minimum {{value}} characters"
+    },
+    "button": {
+      "save": "Save",
+      "new": "New",
+      "create": "Create",
+      "select": "Select",
+      "edit": "Edit"
+    },
+    "deletion": {
+      "title": "Delete",
+      "message": "Are you sure you want to delete this register permanently?",
+      "yes": "Yes",
+      "no": "No",
+      "error": "An error occurred when deleting the data!",
+      "success": "The data was deleted successfully!"
+    }
+  },
+  "home": {
+    "menus": {
+      "patients": "Patients",
+      "hospitalizations": "Hospitalizations",
+      "users": "Users",
+      "account": "Account",
+      "change-password": "Change Password",
+      "logout": "Logout"
+    }
+  },
+  "users": {
+    "title": "Users"
+  },
+  "users-modal": {
+    "title": {
+      "new": "Create User",
+      "edit": "Edit User"
+    },
+    "form": {
+      "full-name": {
+        "label": "Full name",
+        "pattern": "Enter the full name"
+      },
+      "email": {
+        "label": "E-mail",
+        "invalid": "Invalid e-mail"
+      },
+      "roles": {
+        "title": "Roles",
+        "admin": {
+          "title": "Administrator",
+          "description": "Access to all vital system functions, user registration and general settings. "
+        },
+        "dentist": {
+          "title": "Dentist",
+          "description": "Access to functions available to dentists, such as reports."
+        },
+        "psychologist": {
+          "title": "Psychologist",
+          "description": "Access to functions available to psychologists, such as reports."
+        },
+        "psychiatrist": {
+          "title": "Psychiatrist",
+          "description": "Access to functions available to psychiatrists, such as reports."
+        },
+        "social-assistant": {
+          "title": "Social Assistant",
+          "description": "Access to functions available to social assistants, such as reports."
+        },
+        "secretary": {
+          "title": "Secretary",
+          "description": "Access to functions available to social secretaries, such as scheduling."
+        }
+      }
+    }
+  },
+  "account": {
+    "title": "Change personal data",
+    "form": {
+      "full-name": {
+        "label": "Full name",
+        "pattern": "Enter the full name"
+      },
+      "email": {
+        "label": "E-mail",
+        "invalid": "Invalid e-mail"
+      }
+    }
+  },
+  "change-password": {
+    "title": "Change Password",
+    "form": {
+      "current-password": {
+        "label": "Current password"
+      },
+      "new-password": {
+        "label": "New password"
+      },
+      "new-password-repetition": {
+        "label": "Repeat new password"
+      }
+    },
+    "errors": {
+      "password-not-match": "New password and repeated new password does not match!"
+    }
+  },
+  "patients": {
+    "title": "Patients",
+    "button": {
+      "new-report": "New report",
+      "hospitalizations": "Hospitalizations",
+      "hospitalize": "Hospitalize",
+      "finish-hospitalization": "Finish Hospitalization"
+    }
+  },
+  "hospitalizations": {
+    "title": "Hospitalizations",
+    "button": {
+      "finish": "Finish"
+    }
+  },
+  "new-hospitalization": {
+    "title": "New hospitalization",
+    "description": "Inform below the initial hospitalization date for patient ",
+    "form": {
+      "date": {
+        "label": "Date"
+      }
+    }
+  },
+  "finish-hospitalization": {
+    "title": "Finish hospitalization",
+    "description": "Inform below the final hospitalization date and the reason of release for patient ",
+    "form": {
+      "date": {
+        "label": "End date"
+      },
+      "reason": {
+        "label": "Reason"
+      }
+    }
+  },
+  "patient-edition": {
+    "title": {
+      "edition": "Editing patient's data",
+      "creation": "Creating new patient",
+      "detail": "Patient's details"
+    },
+    "form": {
+      "full-name": {
+        "label": "Full name"
+      },
+      "birthdate": {
+        "label": "Birthdate"
+      },
+      "sex": {
+        "label": "Sex"
+      },
+      "birthplace": {
+        "label": "Birthplace"
+      },
+      "documents": {
+        "label": "Documents",
+        "add-button": "Add document",
+        "type": "Type",
+        "value": "Value"
+      },
+      "mother-name": {
+        "label": "Mother's name"
+      },
+      "father-name": {
+        "label": "Father's name"
+      },
+      "marital-status": {
+        "label": "Marital status"
+      },
+      "scholarity": {
+        "label": "Scholarity"
+      },
+      "profession": {
+        "label": "Profession"
+      },
+      "is-working": {
+        "label": "Is working?"
+      },
+      "companion-name": {
+        "label": "Companion's name"
+      },
+      "companion-kinship": {
+        "label": "Kinship"
+      },
+      "companion-same-address": {
+        "label": "Same address?"
+      },
+      "companion-phone": {
+        "label": "Phone"
+      }
+    }
+  },
+  "patient-report": {
+    "psychiatric-title": "Psychiatric report for patient: ",
+    "psychological-title": "Psychological report for patient: ",
+    "social-title": "Social report for patient: ",
+    "dental-title": "Dental report for patient: ",
+    "type": {
+      "psychiatric": "Psychiatric",
+      "psychological": "Psychological",
+      "social": "Social",
+      "dental": "Dental"
+    },
+    "form": {
+      "title": {
+        "label": "Title"
+      }
+    }
+  },
+  "address": {
+    "street": {
+      "label": "Street"
+    },
+    "number": {
+      "label": "Number"
+    },
+    "neighborhood": {
+      "label": "Neighborhood"
+    },
+    "complement": {
+      "label": "Complement"
+    },
+    "zip": {
+      "label": "ZIP code"
+    },
+    "city": {
+      "label": "City"
+    }
+  },
+  "selection-modal": {
+    "empty": "No item exists in database yet!",
+    "not-found": "Nothing was found with this name!",
+    "create": "Click in create button to save the searched item."
+  },
+  "language": {
+    "intro": "Select your preferred language to use in Liber system",
+    "label": "Language",
+    "choices": {
+      "english": "English",
+      "portuguese": "Português"
+    }
+  },
+  "initial": {
+    "title": "Welcome",
+    "intro": "Choose the desired option in left menu..."
+  }
+}

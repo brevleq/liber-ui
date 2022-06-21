@@ -1,0 +1,77 @@
+<!--
+  ~ Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
+  ~
+  ~ This file is part of Liber UI.
+  ~
+  ~ Liber UI is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or any later
+  ~ version.
+  ~
+  ~ Liber UI is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
+  -->
+
+
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            <ng-container *ngIf="report?.type=='SOCIAL'">{{'patient-report.social-title' | translate}}</ng-container>
+            <ng-container
+                    *ngIf="report?.type=='PSYCHIATRIC'">{{'patient-report.psychiatric-title' | translate}}</ng-container>
+            <ng-container
+                    *ngIf="report?.type=='PSYCHOLOGICAL'">{{'patient-report.psychological-title' | translate}}</ng-container>
+            <ng-container *ngIf="report?.type=='DENTAL'">{{'patient-report.dental-title' | translate}}</ng-container>
+            {{patient?.name}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form #reportForm="ngForm" (validSubmit)="submit()" *ngIf="report" [form]="reportForm"
+          formValidation name="reportForm" novalidate role="form">
+        <ion-list>
+            <ion-item>
+                <ion-label position="floating">{{'patient-report.form.title.label'| translate}}</ion-label>
+                <ion-input #titleInput="ngModel" [(ngModel)]="report.title" autocomplete="off" id="titleField"
+                           maxlength="255" name="titleField" required>
+                </ion-input>
+            </ion-item>
+            <div *ngIf="reportForm.submitted && titleInput.invalid"
+                 class="field-invalid-message">
+                <small>
+                    <ion-icon class="alert-info" name="alert"></ion-icon>
+                </small>
+                <small *ngIf="titleInput.errors.required">
+                    {{'common.validation.required'| translate}}
+                </small>
+                <small *ngIf="titleInput.errors.maxlength">
+                    {{'common.validation.maxlength'| translate:{value: 255} }}
+                </small>
+            </div>
+            <ion-row>
+                <ion-col>
+                    <quill-editor #contentInput="ngModel" [(ngModel)]="report.content" id="contentField"
+                                  name="contentField" required></quill-editor>
+                    <div *ngIf="reportForm.submitted && contentInput.invalid"
+                         class="field-invalid-message">
+                        <small>
+                            <ion-icon class="alert-info" name="alert"></ion-icon>
+                        </small>
+                        <small *ngIf="contentInput.errors.required">
+                            {{'common.validation.required'| translate}}
+                        </small>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-list>
+        <ion-button color="primary" expand="block" type="submit">{{'common.button.save'| translate}}</ion-button>
+    </form>
+</ion-content>

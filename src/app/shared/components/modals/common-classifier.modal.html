@@ -1,0 +1,65 @@
+<!--
+  ~ Copyright (c) 2020 - 2021 Hudson Orsine Assumpção.
+  ~
+  ~ This file is part of Liber UI.
+  ~
+  ~ Liber UI is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or any later
+  ~ version.
+  ~
+  ~ Liber UI is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with Liber UI.  If not, see <https://www.gnu.org/licenses/>
+  -->
+
+<ion-header>
+    <ion-toolbar>
+        <h1>{{title}}</h1>
+        <ion-button (click)="close()" fill="clear" slot="end">
+            <ion-icon class="modal-close-button" name="close"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-item>
+        <ion-searchbar (ionChange)="onFilterInput()" [(ngModel)]="filter"></ion-searchbar>
+    </ion-item>
+    <ion-list>
+        <ion-item (click)="select(item)" [disabled]="isUnavailable(item.id)"
+                  *ngFor="let item of items; trackBy: trackById"
+                  [color]="selected?.id==item?.id?'primary':''">
+            <ion-label>{{item.name}}</ion-label>
+        </ion-item>
+    </ion-list>
+    <ng-container *ngIf="totalItems==0">
+        <ion-item>
+            <ion-text>
+                <ng-container *ngIf="filter==''">{{'selection-modal.empty' | translate}}</ng-container>
+                <ng-container *ngIf="filter!=''">{{'selection-modal.not-found' | translate}}</ng-container>
+                <br/>
+                <ng-container *ngIf="canCreate">{{'selection-modal.create' | translate}}</ng-container>
+            </ion-text>
+        </ion-item>
+    </ng-container>
+    <ion-infinite-scroll (ionInfinite)="loadPage()" threshold="100px">
+        <ion-infinite-scroll-content
+                loadingSpinner="circular"
+                loadingText="{{'common.loading' | translate}}">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
+<ion-footer>
+    <ion-item>
+        <ion-button (click)="close(selected)" *ngIf="totalItems>0" [disabled]="!selected" slot="end">
+            {{'common.button.select' | translate}}
+        </ion-button>
+        <ion-button (click)="createAndSelect()" *ngIf="totalItems==0 && canCreate" slot="end">
+            {{'common.button.create' | translate}}
+        </ion-button>
+    </ion-item>
+</ion-footer>
