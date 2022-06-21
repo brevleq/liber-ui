@@ -31,6 +31,7 @@ import {ReportEditionPage} from "./report/report-edition.page";
 import {QuillModule} from "ngx-quill";
 import {ReportDetailPage} from "./report/report-detail.page";
 import {ReportOptionsComponent} from "./report/report-options.component";
+import {HospitalizationsModule} from "../hospitalizations/hospitalizations.module";
 
 @NgModule({
     declarations: [
@@ -48,6 +49,7 @@ import {ReportOptionsComponent} from "./report/report-options.component";
         SharedModule,
         IonicModule,
         PatientsRoutingModule,
+        HospitalizationsModule,
         QuillModule.forRoot({
             modules: {
                 // toolbar: [...]

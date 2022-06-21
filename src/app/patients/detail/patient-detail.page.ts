@@ -29,10 +29,7 @@ import {EventManager} from "../../shared/services/event.manager.service";
 import {Principal} from "../../shared/auth/principal.service";
 import {User} from "../../shared/model/user.model";
 import {ModalController} from "@ionic/angular";
-import {HospitalizationStartModal} from "../../hospitalizations/start/hospitalization-start.modal";
 import {HospitalizationsService} from "../../shared/services/hospitalizations.service";
-import {HospitalizationEndModal} from "../../hospitalizations/end/hospitalization-end.modal";
-import {Hospitalization} from "../../shared/model/hospitalization.model";
 
 @Component({
     selector: 'patient-detail-page',
@@ -42,7 +39,6 @@ import {Hospitalization} from "../../shared/model/hospitalization.model";
 export class PatientDetailPage extends InfiniteScrollPage<Report> {
 
     @Input() patient: Patient;
-    hospitalization: Hospitalization;
     user: User;
     documentIds: string[];
 
@@ -61,7 +57,6 @@ export class PatientDetailPage extends InfiniteScrollPage<Report> {
         this.activatedRoute.params.subscribe(params => {
             const id = params['id'];
             this.patientService.find(id).subscribe(res => this.loadPatient(res.body));
-            this.hospitalizationService.findCurrent(id).subscribe(res => this.hospitalization = res.body);
         });
     }
 
@@ -78,28 +73,5 @@ export class PatientDetailPage extends InfiniteScrollPage<Report> {
         this.documentIds = Object.keys(this.patient.documents);
         this.queryObject.patientId = this.patient.id;
         super.cleanLoad();
-    }
-
-    public async hospitalize() {
-        const modal = await this.modalController.create({
-            component: HospitalizationStartModal,
-            componentProps: {
-                patient: this.patient
-            }
-        });
-        modal.present();
-        modal.onDidDismiss().then(result => this.hospitalization = result.data);
-    }
-
-    async finishHospitalization() {
-        const modal = await this.modalController.create({
-            component: HospitalizationEndModal,
-            componentProps: {
-                patient: this.patient,
-                hospitalization: this.hospitalization
-            }
-        });
-        modal.present();
-        modal.onDidDismiss().then((result) => this.hospitalization = result.data);
     }
 }

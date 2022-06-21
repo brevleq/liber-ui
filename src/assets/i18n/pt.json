@@ -121,6 +121,7 @@
     "title": "Pacientes",
     "button": {
       "new-report": "Novo relatório",
+      "hospitalizations": "Internações",
       "hospitalize": "Internar",
       "finish-hospitalization": "Finalizar internação"
     }

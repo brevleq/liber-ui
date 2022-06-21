@@ -173,12 +173,8 @@
         <ion-button [routerLink]="'../../edit/'+patient.id">{{'common.button.edit' | translate}}</ion-button>
         <ion-button
                 [routerLink]="'../../'+patient.id+'/report/new'">{{'patients.button.new-report' | translate}}</ion-button>
-        <ng-container *jhiHasAnyAuthority="['ROLE_PSYCHOLOGIST','ROLE_SOCIAL_ASSISTANT']">
-            <ion-button (click)="hospitalize()"
-                        *ngIf="!hospitalization">{{'patients.button.hospitalize' | translate}}</ion-button>
-            <ion-button (click)="finishHospitalization()"
-                        *ngIf="hospitalization">{{'patients.button.finish-hospitalization' | translate}}</ion-button>
-        </ng-container>
+        <ion-button
+                [routerLink]="'../../'+patient.id+'/hospitalizations'">{{'patients.button.hospitalizations' | translate}}</ion-button>
     </ion-item>
     <ion-list>
         <ion-item *ngFor="let report of items; trackBy: trackById">

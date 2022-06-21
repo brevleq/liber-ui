@@ -24,6 +24,7 @@ import {PatientEditionPage} from "./edition/patient-edition.page";
 import {PatientDetailPage} from "./detail/patient-detail.page";
 import {ReportEditionPage} from "./report/report-edition.page";
 import {ReportDetailPage} from "./report/report-detail.page";
+import {HospitalizationsPage} from "../hospitalizations/hospitalizations.page";
 
 const routes: Routes = [
     {
@@ -47,6 +48,9 @@ const routes: Routes = [
     }, {
         path: ':patientId/report/:reportId',
         component: ReportDetailPage
+    }, {
+        path: ':patientId/hospitalizations',
+        component: HospitalizationsPage
     }
 ];
 

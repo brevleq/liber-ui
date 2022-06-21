@@ -121,6 +121,7 @@
     "title": "Patients",
     "button": {
       "new-report": "New report",
+      "hospitalizations": "Hospitalizations",
       "hospitalize": "Hospitalize",
       "finish-hospitalization": "Finish Hospitalization"
     }

@@ -23,6 +23,12 @@ import {Hospitalization} from "../shared/model/hospitalization.model";
 import {InfiniteScrollPage} from "../shared/base/infinite-scroll.page";
 import {EventManager} from "../shared/services/event.manager.service";
 import {DeletionService} from "../shared/services/deletion.service";
+import {ActivatedRoute} from "@angular/router";
+import {HospitalizationStartModal} from "./start/hospitalization-start.modal";
+import {HospitalizationEndModal} from "./end/hospitalization-end.modal";
+import {ModalController} from "@ionic/angular";
+import {PatientService} from "../shared/services/patient.service";
+import {Patient} from "../shared/model/patient.model";
 
 @Component({
     selector: 'hospitalizations-page',
@@ -31,11 +37,24 @@ import {DeletionService} from "../shared/services/deletion.service";
 })
 export class HospitalizationsPage extends InfiniteScrollPage<Hospitalization> {
 
+    patientId: number;
+    hospitalization: Hospitalization;
+    patient: Patient;
+
     constructor(private hospitalizationService: HospitalizationsService,
+                private patientService: PatientService,
                 protected eventManager: EventManager,
-                private deletionService: DeletionService) {
+                private deletionService: DeletionService,
+                private modalController: ModalController,
+                private activatedRoute: ActivatedRoute) {
         super(hospitalizationService, eventManager, {
-            sort: ['startDate,asc']
+            sort: ['startDate,desc']
+        });
+        this.activatedRoute.params.subscribe(params => {
+            this.patientId = params['patientId'];
+            this.patientService.find(this.patientId).subscribe(res => this.patient = res.body);
+            this.hospitalizationService.findCurrent(this.patientId).subscribe(res => this.hospitalization = res.body);
+            this.queryObject.patientId = this.patientId;
         });
     }
 
@@ -56,6 +75,35 @@ export class HospitalizationsPage extends InfiniteScrollPage<Hospitalization> {
         if (index !== -1) {
             this.items.splice(index, 1);
         }
+    }
+
+    public async hospitalize() {
+        const modal = await this.modalController.create({
+            component: HospitalizationStartModal,
+            componentProps: {
+                patient: this.patient
+            }
+        });
+        modal.present();
+        modal.onDidDismiss().then(result => {
+            this.hospitalization = result.data;
+            this.cleanLoad();
+        });
+    }
+
+    async finishHospitalization() {
+        const modal = await this.modalController.create({
+            component: HospitalizationEndModal,
+            componentProps: {
+                patient: this.patient,
+                hospitalization: this.hospitalization
+            }
+        });
+        modal.present();
+        modal.onDidDismiss().then((result) => {
+            this.hospitalization = result.data;
+            this.cleanLoad();
+        });
     }
 
 }
