@@ -23,4 +23,4 @@ ionic build --prod --engine=browser
 cd ..
 mv www/ docker/www/
 cd docker
-docker build -t brevleq/liber-ui:0.0.5 -t brevleq/liber-ui:latest .
+docker build -t brevleq/liber-ui:0.0.6 -t brevleq/liber-ui:latest .
