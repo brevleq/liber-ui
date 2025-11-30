@@ -11,6 +11,7 @@ if [ ! -f "$FLAG_FILE" ]; then
     else
         echo "Ignoring certbot configuration"
     fi
+    nohup sh renew.sh &
     echo "configured" > $FLAG_FILE
 fi
 
